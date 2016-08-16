@@ -9,6 +9,11 @@
             "email": "developer@katsana.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Katsana\\Sdk\\": "src/"
+        }
+    },
     "require": {
         "php": ">=5.5",
         "php-http/httplug": "~1.0",
