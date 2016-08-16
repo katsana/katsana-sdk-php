@@ -148,4 +148,77 @@ class Client
     {
         return $this->apiSecret;
     }
+
+    /**
+     * Get versioned resource (service).
+     *
+     * @param  string  $service
+     * @param  string|null  $version
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return object
+     */
+    public function resource($service, $version = null)
+    {
+        if (is_null($version) || ! array_key_exists($version, $this->supportedVersions)) {
+            $version = $this->defaultVersion;
+        }
+
+        $base  = str_replace('.', '\\', $service);
+        $class = sprintf('%s\%s\%s', __NAMESPACE__, $this->supportedVersions[$version], $base);
+
+        if (! class_exists($class)) {
+            throw new InvalidArgumentException("Resource [{$service}] for version [{$version}] is not available");
+        }
+
+        return new $class($this);
+    }
+
+    /**
+     * Send the HTTP request.
+     *
+     * @param  string  $method
+     * @param  \Psr\Http\Message\UriInterface|string  $uri
+     * @param  array  $headers
+     * @param  array  $data
+     *
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function send($method, $uri, $headers = [], $data = [])
+    {
+        $headers = $this->prepareRequestHeaders($headers);
+        $body    = $this->prepareRequestBody($data, $headers);
+
+        return $this->http->send($method, $uri, $headers, $body);
+    }
+
+    /**
+     * Prepare request body.
+     *
+     * @param  mixed  $body
+     * @param  array  $headers
+     *
+     * @return string
+     */
+    protected function prepareRequestBody($body = [], array $headers = [])
+    {
+        if (isset($headers['Content-Type']) && $headers['Content-Type'] == 'application/json') {
+            return json_encode($body);
+        }
+
+        return http_build_query($body, null, '&');
+    }
+
+    /**
+     * Prepare request headers.
+     *
+     * @param  array  $headers
+     *
+     * @return array
+     */
+    protected function prepareRequestHeaders(array $headers = [])
+    {
+        return $headers;
+    }
 }
