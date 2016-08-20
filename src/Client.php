@@ -3,6 +3,7 @@
 namespace Katsana\Sdk;
 
 use InvalidArgumentException;
+use Psr\Http\Message\StreamInterface;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
 use Http\Client\Common\HttpMethodsClient as HttpClient;
@@ -181,33 +182,16 @@ class Client
      * @param  string  $method
      * @param  \Psr\Http\Message\UriInterface|string  $uri
      * @param  array  $headers
-     * @param  array  $data
+     * @param  array  $body
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function send($method, $uri, $headers = [], $data = [])
+    public function send($method, $uri, array $headers = [], $body = [])
     {
         $headers = $this->prepareRequestHeaders($headers);
-        $body    = $this->prepareRequestBody($data, $headers);
+        list($headers, $body) = $this->prepareRequestPayloads($headers, $body);
 
         return $this->http->send($method, $uri, $headers, $body);
-    }
-
-    /**
-     * Prepare request body.
-     *
-     * @param  mixed  $body
-     * @param  array  $headers
-     *
-     * @return string
-     */
-    protected function prepareRequestBody($body = [], array $headers = [])
-    {
-        if (isset($headers['Content-Type']) && $headers['Content-Type'] == 'application/json') {
-            return json_encode($body);
-        }
-
-        return http_build_query($body, null, '&');
     }
 
     /**
@@ -220,5 +204,24 @@ class Client
     protected function prepareRequestHeaders(array $headers = [])
     {
         return $headers;
+    }
+
+    /**
+     * Prepare request payloads.
+     *
+     * @param  array  $headers
+     * @param  mixed  $body
+     *
+     * @return string
+     */
+    protected function prepareRequestPayloads(array $headers = [], $body = [])
+    {
+        if (isset($headers['Content-Type']) && $headers['Content-Type'] == 'application/json') {
+            $body = json_encode($body);
+        } elseif (! $body instanceof StreamInterface) {
+            $body = http_build_query($body, null, '&');
+        }
+
+        return [$headers, $body];
     }
 }
