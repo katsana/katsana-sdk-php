@@ -21,6 +21,16 @@ abstract class Request
     protected $client;
 
     /**
+     * Construct a new Request.
+     *
+     * @param \Katsana\Sdk\Client  $client
+     */
+    public function __construct(Client $client)
+    {
+        $this->client = $client;
+    }
+
+    /**
      * Get API endpoint.
      *
      * @param  string  $name
