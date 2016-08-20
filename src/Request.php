@@ -35,16 +35,20 @@ abstract class Request
      *
      * @param  string  $name
      * @param  array  $headers
+     * @param  array  $body
      *
      * @return array
      */
-    protected function endpoint($name, array $headers = [])
+    protected function send($method, $name, array $headers = [], array $body = [])
     {
         $domain = $this->client->getApiEndpoint();
 
         $uri = (new Uri(sprintf('%s/%s/%s', $domain, $name)));
         $headers['Accept'] = "application/vnd.katsana.{$this->version}+json";
 
-        return [$uri, $headers];
+        $body['client_id'] = $this->client->getApiKey();
+        $body['client_secret'] = $this->client->getApiSecret();
+
+        return $this->client->send(strtoupper($method), $uri, $headers, $body);
     }
 }

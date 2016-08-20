@@ -11,9 +11,7 @@ class Vehicles extends Request
      */
     public function index()
     {
-        list($uri, $headers) = $this->endpoint('vehicles');
-
-        return $this->client->send('GET', $uri, $headers, []);
+        return $this->send('GET', 'vehicles');
     }
 
     /**
@@ -25,8 +23,6 @@ class Vehicles extends Request
      */
     public function show($id)
     {
-        list($uri, $headers) = $this->endpoint("vehicles/{$id}");
-
-        return $this->client->send('GET', $uri, $headers, []);
+        return $this->send('GET', "vehicles/{$id}");
     }
 }

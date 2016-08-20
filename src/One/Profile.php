@@ -11,8 +11,6 @@ class Profile extends Request
      */
     public function show()
     {
-        list($uri, $headers) = $this->endpoint('profile');
-
-        return $this->client->send('GET', $uri, $headers, []);
+        return $this->send('GET', 'profile');
     }
 }
