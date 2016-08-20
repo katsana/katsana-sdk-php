@@ -49,6 +49,6 @@ abstract class Request
         $body['client_id'] = $this->client->getApiKey();
         $body['client_secret'] = $this->client->getApiSecret();
 
-        return $this->client->send(strtoupper($method), $uri, $headers, $body);
+        return $this->client->send($method, $uri, $headers, $body);
     }
 }
