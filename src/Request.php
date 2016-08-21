@@ -3,33 +3,10 @@
 namespace Katsana\Sdk;
 
 use GuzzleHttp\Psr7\Uri;
+use Laravie\Codex\Request as BaseRequest;
 
-abstract class Request
+abstract class Request extends BaseRequest
 {
-    /**
-     * Version namespace.
-     *
-     * @var string
-     */
-    protected $version;
-
-    /**
-     * The Billplz client.
-     *
-     * @var \Katsana\Sdk\Client
-     */
-    protected $client;
-
-    /**
-     * Construct a new Request.
-     *
-     * @param \Katsana\Sdk\Client  $client
-     */
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
-
     /**
      * Get API endpoint.
      *
@@ -41,14 +18,23 @@ abstract class Request
      */
     protected function send($method, $name, array $headers = [], array $body = [])
     {
-        $domain = $this->client->getApiEndpoint();
-
-        $uri = (new Uri(sprintf('%s/%s/%s', $domain, $name)));
-        $headers['Accept'] = "application/vnd.katsana.{$this->version}+json";
+        $headers['Accept'] = "application/vnd.katsana.{$this->getVersion()}+json";
 
         $body['client_id'] = $this->client->getApiKey();
         $body['client_secret'] = $this->client->getApiSecret();
 
-        return $this->client->send($method, $uri, $headers, $body);
+        return parent::send($method, $uri, $headers, $body);
+    }
+
+    /**
+     * Get URI Endpoint.
+     *
+     * @param  string  $endpoint
+     *
+     * @return \GuzzleHttp\Psr7\Uri
+     */
+    protected function getUriEndpoint($endpoint)
+    {
+        return new Uri(sprintf('%s/%s/%s', $this->client->getApiEndpoint(), $name));
     }
 }

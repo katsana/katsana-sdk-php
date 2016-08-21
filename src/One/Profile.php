@@ -7,7 +7,7 @@ class Profile extends Request
     /**
      * Show user profile.
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return \Laravie\Codex\Response
      */
     public function show()
     {

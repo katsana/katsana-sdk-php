@@ -7,7 +7,7 @@ class Vehicles extends Request
     /**
      * List all vehicles available for the user.
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return \Laravie\Codex\Response
      */
     public function index()
     {
@@ -19,7 +19,7 @@ class Vehicles extends Request
      *
      * @param  int  $id
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return \Laravie\Codex\Response
      */
     public function show($id)
     {
