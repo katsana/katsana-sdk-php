@@ -20,8 +20,8 @@ abstract class Request extends BaseRequest
     {
         $headers['Accept'] = "application/vnd.katsana.{$this->getVersion()}+json";
 
-        $body['client_id'] = $this->client->getApiKey();
-        $body['client_secret'] = $this->client->getApiSecret();
+        $body['api_key'] = $this->client->getApiKey();
+        $body['api_token'] = $this->client->getApiSecret();
 
         return parent::send($method, $uri, $headers, $body);
     }

@@ -25,4 +25,16 @@ class Vehicles extends Request
     {
         return $this->send('GET', "vehicles/{$id}");
     }
+
+    /**
+     * Get vehicle current location.
+     *
+     * @param  int  $id
+     *
+     * @return \Laravie\Codex\Response
+     */
+    public function location($id)
+    {
+        return $this->send('GET', "vehicles/{$id}/location");
+    }
 }
