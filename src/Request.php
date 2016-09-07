@@ -16,14 +16,20 @@ abstract class Request extends BaseRequest
      *
      * @return array
      */
-    protected function send($method, $name, array $headers = [], array $body = [])
+    protected function send($method, $path, array $headers = [], $body = [])
     {
-        $headers['Accept'] = "application/vnd.katsana.{$this->getVersion()}+json";
+        $headers['Accept'] = "application/vnd.KATSANA.{$this->getVersion()}+json";
 
-        $body['api_key'] = $this->client->getApiKey();
-        $body['api_token'] = $this->client->getApiSecret();
+        $query['api_key'] = $this->client->getApiKey();
+        $query['api_token'] = $this->client->getApiSecret();
 
-        return parent::send($method, $uri, $headers, $body);
+        if ($method === 'GET') {
+            $path .= '?'.http_build_query($query, null, '&');
+        } else {
+            $body = array_merge($body, $query);
+        }
+
+        return parent::send($method, $path, $headers, $body);
     }
 
     /**
@@ -35,6 +41,7 @@ abstract class Request extends BaseRequest
      */
     protected function getUriEndpoint($endpoint)
     {
-        return new Uri(sprintf('%s/%s/%s', $this->client->getApiEndpoint(), $name));
+
+        return new Uri(sprintf('%s/%s', $this->client->getApiEndpoint(), $endpoint));
     }
 }
