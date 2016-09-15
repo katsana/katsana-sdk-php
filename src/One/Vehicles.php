@@ -37,4 +37,23 @@ class Vehicles extends Request
     {
         return $this->send('GET', "vehicles/{$id}/location", $this->getApiHeaders());
     }
+
+    /**
+     * Upload profile avatar.
+     *
+     * @param  int  $id
+     * @param  mixed  $file
+     *
+     * @return \Laravie\Codex\Response
+     */
+    public function uploadAvatar($id, $file)
+    {
+        list($headers, $stream) = $this->prepareMultipartRequestPayloads(
+            $this->getApiHeaders(),
+            $this->getApiBody(),
+            compact('file')
+        );
+
+        return $this->send('POST', "vehicles/{$id}/avatar", $headers, $stream);
+    }
 }
