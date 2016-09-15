@@ -15,7 +15,11 @@ class Travel extends Request
      */
     public function today($id)
     {
-        return $this->send('GET', "vehicles/{$id}/travels/today");
+        return $this->send(
+            'GET',
+            "vehicles/{$id}/travels/today",
+            $this->getApiHeaders()
+        );
     }
 
     /**
@@ -27,7 +31,11 @@ class Travel extends Request
      */
     public function yesterday($id)
     {
-        return $this->send('GET', "vehicles/{$id}/travels/yesterday");
+        return $this->send(
+            'GET',
+            "vehicles/{$id}/travels/yesterday",
+            $this->getApiHeaders()
+        );
     }
 
     /**
@@ -42,6 +50,10 @@ class Travel extends Request
      */
     public function date($id, $year, $month = 1, $day = 1)
     {
-        return $this->send('GET', "vehicles/{$id}/travels/{$year}/{$month}/{$day}");
+        return $this->send(
+            'GET',
+            "vehicles/{$id}/travels/{$year}/{$month}/{$day}",
+            $this->getApiHeaders()
+        );
     }
 }

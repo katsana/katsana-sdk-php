@@ -11,6 +11,6 @@ class Profile extends Request
      */
     public function show()
     {
-        return $this->send('GET', 'profile');
+        return $this->send('GET', 'profile', $this->getApiHeaders());
     }
 }

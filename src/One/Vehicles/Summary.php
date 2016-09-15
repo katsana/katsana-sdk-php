@@ -16,7 +16,11 @@ class Summary extends Request
      */
     public function today($id)
     {
-        return $this->send('GET', "vehicles/{$id}/summaries/today");
+        return $this->send(
+            'GET',
+            "vehicles/{$id}/summaries/today",
+            $this->getApiHeaders()
+        );
     }
 
     /**
@@ -28,7 +32,11 @@ class Summary extends Request
      */
     public function yesterday($id)
     {
-        return $this->send('GET', "vehicles/{$id}/summaries/yesterday");
+        return $this->send(
+            'GET',
+            "vehicles/{$id}/summaries/yesterday",
+            $this->getApiHeaders()
+        );
     }
 
     /**
@@ -42,7 +50,11 @@ class Summary extends Request
      */
     public function month($id, $year, $month = 1)
     {
-        return $this->send('GET', "vehicles/{$id}/summaries/{$year}/{$month}");
+        return $this->send(
+            'GET',
+            "vehicles/{$id}/summaries/{$year}/{$month}",
+            $this->getApiHeaders()
+        );
     }
 
     /**
@@ -57,7 +69,11 @@ class Summary extends Request
      */
     public function date($id, $year, $month = 1, $day = 1)
     {
-        return $this->send('GET', "vehicles/{$id}/summaries/{$year}/{$month}/{$day}");
+        return $this->send(
+            'GET',
+            "vehicles/{$id}/summaries/{$year}/{$month}/{$day}",
+            $this->getApiHeaders()
+        );
     }
 
     /**
@@ -71,6 +87,11 @@ class Summary extends Request
      */
     public function duration($id, $start, $end)
     {
-        return $this->send('GET', "vehicles/{$id}/summaries/duration", [], compact('start', 'end'));
+        return $this->send(
+            'GET',
+            "vehicles/{$id}/summaries/duration",
+            $this->getApiHeaders(),
+            compact('start', 'end')
+        );
     }
 }

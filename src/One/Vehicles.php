@@ -11,7 +11,7 @@ class Vehicles extends Request
      */
     public function index()
     {
-        return $this->send('GET', 'vehicles');
+        return $this->send('GET', 'vehicles', $this->getApiHeaders());
     }
 
     /**
@@ -23,7 +23,7 @@ class Vehicles extends Request
      */
     public function show($id)
     {
-        return $this->send('GET', "vehicles/{$id}");
+        return $this->send('GET', "vehicles/{$id}", $this->getApiHeaders());
     }
 
     /**
@@ -35,6 +35,6 @@ class Vehicles extends Request
      */
     public function location($id)
     {
-        return $this->send('GET', "vehicles/{$id}/location");
+        return $this->send('GET', "vehicles/{$id}/location", $this->getApiHeaders());
     }
 }

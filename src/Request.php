@@ -8,19 +8,25 @@ use Laravie\Codex\Request as BaseRequest;
 abstract class Request extends BaseRequest
 {
     /**
-     * Get API endpoint.
-     *
-     * @param  string  $name
-     * @param  array  $headers
-     * @param  array  $body
+     * Get API Header.
      *
      * @return array
      */
-    protected function send($method, $path, array $headers = [], $body = [])
+    protected function getApiHeaders()
     {
-        $headers['Accept'] = "application/vnd.KATSANA.{$this->getVersion()}+json";
+        return [
+            'Accept' => "application/vnd.KATSANA.{$this->getVersion()}+json",
+        ];
+    }
 
-        return parent::send($method, $path, $headers, $body);
+    /**
+     * Get API Body.
+     *
+     * @return array
+     */
+    protected function getApiBody()
+    {
+        return [];
     }
 
     /**
