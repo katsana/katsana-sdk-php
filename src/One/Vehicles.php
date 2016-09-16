@@ -39,6 +39,50 @@ class Vehicles extends Request
     }
 
     /**
+     * Update vehicle information.
+     *
+     * @param  array  $data
+     *
+     * @return \Laravie\Codex\Response
+     */
+    public function update(array $data)
+    {
+        return $this->send('PATCH', "vehicles/{$id}", $this->getApiHeaders(), $data);
+    }
+
+    /**
+     * Set the vehicle under lockdown mode.
+     *
+     * @param  int  $id
+     *
+     * @return \Laravie\Codex\Response
+     */
+    public function locked($id)
+    {
+        $body = [
+            'mode' => 'parked',
+        ];
+
+        return $this->send('PATCH', "vehicles/{$id}", $this->getApiHeaders(), $body);
+    }
+
+    /**
+     * Set the vehicle under working mode.
+     *
+     * @param  int  $id
+     *
+     * @return \Laravie\Codex\Response
+     */
+    public function unlock($id)
+    {
+        $body = [
+            'mode' => 'working',
+        ];
+
+        return $this->send('PATCH', "vehicles/{$id}", $this->getApiHeaders(), $body);
+    }
+
+    /**
      * Upload profile avatar.
      *
      * @param  int  $id
