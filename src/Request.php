@@ -14,9 +14,15 @@ abstract class Request extends BaseRequest
      */
     protected function getApiHeaders()
     {
-        return [
+        $header = [
             'Accept' => "application/vnd.KATSANA.{$this->getVersion()}+json",
         ];
+
+        if (! is_null($accessToken = $this->client->getAccessToken())) {
+            $headers['Authorization'] = "Bearer {$accessToken}";
+        }
+
+        return $headers;
     }
 
     /**
@@ -38,8 +44,8 @@ abstract class Request extends BaseRequest
      */
     protected function getUriEndpoint($endpoint)
     {
-        $query['api_key'] = $this->client->getApiKey();
-        $query['api_token'] = $this->client->getApiSecret();
+        $query['client_id'] = $this->client->getClientId();
+        $query['client_secret'] = $this->client->getClientSecret();
 
         $endpoint .= '?'.http_build_query($query, null, '&');
 

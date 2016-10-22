@@ -12,14 +12,21 @@ class Client extends BaseClient
      *
      * @var string
      */
-    protected $apiKey;
+    protected $clientId;
 
     /**
      * API Secret.
      *
      * @var string
      */
-    protected $apiSecret;
+    protected $clientSecret;
+
+    /**
+     * API Access Token.
+     *
+     * @var string|null
+     */
+    protected $accessToken;
 
     /**
      * API endpoint.
@@ -48,27 +55,27 @@ class Client extends BaseClient
      * Construct a new Client.
      *
      * @param \Http\Client\Common\HttpMethodsClient  $http
-     * @param string  $apiKey
-     * @param string  $apiSecret
+     * @param string  $clientId
+     * @param string  $clientSecret
      */
-    public function __construct(HttpClient $http, $apiKey, $apiSecret)
+    public function __construct(HttpClient $http, $clientId, $clientSecret)
     {
         $this->http = $http;
-        $this->apiKey = $apiKey;
-        $this->apiSecret = $apiSecret;
+        $this->clientId = $clientId;
+        $this->clientSecret = $clientSecret;
     }
 
     /**
      * Make a client.
      *
-     * @param string  $apiKey
-     * @param string  $apiSecret
+     * @param string  $clientId
+     * @param string  $clientSecret
      *
      * @return $this
      */
-    public static function make($apiKey, $apiSecret)
+    public static function make($clientId, $clientSecret)
     {
-        return new static(static::makeHttpClient(), $apiKey, $apiSecret);
+        return new static(static::makeHttpClient(), $clientId, $clientSecret);
     }
 
     /**
@@ -76,9 +83,9 @@ class Client extends BaseClient
      *
      * @return string|null
      */
-    public function getApiKey()
+    public function getClientId()
     {
-        return $this->apiKey;
+        return $this->clientId;
     }
 
     /**
@@ -86,9 +93,33 @@ class Client extends BaseClient
      *
      * @return string|null
      */
-    public function getApiSecret()
+    public function getClientSecret()
     {
-        return $this->apiSecret;
+        return $this->clientSecret;
+    }
+
+    /**
+     * Get access token.
+     *
+     * @return string|null
+     */
+    public function getAccessToken()
+    {
+        return $this->accessToken;
+    }
+
+    /**
+     * Set access token.
+     *
+     * @param  string  $accessToken
+     *
+     * @return $this
+     */
+    public function setAccessToken($accessToken)
+    {
+        $this->accessToken = $accessToken;
+
+        return $this;
     }
 
     /**
