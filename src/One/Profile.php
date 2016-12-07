@@ -19,6 +19,22 @@ class Profile extends Request
     }
 
     /**
+     * Verify user password.
+     *
+     * @param  string  $password
+     *
+     * @return bool
+     */
+    public function verifyPassword($password)
+    {
+        $body = array_merge($this->getApiBody(), compact('password'));
+
+        $response = $this->send('POST', 'auth/verify', $this->getApiHeaders(), $body);
+
+        return $response->toArray()['success'] === true;
+    }
+
+    /**
      * Upload profile avatar.
      *
      * @param  mixed  $file
