@@ -98,7 +98,7 @@ class Client extends BaseClient
      */
     protected function sanitizeWith()
     {
-        return null;
+        return;
     }
 
     /**

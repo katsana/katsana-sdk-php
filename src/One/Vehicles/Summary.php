@@ -2,7 +2,6 @@
 
 namespace Katsana\Sdk\One\Vehicles;
 
-use DateTime;
 use Katsana\Sdk\One\Request;
 
 class Summary extends Request
