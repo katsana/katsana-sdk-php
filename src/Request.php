@@ -14,7 +14,7 @@ abstract class Request extends BaseRequest
      */
     protected function getApiHeaders()
     {
-        $header = [
+        $headers = [
             'Accept' => "application/vnd.KATSANA.{$this->getVersion()}+json",
         ];
 
