@@ -11,7 +11,7 @@ class Summary extends Request
      *
      * @param  int  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function today($id)
     {
@@ -27,7 +27,7 @@ class Summary extends Request
      *
      * @param  int  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function yesterday($id)
     {
@@ -45,7 +45,7 @@ class Summary extends Request
      * @param  int  $year
      * @param  int  $month
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function month($id, $year, $month = 1)
     {
@@ -64,7 +64,7 @@ class Summary extends Request
      * @param  int  $month
      * @param  int  $day
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function date($id, $year, $month = 1, $day = 1)
     {
@@ -82,7 +82,7 @@ class Summary extends Request
      * @param  string  $start
      * @param  string  $end
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function duration($id, $start, $end)
     {

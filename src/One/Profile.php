@@ -11,7 +11,7 @@ class Profile extends Request
     /**
      * Show user profile.
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function show()
     {
@@ -37,7 +37,7 @@ class Profile extends Request
      *
      * @param  mixed  $file
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function uploadAvatar($file)
     {
