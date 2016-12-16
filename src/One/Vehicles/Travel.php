@@ -11,7 +11,7 @@ class Travel extends Request
      *
      * @param  int  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function today($id)
     {
@@ -27,7 +27,7 @@ class Travel extends Request
      *
      * @param  int  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function yesterday($id)
     {
@@ -46,7 +46,7 @@ class Travel extends Request
      * @param  int  $month
      * @param  int  $day
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function date($id, $year, $month = 1, $day = 1)
     {
