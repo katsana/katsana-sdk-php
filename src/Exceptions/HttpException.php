@@ -4,6 +4,7 @@ namespace Katsana\Sdk\Exceptions;
 
 use Exception;
 use RuntimeException;
+use Katsana\Sdk\Response;
 use Http\Client\Exception as ClientException;
 
 class HttpException extends RuntimeException implements ClientException
