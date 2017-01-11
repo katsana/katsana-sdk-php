@@ -27,7 +27,12 @@ class Profile extends Request
      */
     public function verifyPassword($password)
     {
-        $response = $this->send('POST', 'auth/verify', $this->getApiHeaders(), $this->mergeApiBody(compact('password'));
+        $response = $this->send(
+            'POST',
+            'auth/verify',
+            $this->getApiHeaders(),
+            $this->mergeApiBody(compact('password'))
+        );
 
         return $response->toArray()['success'] === true;
     }
