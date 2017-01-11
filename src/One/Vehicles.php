@@ -7,7 +7,7 @@ class Vehicles extends Request
     /**
      * List all vehicles available for the user.
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function index()
     {
@@ -19,7 +19,7 @@ class Vehicles extends Request
      *
      * @param  int  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function show($id)
     {
@@ -31,7 +31,7 @@ class Vehicles extends Request
      *
      * @param  int  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function location($id)
     {
@@ -43,7 +43,7 @@ class Vehicles extends Request
      *
      * @param  array  $data
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function update(array $data)
     {
@@ -55,7 +55,7 @@ class Vehicles extends Request
      *
      * @param  int  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function locked($id)
     {
@@ -71,7 +71,7 @@ class Vehicles extends Request
      *
      * @param  int  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function unlock($id)
     {
@@ -88,7 +88,7 @@ class Vehicles extends Request
      * @param  int  $id
      * @param  mixed  $file
      *
-     * @return \Laravie\Codex\Response
+     * @return \Katsana\Sdk\Response
      */
     public function uploadAvatar($id, $file)
     {

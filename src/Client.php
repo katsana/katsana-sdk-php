@@ -3,6 +3,7 @@
 namespace Katsana\Sdk;
 
 use Laravie\Codex\Client as BaseClient;
+use Psr\Http\Message\ResponseInterface;
 use Http\Client\Common\HttpMethodsClient as HttpClient;
 
 class Client extends BaseClient
@@ -120,6 +121,18 @@ class Client extends BaseClient
         $this->accessToken = $accessToken;
 
         return $this;
+    }
+
+    /**
+     * Resolve the responder class.
+     *
+     * @param  \Psr\Http\Message\ResponseInterface  $response
+     *
+     * @return \Katsana\Sdk\Response
+     */
+    protected function responseWith(ResponseInterface $response)
+    {
+        return new Response($response);
     }
 
     /**
