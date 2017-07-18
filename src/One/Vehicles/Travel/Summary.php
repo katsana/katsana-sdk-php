@@ -1,11 +1,12 @@
 <?php
 
-namespace Katsana\Sdk\One\Vehicles;
+namespace Katsana\Sdk\One\Vehicles\Travel;
 
 use Katsana\Sdk\One\Request;
 
-class Travel extends Request
+class Summary extends Request
 {
+
     /**
      * Get travel for today.
      *
@@ -17,7 +18,7 @@ class Travel extends Request
     {
         return $this->send(
             'GET',
-            "vehicles/{$id}/travels/today",
+            "vehicles/{$id}/travels/summaries/today",
             $this->getApiHeaders()
         );
     }
@@ -33,7 +34,25 @@ class Travel extends Request
     {
         return $this->send(
             'GET',
-            "vehicles/{$id}/travels/yesterday",
+            "vehicles/{$id}/travels/summaries/yesterday",
+            $this->getApiHeaders()
+        );
+    }
+
+    /**
+     * Get travel for the month.
+     *
+     * @param  int  $id
+     * @param  int  $year
+     * @param  int  $month
+     *
+     * @return \Katsana\Sdk\Response
+     */
+    public function date($id, $year, $month = 1)
+    {
+        return $this->send(
+            'GET',
+            "vehicles/{$id}/travels/summaries/{$year}/{$month}",
             $this->getApiHeaders()
         );
     }
@@ -52,7 +71,7 @@ class Travel extends Request
     {
         return $this->send(
             'GET',
-            "vehicles/{$id}/travels/{$year}/{$month}/{$day}",
+            "vehicles/{$id}/travels/summaries/{$year}/{$month}/{$day}",
             $this->getApiHeaders()
         );
     }
@@ -70,7 +89,7 @@ class Travel extends Request
     {
         return $this->send(
             'GET',
-            "vehicles/{$id}/travels/duration",
+            "vehicles/{$id}/travels/summaries/duration",
             $this->getApiHeaders(),
             compact('start', 'end')
         );
