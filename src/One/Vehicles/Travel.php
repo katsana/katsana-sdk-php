@@ -56,4 +56,23 @@ class Travel extends Request
             $this->getApiHeaders()
         );
     }
+
+    /**
+     * Get travel for a duration.
+     *
+     * @param  int  $id
+     * @param  string  $start
+     * @param  string  $end
+     *
+     * @return \Katsana\Sdk\Response
+     */
+    public function duration($id, $start, $end)
+    {
+        return $this->send(
+            'GET',
+            "vehicles/{$id}/travel/duration",
+            $this->getApiHeaders(),
+            compact('start', 'end')
+        );
+    }
 }
