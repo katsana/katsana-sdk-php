@@ -27,25 +27,6 @@ abstract class Request extends BaseRequest
     }
 
     /**
-     * Get URI Endpoint.
-     *
-     * Used with Laravie Codex 0.4+
-     *
-     * @param  string  $endpoint
-     *
-     * @return \GuzzleHttp\Psr7\Uri
-     */
-    protected function getUriEndpoint($endpoint)
-    {
-        $query['client_id'] = $this->client->getClientId();
-        $query['client_secret'] = $this->client->getClientSecret();
-
-        $endpoint .= '?'.http_build_query($query, null, '&');
-
-        return new Uri(sprintf('%s/%s', $this->client->getApiEndpoint(), $endpoint));
-    }
-
-    /**
      * Resolve URI.
      *
      * @param  \Laravie\Codex\Endpoint  $endpoint

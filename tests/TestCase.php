@@ -3,8 +3,9 @@
 namespace Katsana\Sdk\Tests;
 
 use Katsana\Sdk\Client;
+use PHPUnit\Framework\TestCase;
 
-abstract class TestCase extends \PHPUnit_Framework_TestCase
+abstract class TestCase extends TestCase
 {
     public function makeClient()
     {

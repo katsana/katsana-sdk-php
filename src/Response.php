@@ -22,9 +22,9 @@ class Response extends BaseResponse
     /**
      * Validate for unauthorized request.
      *
-     * @return void
-     *
      * @throws \Katsana\Sdk\Exceptions\UnauthorizedHttpException
+     *
+     * @return void
      */
     protected function validateUnauthorizedRequest()
     {

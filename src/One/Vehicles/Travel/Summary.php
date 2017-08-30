@@ -6,7 +6,6 @@ use Katsana\Sdk\One\Request;
 
 class Summary extends Request
 {
-
     /**
      * Get travel for today.
      *
