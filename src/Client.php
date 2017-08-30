@@ -2,6 +2,7 @@
 
 namespace Katsana\Sdk;
 
+use Laravie\Codex\Discovery;
 use Laravie\Codex\Client as BaseClient;
 use Psr\Http\Message\ResponseInterface;
 use Http\Client\Common\HttpMethodsClient as HttpClient;
@@ -76,7 +77,7 @@ class Client extends BaseClient
      */
     public static function make($clientId, $clientSecret)
     {
-        return new static(static::makeHttpClient(), $clientId, $clientSecret);
+        return new static(Discovery::client(), $clientId, $clientSecret);
     }
 
     /**
