@@ -11,7 +11,7 @@ class WelcomeTest extends TestCase
     {
         $response = $this->makeClient()
                         ->useVersion('v1')
-                        ->resource('Welcome')
+                        ->uses('Welcome')
                         ->show();
 
         $actualStatusCode = $response->getStatusCode();
