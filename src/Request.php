@@ -25,21 +25,4 @@ abstract class Request extends BaseRequest
 
         return $headers;
     }
-
-    /**
-     * Resolve URI.
-     *
-     * @param  \Laravie\Codex\Endpoint  $endpoint
-     *
-     * @return \GuzzleHttp\Psr7\Uri
-     */
-    protected function resolveUri(Endpoint $endpoint)
-    {
-        $endpoint->addQuery([
-            'client_id' => $this->client->getClientId(),
-            'client_secret' => $this->client->getClientSecret(),
-        ]);
-
-        return parent::resolveUri($endpoint);
-    }
 }
