@@ -13,7 +13,7 @@ class WelcomeTest extends TestCase
     {
         $faker = FakeRequest::create()
                         ->call('GET', ['Accept' => 'application/vnd.KATSANA.v1+json'], '')
-                        ->expectEndpointIs('https://api.katsana.com//')
+                        ->expectEndpointIs('https://api.katsana.com/')
                         ->shouldResponseWith(200, '{"platform":"v5.0.0","api":["v1"]}');
 
         $response = (new Client($faker->http(), 'katsana', 'sdk'))

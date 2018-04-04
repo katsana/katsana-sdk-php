@@ -11,6 +11,6 @@ class Welcome extends Request
      */
     public function show()
     {
-        return $this->send('GET', '/', $this->getApiHeaders());
+        return $this->send('GET', [], $this->getApiHeaders());
     }
 }
