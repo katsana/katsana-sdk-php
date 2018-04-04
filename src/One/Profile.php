@@ -21,7 +21,7 @@ class Profile extends Request
     /**
      * Verify user password.
      *
-     * @param  string  $password
+     * @param string $password
      *
      * @return bool
      */
@@ -40,7 +40,7 @@ class Profile extends Request
     /**
      * Upload profile avatar.
      *
-     * @param  mixed  $file
+     * @param mixed $file
      *
      * @return \Katsana\Sdk\Response
      */

@@ -45,7 +45,8 @@ class Query
     /**
      * Set includes data.
      *
-     * @param  array  $includes
+     * @param array $includes
+     *
      * @return $this
      */
     public function includes($includes)
@@ -60,7 +61,8 @@ class Query
     /**
      * Set excludes data.
      *
-     * @param  array  $excludes
+     * @param array $excludes
+     *
      * @return $this
      */
     public function excludes($excludes)
@@ -75,8 +77,9 @@ class Query
     /**
      * Set custom data.
      *
-     * @param  string  $name
-     * @param  mixed  $value
+     * @param string $name
+     * @param mixed  $value
+     *
      * @return $this
      */
     public function with($name, $value)
@@ -89,7 +92,8 @@ class Query
     /**
      * Set current page.
      *
-     * @param  int|null $page
+     * @param int|null $page
+     *
      * @return $this
      */
     public function forPage($page = null)
@@ -102,7 +106,8 @@ class Query
     /**
      * Build query string.
      *
-     * @param  callable|null $callback
+     * @param callable|null $callback
+     *
      * @return array
      */
     public function build(callable $callback = null)
@@ -117,7 +122,7 @@ class Query
         }
 
         if (is_null($callback)) {
-            $callback = function($data, $customs) {
+            $callback = function ($data, $customs) {
                 return array_merge($customs, $data);
             };
         }

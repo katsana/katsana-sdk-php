@@ -2,8 +2,8 @@
 
 namespace Katsana\Sdk\Tests;
 
-use Mockery as m;
 use Laravie\Codex\Discovery;
+use Mockery as m;
 use PHPUnit\Framework\TestCase as PHPUnit;
 
 abstract class TestCase extends PHPUnit

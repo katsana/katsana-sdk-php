@@ -9,8 +9,8 @@ class PasswordGrant extends Request
     /**
      * Create access token.
      *
-     * @param  string  $username
-     * @param  string  $password
+     * @param string $username
+     * @param string $password
      *
      * @return \Laravie\Codex\Contracts\Response
      */
@@ -19,7 +19,7 @@ class PasswordGrant extends Request
         $body = $this->mergeApiBody(compact('username', 'password'));
 
         return $this->send('POST', 'oauth/token', $this->getApiHeaders(), $body)
-                    ->validateWith(function($statusCode, $response) {
+                    ->validateWith(function ($statusCode, $response) {
                         if ($statusCode !== 200) {
                             throw new RuntimeException('Unable to generate access token!');
                         }

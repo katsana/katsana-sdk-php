@@ -9,7 +9,7 @@ class Summary extends Request
     /**
      * Get travel for today.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Katsana\Sdk\Response
      */
@@ -25,7 +25,7 @@ class Summary extends Request
     /**
      * Get travel for yesterday.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Katsana\Sdk\Response
      */
@@ -41,9 +41,9 @@ class Summary extends Request
     /**
      * Get travel for the month.
      *
-     * @param  int  $id
-     * @param  int  $year
-     * @param  int  $month
+     * @param int $id
+     * @param int $year
+     * @param int $month
      *
      * @return \Katsana\Sdk\Response
      */
@@ -59,10 +59,10 @@ class Summary extends Request
     /**
      * Get travel for the date.
      *
-     * @param  int  $id
-     * @param  int  $year
-     * @param  int  $month
-     * @param  int  $day
+     * @param int $id
+     * @param int $year
+     * @param int $month
+     * @param int $day
      *
      * @return \Katsana\Sdk\Response
      */
@@ -78,9 +78,9 @@ class Summary extends Request
     /**
      * Get travel for a duration.
      *
-     * @param  int  $id
-     * @param  string  $start
-     * @param  string  $end
+     * @param int    $id
+     * @param string $start
+     * @param string $end
      *
      * @return \Katsana\Sdk\Response
      */

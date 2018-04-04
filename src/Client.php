@@ -2,10 +2,10 @@
 
 namespace Katsana\Sdk;
 
-use Laravie\Codex\Discovery;
-use Laravie\Codex\Client as BaseClient;
-use Psr\Http\Message\ResponseInterface;
 use Http\Client\Common\HttpMethodsClient as HttpClient;
+use Laravie\Codex\Client as BaseClient;
+use Laravie\Codex\Discovery;
+use Psr\Http\Message\ResponseInterface;
 
 class Client extends BaseClient
 {
@@ -56,9 +56,9 @@ class Client extends BaseClient
     /**
      * Construct a new Client.
      *
-     * @param \Http\Client\Common\HttpMethodsClient  $http
-     * @param string  $clientId
-     * @param string  $clientSecret
+     * @param \Http\Client\Common\HttpMethodsClient $http
+     * @param string                                $clientId
+     * @param string                                $clientSecret
      */
     public function __construct(HttpClient $http, $clientId, $clientSecret)
     {
@@ -70,8 +70,8 @@ class Client extends BaseClient
     /**
      * Make a client.
      *
-     * @param string  $clientId
-     * @param string  $clientSecret
+     * @param string $clientId
+     * @param string $clientSecret
      *
      * @return $this
      */
@@ -113,7 +113,7 @@ class Client extends BaseClient
     /**
      * Set access token.
      *
-     * @param  string  $accessToken
+     * @param string $accessToken
      *
      * @return $this
      */
@@ -127,7 +127,7 @@ class Client extends BaseClient
     /**
      * Resolve the responder class.
      *
-     * @param  \Psr\Http\Message\ResponseInterface  $response
+     * @param \Psr\Http\Message\ResponseInterface $response
      *
      * @return \Katsana\Sdk\Response
      */
