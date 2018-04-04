@@ -2,20 +2,19 @@
 
 namespace Katsana\Sdk\Tests;
 
-use Katsana\Sdk\Client;
+use Mockery as m;
+use Laravie\Codex\Discovery;
 use PHPUnit\Framework\TestCase as PHPUnit;
 
 abstract class TestCase extends PHPUnit
 {
-    public function makeClient()
+    /**
+     * Teardown the test environment.
+     */
+    protected function tearDown()
     {
-        $client = Client::make($_ENV['CLIENT_ID'], $_ENV['CLIENT_SECRET']);
-        $endpoint = isset($_ENV['ENDPOINT']) ? $_ENV['ENDPOINT'] : null;
+        m::close();
 
-        if (! is_null($endpoint)) {
-            $client->useCustomApiEndpoint($endpoint);
-        }
-
-        return $client;
+        Discovery::flush();
     }
 }
