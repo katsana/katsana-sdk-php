@@ -73,11 +73,22 @@ class Client extends BaseClient
      * @param string $clientId
      * @param string $clientSecret
      *
-     * @return $this
+     * @return static
      */
     public static function make($clientId, $clientSecret)
     {
         return new static(Discovery::client(), $clientId, $clientSecret);
+    }
+
+    /**
+     * Make a client using personal access token.
+     *
+     * @param  string $accessToken
+     * @return static
+     */
+    public static function personal($accessToken)
+    {
+        return static::make(null, null)->setAccessToken($accessToken);
     }
 
     /**

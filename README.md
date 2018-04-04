@@ -8,7 +8,7 @@ KATSANA SDK for PHP
 
 
 * [Installation](#installation)
-
+* [Usages](#usages)
 
 ## Installation
 
@@ -17,7 +17,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require": {
-        "katsana/katsana-sdk-php": "~0.1",
+        "katsana/katsana-sdk-php": "~0.4",
         "php-http/guzzle6-adapter": "^1.1"
     }
 }
@@ -26,4 +26,6 @@ To install through composer, simply put the following in your `composer.json` fi
 ### HTTP Adapter
 
 Instead of utilizing `php-http/guzzle6-adapter` you might want to use any other adapter that implements `php-http/client-implementation`. Check [Clients & Adapters](http://docs.php-http.org/en/latest/clients.html) for PHP-HTTP.
+
+## Usages
 
