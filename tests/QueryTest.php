@@ -18,7 +18,7 @@ class QueryTest extends TestCase
             'includes' => 'drivemark,speed',
             'excludes' => 'driver',
             'page' => 5,
-        ], $query->build());
+        ], $query->toArray());
     }
 
     /** @test */
@@ -35,7 +35,7 @@ class QueryTest extends TestCase
             'includes' => 'drivemark,speed',
             'excludes' => 'driver',
             'page' => 5,
-        ], $query->build());
+        ], $query->toArray());
     }
 
     /** @test */

@@ -106,11 +106,23 @@ class Query
     /**
      * Build query string.
      *
-     * @param callable|null $callback
+     * @return array
+     */
+    public function toArray()
+    {
+        return $this->build(function ($data, $customs) {
+            return array_merge($customs, $data);
+        });
+    }
+
+    /**
+     * Build query string.
+     *
+     * @param callable $callback
      *
      * @return array
      */
-    public function build(callable $callback = null)
+    public function build(callable $callback)
     {
         $data = [
             'includes' => implode(',', $this->includes),
@@ -119,12 +131,6 @@ class Query
 
         if (is_int($this->page) && $this->page > 0) {
             $data['page'] = $this->page;
-        }
-
-        if (is_null($callback)) {
-            $callback = function ($data, $customs) {
-                return array_merge($customs, $data);
-            };
         }
 
         return call_user_func($callback, $data, $this->customs);

@@ -2,28 +2,33 @@
 
 namespace Katsana\Sdk\One;
 
+use Katsana\Sdk\Query;
+
 class Vehicles extends Request
 {
     /**
      * List all vehicles available for the user.
      *
+     * @param \Katsana\Sdk\Query|null $query
+     *
      * @return \Katsana\Sdk\Response
      */
-    public function index()
+    public function index(Query $query = null)
     {
-        return $this->send('GET', 'vehicles', $this->getApiHeaders());
+        return $this->send('GET', 'vehicles', $this->getApiHeaders(), $query->toArray());
     }
 
     /**
      * Show single vehicle.
      *
-     * @param int $id
+     * @param int                     $id
+     * @param \Katsana\Sdk\Query|null $query
      *
      * @return \Katsana\Sdk\Response
      */
-    public function show($id)
+    public function show($id, Query $query = null)
     {
-        return $this->send('GET', "vehicles/{$id}", $this->getApiHeaders());
+        return $this->send('GET', "vehicles/{$id}", $this->getApiHeaders(), $query->toArray());
     }
 
     /**
