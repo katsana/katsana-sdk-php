@@ -3,11 +3,11 @@
 namespace Katsana\Sdk\Tests\Passport;
 
 use Katsana\Sdk\Client;
-use Laravie\Codex\Discovery;
+use Katsana\Sdk\Passport\PasswordGrant;
 use Katsana\Sdk\Tests\TestCase;
 use Laravie\Codex\Contracts\Response;
+use Laravie\Codex\Discovery;
 use Laravie\Codex\Testing\Faker;
-use Katsana\Sdk\Passport\PasswordGrant;
 
 class PasswordGrantTest extends TestCase
 {
@@ -44,7 +44,7 @@ class PasswordGrantTest extends TestCase
     public function it_cant_get_access_token_when_authentication_return_other_than_200_http_status()
     {
         $headers = ['Accept' => 'application/json'];
-        $payloads = 'scope=%2A&grant_type=password&client_id=homestead&client_secret=secret&username=dummy%40katsana.com&password=secret';
+        $payloads = 'scope=%2A&grant_type=password&client_id=homestead&client_secret=secret&username=dummy%40katsana.com&password=secret%21';
 
         $faker = Faker::create()
                     ->call('POST', $headers, $payloads)
@@ -59,7 +59,7 @@ class PasswordGrantTest extends TestCase
         $this->assertNull($client->getAccessToken());
 
         $client->via(new PasswordGrant($client))
-                ->authenticate('dummy@katsana.com', 'secret');
+                ->authenticate('dummy@katsana.com', 'secret!');
     }
 
     /**
@@ -72,6 +72,6 @@ class PasswordGrantTest extends TestCase
         $client = new Client(Faker::create()->http());
 
         $client->via(new PasswordGrant($client))
-                ->authenticate('dummy@katsana.com', 'secret');
+                ->authenticate('dummy@katsana.com', 'secret!');
     }
 }
