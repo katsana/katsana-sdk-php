@@ -2,7 +2,7 @@
 
 namespace Katsana\Sdk;
 
-use Katsana\Sdk\Exceptions\UnauthorizedHttpException;
+use Laravie\Codex\Exceptions\Exceptions\UnauthorizedHttpException;
 use Laravie\Codex\Response as BaseResponse;
 
 class Response extends BaseResponse
@@ -22,7 +22,7 @@ class Response extends BaseResponse
     /**
      * Validate for unauthorized request.
      *
-     * @throws \Katsana\Sdk\Exceptions\UnauthorizedHttpException
+     * @throws \Laravie\Codex\Exceptions\UnauthorizedHttpException
      *
      * @return void
      */
