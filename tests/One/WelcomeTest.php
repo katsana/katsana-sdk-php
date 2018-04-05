@@ -17,8 +17,32 @@ class WelcomeTest extends TestCase
                         ->expectEndpointIs('https://api.katsana.com')
                         ->shouldResponseWith(200, '{"platform":"v5.0.0","api":["v1"]}');
 
-        $response = (new Client($faker->http(), 'katsana', 'sdk'))
+        $response = (new Client($faker->http(), 'homestead', 'secret'))
                         ->useVersion('v1')
+                        ->uses('Welcome')
+                        ->show();
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertContains('v5.0.0', $response->toArray()['platform']);
+        $this->assertContains('v1', $response->toArray()['api']);
+    }
+
+    /** @test */
+    public function it_can_show_welcome_message_with_access_token()
+    {
+        $headers = [
+            'Accept' => 'application/vnd.KATSANA.v1+json',
+            'Authorization' => 'Bearer AckfSECXIvnK5r28GVIWUAxmbBSjTsmF'
+        ];
+
+        $faker = FakeRequest::create()
+                        ->call('GET', $headers, '')
+                        ->expectEndpointIs('https://api.katsana.com')
+                        ->shouldResponseWith(200, '{"platform":"v5.0.0","api":["v1"]}');
+
+        $response = (new Client($faker->http(), 'homestead', 'secret'))
+                        ->useVersion('v1')
+                        ->setAccessToken('AckfSECXIvnK5r28GVIWUAxmbBSjTsmF')
                         ->uses('Welcome')
                         ->show();
 
