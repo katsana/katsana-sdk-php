@@ -15,7 +15,7 @@ class Vehicles extends Request
      */
     public function index(?Query $query = null): Response
     {
-        return $this->send('GET', 'vehicles', $this->getApiHeaders(), $query->toArray());
+        return $this->send('GET', 'vehicles', $this->getApiHeaders(), $this->buildQueryString($query));
     }
 
     /**
@@ -28,7 +28,7 @@ class Vehicles extends Request
      */
     public function show($id, Query $query = null)
     {
-        return $this->send('GET', "vehicles/{$id}", $this->getApiHeaders(), $query->toArray());
+        return $this->send('GET', "vehicles/{$id}", $this->getApiHeaders(), $this->buildQueryString($query));
     }
 
     /**

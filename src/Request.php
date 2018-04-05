@@ -23,4 +23,16 @@ abstract class Request extends BaseRequest
 
         return $headers;
     }
+
+    /**
+     * Build query string from Katsana\Sdk\Query.
+     *
+     * @param  \Katsana\Sdk\Query  $query
+     *
+     * @return array
+     */
+    protected function buildQueryString(?Query $query): array
+    {
+        return $query instanceof Query ? $query->toArray() : [];
+    }
 }
