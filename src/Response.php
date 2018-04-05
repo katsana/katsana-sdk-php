@@ -12,7 +12,7 @@ class Response extends BaseResponse
      *
      * @return $this
      */
-    public function validate()
+    public function validate(): self
     {
         $this->validateUnauthorizedRequest();
 
@@ -26,7 +26,7 @@ class Response extends BaseResponse
      *
      * @return void
      */
-    protected function validateUnauthorizedRequest()
+    protected function validateUnauthorizedRequest(): void
     {
         if ($this->getStatusCode() === 401) {
             throw new UnauthorizedHttpException($this);

@@ -1,8 +1,9 @@
 <?php
 
-namespace Katsana\Sdk\One\Vehicles;
+namespace One\Vehicles;
 
 use Katsana\Sdk\One\Request;
+use Laravie\Codex\Contracts\Response;
 
 class Sharing extends Request
 {
@@ -11,9 +12,9 @@ class Sharing extends Request
      *
      * @param int $vehicleId
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function index($vehicleId)
+    public function index(int $vehicleId): Response
     {
         return $this->send(
             'GET',
@@ -29,9 +30,9 @@ class Sharing extends Request
      * @param string|null $description
      * @param string|null $duration
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function store($vehicleId, $description, $duration)
+    public function store(int $vehicleId, ?string $description, ?string $duration): Response
     {
         return $this->send(
             'POST',
@@ -49,9 +50,9 @@ class Sharing extends Request
      * @param string|null $description
      * @param string|null $duration
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function update($vehicleId, $sharingId, $description, $duration)
+    public function update(int $vehicleId, int $sharingId, ?string $description, ?string $duration): Response
     {
         return $this->send(
             'PATCH',
@@ -67,9 +68,9 @@ class Sharing extends Request
      * @param int $vehicleId
      * @param int $sharingId
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function destroy($vehicleId, $sharingId)
+    public function destroy(int $vehicleId, int $sharingId): Response
     {
         return $this->send(
             'DELETE',

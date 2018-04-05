@@ -9,15 +9,15 @@ class Summary extends Request
     /**
      * Get summaries for today.
      *
-     * @param int $id
+     * @param int $vehicleId
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function today($id)
+    public function today(int $vehicleId): Response
     {
         return $this->send(
             'GET',
-            "vehicles/{$id}/summaries/today",
+            "vehicles/{$vehicleId}/summaries/today",
             $this->getApiHeaders()
         );
     }
@@ -25,15 +25,15 @@ class Summary extends Request
     /**
      * Get summaries for yesterday.
      *
-     * @param int $id
+     * @param int $vehicleId
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function yesterday($id)
+    public function yesterday(int $vehicleId): Response
     {
         return $this->send(
             'GET',
-            "vehicles/{$id}/summaries/yesterday",
+            "vehicles/{$vehicleId}/summaries/yesterday",
             $this->getApiHeaders()
         );
     }
@@ -41,17 +41,17 @@ class Summary extends Request
     /**
      * Get summaries for the month.
      *
-     * @param int $id
+     * @param int $vehicleId
      * @param int $year
      * @param int $month
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function month($id, $year, $month = 1)
+    public function month(int $vehicleId, int $year, int $month = 1): Response
     {
         return $this->send(
             'GET',
-            "vehicles/{$id}/summaries/{$year}/{$month}",
+            "vehicles/{$vehicleId}/summaries/{$year}/{$month}",
             $this->getApiHeaders()
         );
     }
@@ -59,18 +59,18 @@ class Summary extends Request
     /**
      * Get summaries for the date.
      *
-     * @param int $id
+     * @param int $vehicleId
      * @param int $year
      * @param int $month
      * @param int $day
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function date($id, $year, $month = 1, $day = 1)
+    public function date(int $vehicleId, int $year, int $month = 1, int $day = 1): Response
     {
         return $this->send(
             'GET',
-            "vehicles/{$id}/summaries/{$year}/{$month}/{$day}",
+            "vehicles/{$vehicleId}/summaries/{$year}/{$month}/{$day}",
             $this->getApiHeaders()
         );
     }
@@ -78,17 +78,17 @@ class Summary extends Request
     /**
      * Get summaries for a duration.
      *
-     * @param int    $id
+     * @param int    $vehicleId
      * @param string $start
      * @param string $end
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function duration($id, $start, $end)
+    public function duration(int $vehicleId, string $start, string $end): Response
     {
         return $this->send(
             'GET',
-            "vehicles/{$id}/summaries/duration",
+            "vehicles/{$vehicleId}/summaries/duration",
             $this->getApiHeaders(),
             compact('start', 'end')
         );

@@ -11,9 +11,9 @@ class Vehicles extends Request
      *
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function index(Query $query = null)
+    public function index(?Query $query = null): Response
     {
         return $this->send('GET', 'vehicles', $this->getApiHeaders(), $query->toArray());
     }
@@ -24,7 +24,7 @@ class Vehicles extends Request
      * @param int                     $id
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function show($id, Query $query = null)
     {
@@ -36,7 +36,7 @@ class Vehicles extends Request
      *
      * @param int $id
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function location($id)
     {
@@ -48,7 +48,7 @@ class Vehicles extends Request
      *
      * @param array $data
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function update(array $data)
     {
@@ -60,7 +60,7 @@ class Vehicles extends Request
      *
      * @param int $id
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function locked($id)
     {
@@ -76,7 +76,7 @@ class Vehicles extends Request
      *
      * @param int $id
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function unlock($id)
     {
@@ -93,9 +93,9 @@ class Vehicles extends Request
      * @param int   $id
      * @param mixed $file
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function uploadAvatar($id, $file)
+    public function uploadAvatar($id, $file): Response
     {
         list($headers, $stream) = $this->prepareMultipartRequestPayloads(
             $this->getApiHeaders(),

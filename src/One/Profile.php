@@ -2,6 +2,7 @@
 
 namespace Katsana\Sdk\One;
 
+use Laravie\Codex\Contracts\Response;
 use Laravie\Codex\Support\MultipartRequest;
 
 class Profile extends Request
@@ -11,9 +12,9 @@ class Profile extends Request
     /**
      * Show user profile.
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function show()
+    public function show(): Response
     {
         return $this->send('GET', 'profile', $this->getApiHeaders());
     }
@@ -25,7 +26,7 @@ class Profile extends Request
      *
      * @return bool
      */
-    public function verifyPassword($password)
+    public function verifyPassword(string $password): bool
     {
         $response = $this->send(
             'POST',
@@ -42,16 +43,12 @@ class Profile extends Request
      *
      * @param mixed $file
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function uploadAvatar($file)
+    public function uploadAvatar($file): Response
     {
-        list($headers, $stream) = $this->prepareMultipartRequestPayloads(
-            $this->getApiHeaders(),
-            $this->getApiBody(),
-            compact('file')
+        return $this->stream(
+            'POST', 'profile/avatar', $this->getApiHeaders(), $this->getApiBody(), compact('file')
         );
-
-        return $this->send('POST', 'profile/avatar', $headers, $stream);
     }
 }

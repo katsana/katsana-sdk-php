@@ -3,6 +3,7 @@
 namespace Katsana\Sdk\Passport;
 
 use Katsana\Sdk\Request;
+use Laravie\Codex\Contracts\Response;
 
 class PasswordGrant extends Request
 {
@@ -14,7 +15,7 @@ class PasswordGrant extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function authenticate($username, $password)
+    public function authenticate(string $username, string $password): Response
     {
         $body = $this->mergeApiBody(compact('username', 'password'));
 
@@ -33,7 +34,7 @@ class PasswordGrant extends Request
      *
      * @return array
      */
-    protected function getApiHeaders()
+    protected function getApiHeaders(): array
     {
         return [
             'Accept' => 'application/json',
@@ -45,7 +46,7 @@ class PasswordGrant extends Request
      *
      * @return array
      */
-    protected function getApiBody()
+    protected function getApiBody(): array
     {
         return [
             'scope' => '*',

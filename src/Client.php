@@ -4,6 +4,7 @@ namespace Katsana\Sdk;
 
 use Http\Client\Common\HttpMethodsClient as HttpClient;
 use Laravie\Codex\Client as BaseClient;
+use Laravie\Codex\Contracts\Response as ResponseContract;
 use Laravie\Codex\Discovery;
 use Psr\Http\Message\ResponseInterface;
 
@@ -83,7 +84,8 @@ class Client extends BaseClient
     /**
      * Make a client using personal access token.
      *
-     * @param  string $accessToken
+     * @param string $accessToken
+     *
      * @return static
      */
     public static function personal($accessToken)
@@ -142,7 +144,7 @@ class Client extends BaseClient
      *
      * @return \Katsana\Sdk\Response
      */
-    protected function responseWith(ResponseInterface $response)
+    protected function responseWith(ResponseInterface $response): ResponseContract
     {
         return new Response($response);
     }
@@ -152,7 +154,7 @@ class Client extends BaseClient
      *
      * @return string
      */
-    protected function getResourceNamespace()
+    protected function getResourceNamespace(): string
     {
         return __NAMESPACE__;
     }

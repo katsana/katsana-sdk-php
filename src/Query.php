@@ -37,7 +37,7 @@ class Query
      *
      * @return static
      */
-    public static function make()
+    public static function make(): self
     {
         return new static();
     }
@@ -49,7 +49,7 @@ class Query
      *
      * @return $this
      */
-    public function includes($includes)
+    public function includes($includes): self
     {
         $includes = is_array($includes) ? $includes : func_get_args();
 
@@ -65,7 +65,7 @@ class Query
      *
      * @return $this
      */
-    public function excludes($excludes)
+    public function excludes($excludes): self
     {
         $excludes = is_array($excludes) ? $excludes : func_get_args();
 
@@ -82,7 +82,7 @@ class Query
      *
      * @return $this
      */
-    public function with($name, $value)
+    public function with(string $name, $value): self
     {
         $this->customs[$name] = $value;
 
@@ -96,7 +96,7 @@ class Query
      *
      * @return $this
      */
-    public function forPage($page = null)
+    public function forPage(?int $page = null): self
     {
         $this->page = $page;
 
@@ -108,7 +108,7 @@ class Query
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return $this->build(function ($data, $customs) {
             return array_merge($customs, $data);
@@ -122,7 +122,7 @@ class Query
      *
      * @return array
      */
-    public function build(callable $callback)
+    public function build(callable $callback): array
     {
         $data = [
             'includes' => implode(',', $this->includes),
