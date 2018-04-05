@@ -4,14 +4,14 @@ namespace Katsana\Sdk\Tests;
 
 use Katsana\Sdk\Client;
 use Laravie\Codex\Discovery;
-use Laravie\Codex\Testing\FakeRequest;
+use Laravie\Codex\Testing\Faker;
 
 class ClientTest extends TestCase
 {
     /** @test */
     public function it_has_proper_signature()
     {
-        $faker = FakeRequest::create();
+        $faker = Faker::create();
 
         $client = new Client($faker->http());
 
@@ -22,7 +22,7 @@ class ClientTest extends TestCase
     /** @test */
     public function it_can_be_initiated_using_make()
     {
-        $faker = FakeRequest::create();
+        $faker = Faker::create();
 
         Discovery::override($faker->http());
 
@@ -37,7 +37,7 @@ class ClientTest extends TestCase
     /** @test */
     public function it_can_be_initiated_using_personal_access_token()
     {
-        $faker = FakeRequest::create();
+        $faker = Faker::create();
 
         Discovery::override($faker->http());
 

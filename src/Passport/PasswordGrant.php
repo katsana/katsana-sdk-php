@@ -2,6 +2,7 @@
 
 namespace Katsana\Sdk\Passport;
 
+use RuntimeException;
 use InvalidArgumentException;
 use Katsana\Sdk\Request;
 use Laravie\Codex\Contracts\Response;

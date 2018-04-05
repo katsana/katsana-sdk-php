@@ -5,14 +5,14 @@ namespace Katsana\Sdk\Tests\One;
 use Katsana\Sdk\Client;
 use Katsana\Sdk\Tests\TestCase;
 use Laravie\Codex\Contracts\Response;
-use Laravie\Codex\Testing\FakeRequest;
+use Laravie\Codex\Testing\Faker;
 
 class WelcomeTest extends TestCase
 {
     /** @test */
     public function it_can_show_welcome_message()
     {
-        $faker = FakeRequest::create()
+        $faker = Faker::create()
                         ->call('GET', ['Accept' => 'application/vnd.KATSANA.v1+json'], '')
                         ->expectEndpointIs('https://api.katsana.com')
                         ->shouldResponseWith(200, '{"platform":"v5.0.0","api":["v1"]}');
@@ -35,7 +35,7 @@ class WelcomeTest extends TestCase
             'Authorization' => 'Bearer AckfSECXIvnK5r28GVIWUAxmbBSjTsmF'
         ];
 
-        $faker = FakeRequest::create()
+        $faker = Faker::create()
                         ->call('GET', $headers, '')
                         ->expectEndpointIs('https://api.katsana.com')
                         ->shouldResponseWith(200, '{"platform":"v5.0.0","api":["v1"]}');
