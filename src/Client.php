@@ -6,30 +6,12 @@ use Http\Client\Common\HttpMethodsClient as HttpClient;
 use Laravie\Codex\Client as BaseClient;
 use Laravie\Codex\Contracts\Response as ResponseContract;
 use Laravie\Codex\Discovery;
+use Laravie\Codex\Support\Passport;
 use Psr\Http\Message\ResponseInterface;
 
 class Client extends BaseClient
 {
-    /**
-     * API Key.
-     *
-     * @var string|null
-     */
-    protected $clientId;
-
-    /**
-     * API Secret.
-     *
-     * @var string|null
-     */
-    protected $clientSecret;
-
-    /**
-     * API Access Token.
-     *
-     * @var string|null
-     */
-    protected $accessToken;
+    use Passport;
 
     /**
      * API endpoint.
@@ -58,8 +40,8 @@ class Client extends BaseClient
      * Construct a new Client.
      *
      * @param \Http\Client\Common\HttpMethodsClient $http
-     * @param string|null $clientId
-     * @param string|null $clientSecret
+     * @param string|null                           $clientId
+     * @param string|null                           $clientSecret
      */
     public function __construct(HttpClient $http, ?string $clientId, ?string $clientSecret)
     {
@@ -91,50 +73,6 @@ class Client extends BaseClient
     public static function personal(string $accessToken): self
     {
         return static::make(null, null)->setAccessToken($accessToken);
-    }
-
-    /**
-     * Get API Key.
-     *
-     * @return string|null
-     */
-    public function getClientId(): ?string
-    {
-        return $this->clientId;
-    }
-
-    /**
-     * Get API Secret.
-     *
-     * @return string|null
-     */
-    public function getClientSecret(): ?string
-    {
-        return $this->clientSecret;
-    }
-
-    /**
-     * Get access token.
-     *
-     * @return string|null
-     */
-    public function getAccessToken(): ?string
-    {
-        return $this->accessToken;
-    }
-
-    /**
-     * Set access token.
-     *
-     * @param string|null $accessToken
-     *
-     * @return $this
-     */
-    public function setAccessToken(?string $accessToken): self
-    {
-        $this->accessToken = $accessToken;
-
-        return $this;
     }
 
     /**
