@@ -2,6 +2,7 @@
 
 namespace Katsana\Sdk\Passport;
 
+use InvalidArgumentException;
 use Katsana\Sdk\Request;
 use Laravie\Codex\Contracts\Response;
 
@@ -48,11 +49,18 @@ class PasswordGrant extends Request
      */
     protected function getApiBody(): array
     {
+        $clientId = $this->client->getClientId();
+        $clientSecret = $this->client->getClientSecret();
+
+        if (empty($clientId) || empty($clientSecret)) {
+            throw new InvalidArgumentException('Missing client_id and client_secret information!');
+        }
+
         return [
             'scope' => '*',
             'grant_type' => 'password',
-            'client_id' => $this->client->getClientId(),
-            'client_secret' => $this->client->getClientSecret(),
+            'client_id' => $clientId,
+            'client_secret' => $clientSecret,
         ];
     }
 }
