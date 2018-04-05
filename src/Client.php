@@ -13,14 +13,14 @@ class Client extends BaseClient
     /**
      * API Key.
      *
-     * @var string
+     * @var string|null
      */
     protected $clientId;
 
     /**
      * API Secret.
      *
-     * @var string
+     * @var string|null
      */
     protected $clientSecret;
 
@@ -58,10 +58,10 @@ class Client extends BaseClient
      * Construct a new Client.
      *
      * @param \Http\Client\Common\HttpMethodsClient $http
-     * @param string                                $clientId
-     * @param string                                $clientSecret
+     * @param string|null $clientId
+     * @param string|null $clientSecret
      */
-    public function __construct(HttpClient $http, $clientId, $clientSecret)
+    public function __construct(HttpClient $http, ?string $clientId, ?string $clientSecret)
     {
         $this->http = $http;
         $this->clientId = $clientId;
@@ -71,12 +71,12 @@ class Client extends BaseClient
     /**
      * Make a client.
      *
-     * @param string $clientId
-     * @param string $clientSecret
+     * @param string|null $clientId
+     * @param string|null $clientSecret
      *
      * @return static
      */
-    public static function make($clientId, $clientSecret)
+    public static function make(?string $clientId, ?string $clientSecret): self
     {
         return new static(Discovery::client(), $clientId, $clientSecret);
     }
@@ -88,7 +88,7 @@ class Client extends BaseClient
      *
      * @return static
      */
-    public static function personal($accessToken)
+    public static function personal(string $accessToken): self
     {
         return static::make(null, null)->setAccessToken($accessToken);
     }
@@ -98,7 +98,7 @@ class Client extends BaseClient
      *
      * @return string|null
      */
-    public function getClientId()
+    public function getClientId(): ?string
     {
         return $this->clientId;
     }
@@ -108,7 +108,7 @@ class Client extends BaseClient
      *
      * @return string|null
      */
-    public function getClientSecret()
+    public function getClientSecret(): ?string
     {
         return $this->clientSecret;
     }
@@ -118,7 +118,7 @@ class Client extends BaseClient
      *
      * @return string|null
      */
-    public function getAccessToken()
+    public function getAccessToken(): ?string
     {
         return $this->accessToken;
     }
@@ -126,11 +126,11 @@ class Client extends BaseClient
     /**
      * Set access token.
      *
-     * @param string $accessToken
+     * @param string|null $accessToken
      *
      * @return $this
      */
-    public function setAccessToken($accessToken)
+    public function setAccessToken(?string $accessToken): self
     {
         $this->accessToken = $accessToken;
 
@@ -142,7 +142,7 @@ class Client extends BaseClient
      *
      * @param \Psr\Http\Message\ResponseInterface $response
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     protected function responseWith(ResponseInterface $response): ResponseContract
     {
