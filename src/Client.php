@@ -40,14 +40,10 @@ class Client extends BaseClient
      * Construct a new Client.
      *
      * @param \Http\Client\Common\HttpMethodsClient $http
-     * @param string|null                           $clientId
-     * @param string|null                           $clientSecret
      */
-    public function __construct(HttpClient $http, ?string $clientId, ?string $clientSecret)
+    public function __construct(HttpClient $http)
     {
         $this->http = $http;
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
     }
 
     /**
@@ -60,7 +56,9 @@ class Client extends BaseClient
      */
     public static function make(?string $clientId, ?string $clientSecret): self
     {
-        return new static(Discovery::client(), $clientId, $clientSecret);
+        return (new static(Discovery::client()))
+                        ->setClientId($clientId)
+                        ->setClientSecret($clientSecret);
     }
 
     /**
