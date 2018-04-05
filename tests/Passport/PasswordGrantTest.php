@@ -61,4 +61,17 @@ class PasswordGrantTest extends TestCase
         $client->via(new PasswordGrant($client))
                 ->authenticate('dummy@katsana.com', 'secret');
     }
+
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Missing client_id and client_secret information!
+     */
+    public function it_throws_exception_when_client_id_or_secret_is_missing()
+    {
+        $client = new Client(Faker::create()->http());
+
+        $client->via(new PasswordGrant($client))
+                ->authenticate('dummy@katsana.com', 'secret');
+    }
 }
