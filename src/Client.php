@@ -54,7 +54,7 @@ class Client extends BaseClient
      *
      * @return static
      */
-    public static function make(?string $clientId, ?string $clientSecret): self
+    public static function make(?string $clientId, ?string $clientSecret)
     {
         return (new static(Discovery::client()))
                         ->setClientId($clientId)
@@ -68,7 +68,7 @@ class Client extends BaseClient
      *
      * @return static
      */
-    public static function personal(string $accessToken): self
+    public static function personal(string $accessToken)
     {
         return static::make(null, null)->setAccessToken($accessToken);
     }

@@ -37,7 +37,7 @@ class Query
      *
      * @return static
      */
-    public static function make(): self
+    public static function make()
     {
         return new static();
     }
@@ -49,7 +49,7 @@ class Query
      *
      * @return $this
      */
-    public function includes($includes): self
+    public function includes($includes)
     {
         $includes = is_array($includes) ? $includes : func_get_args();
 
@@ -65,7 +65,7 @@ class Query
      *
      * @return $this
      */
-    public function excludes($excludes): self
+    public function excludes($excludes)
     {
         $excludes = is_array($excludes) ? $excludes : func_get_args();
 
@@ -82,7 +82,7 @@ class Query
      *
      * @return $this
      */
-    public function with(string $name, $value): self
+    public function with(string $name, $value)
     {
         $this->customs[$name] = $value;
 
@@ -96,7 +96,7 @@ class Query
      *
      * @return $this
      */
-    public function forPage(?int $page = null): self
+    public function forPage(?int $page = null)
     {
         $this->page = $page;
 
