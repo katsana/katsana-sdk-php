@@ -19,7 +19,7 @@ class Profile extends Request
      */
     public function show(?Query $query = null): Response
     {
-        return $this->send('GET', 'profile', $this->getApiHeaders(), $this->buildQueryString($query));
+        return $this->send('GET', 'profile', $this->getApiHeaders(), $this->buildHttpQuery($query));
     }
 
     /**

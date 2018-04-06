@@ -15,7 +15,7 @@ class Vehicles extends Request
      */
     public function index(?Query $query = null): Response
     {
-        return $this->send('GET', 'vehicles', $this->getApiHeaders(), $this->buildQueryString($query));
+        return $this->send('GET', 'vehicles', $this->getApiHeaders(), $this->buildHttpQuery($query));
     }
 
     /**
@@ -26,9 +26,9 @@ class Vehicles extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function show($vehicleId, Query $query = null)
+    public function show($vehicleId, ?Query $query = null): Response
     {
-        return $this->send('GET', "vehicles/{$vehicleId}", $this->getApiHeaders(), $this->buildQueryString($query));
+        return $this->send('GET', "vehicles/{$vehicleId}", $this->getApiHeaders(), $this->buildHttpQuery($query));
     }
 
     /**
@@ -38,7 +38,7 @@ class Vehicles extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function location($vehicleId)
+    public function location(int $vehicleId): Response
     {
         return $this->send('GET', "vehicles/{$vehicleId}/location", $this->getApiHeaders());
     }
@@ -50,7 +50,7 @@ class Vehicles extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function update(array $data)
+    public function update($vehicleId, array $data): Response
     {
         return $this->send('PATCH', "vehicles/{$vehicleId}", $this->getApiHeaders(), $data);
     }
@@ -62,7 +62,7 @@ class Vehicles extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function locked($vehicleId)
+    public function locked(int $vehicleId): Response
     {
         $body = [
             'mode' => 'parked',
@@ -78,7 +78,7 @@ class Vehicles extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function unlock($vehicleId)
+    public function unlock(int $vehicleId): Response
     {
         $body = [
             'mode' => 'working',
@@ -95,7 +95,7 @@ class Vehicles extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function uploadAvatar($vehicleId, $file): Response
+    public function uploadAvatar(int $vehicleId, $file): Response
     {
         return $this->stream(
             'POST', "vehicles/{$vehicleId}/avatar", $this->getApiHeaders(), $this->getApiBody(), compact('file')

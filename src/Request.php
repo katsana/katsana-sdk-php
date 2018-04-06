@@ -31,7 +31,7 @@ abstract class Request extends BaseRequest
      *
      * @return array
      */
-    protected function buildQueryString(?Query $query): array
+    final protected function buildHttpQuery(?Query $query): array
     {
         return $query instanceof Query ? $query->toArray() : [];
     }
