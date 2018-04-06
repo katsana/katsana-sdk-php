@@ -2,7 +2,6 @@
 
 namespace Katsana\Sdk\Tests\One;
 
-use Katsana\Sdk\Client;
 use Katsana\Sdk\Tests\TestCase;
 use Laravie\Codex\Contracts\Response;
 use Laravie\Codex\Testing\Faker;
