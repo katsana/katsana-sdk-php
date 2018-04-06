@@ -3,6 +3,7 @@
 namespace Katsana\Sdk\One;
 
 use Katsana\Sdk\Query;
+use Laravie\Codex\Contracts\Response;
 
 class Vehicles extends Request
 {
