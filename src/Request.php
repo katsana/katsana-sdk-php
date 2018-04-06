@@ -25,6 +25,18 @@ abstract class Request extends BaseRequest
     }
 
     /**
+     * Check for access token is available before trying to make a request.
+     *
+     * @return void
+     */
+    final protected function requiresAccessToken(): void
+    {
+        if (is_null($accessToken = $this->client->getAccessToken())) {
+            throw new Exceptions\MissingAccessToken('This request requires valid access token to be available!');
+        }
+    }
+
+    /**
      * Build query string from Katsana\Sdk\Query.
      *
      * @param \Katsana\Sdk\Query $query

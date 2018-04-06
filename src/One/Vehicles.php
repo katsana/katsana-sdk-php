@@ -15,6 +15,8 @@ class Vehicles extends Request
      */
     public function index(?Query $query = null): Response
     {
+        $this->requiresAccessToken();
+
         return $this->send('GET', 'vehicles', $this->getApiHeaders(), $this->buildHttpQuery($query));
     }
 
@@ -28,6 +30,8 @@ class Vehicles extends Request
      */
     public function show($vehicleId, ?Query $query = null): Response
     {
+        $this->requiresAccessToken();
+
         return $this->send('GET', "vehicles/{$vehicleId}", $this->getApiHeaders(), $this->buildHttpQuery($query));
     }
 
@@ -40,6 +44,8 @@ class Vehicles extends Request
      */
     public function location(int $vehicleId): Response
     {
+        $this->requiresAccessToken();
+
         return $this->send('GET', "vehicles/{$vehicleId}/location", $this->getApiHeaders());
     }
 
@@ -52,6 +58,8 @@ class Vehicles extends Request
      */
     public function update($vehicleId, array $data): Response
     {
+        $this->requiresAccessToken();
+
         return $this->send('PATCH', "vehicles/{$vehicleId}", $this->getApiHeaders(), $data);
     }
 
@@ -64,6 +72,8 @@ class Vehicles extends Request
      */
     public function locked(int $vehicleId): Response
     {
+        $this->requiresAccessToken();
+
         $body = [
             'mode' => 'parked',
         ];
@@ -80,6 +90,8 @@ class Vehicles extends Request
      */
     public function unlock(int $vehicleId): Response
     {
+        $this->requiresAccessToken();
+
         $body = [
             'mode' => 'working',
         ];
@@ -97,6 +109,8 @@ class Vehicles extends Request
      */
     public function uploadAvatar(int $vehicleId, $file): Response
     {
+        $this->requiresAccessToken();
+
         return $this->stream(
             'POST', "vehicles/{$vehicleId}/avatar", $this->getApiHeaders(), $this->getApiBody(), compact('file')
         );

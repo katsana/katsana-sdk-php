@@ -16,6 +16,8 @@ class Sharing extends Request
      */
     public function index(int $vehicleId): Response
     {
+        $this->requiresAccessToken();
+
         return $this->send(
             'GET',
             "vehicles/{$vehicleId}/sharing",
@@ -34,6 +36,8 @@ class Sharing extends Request
      */
     public function store(int $vehicleId, ?string $description, ?string $duration): Response
     {
+        $this->requiresAccessToken();
+
         return $this->send(
             'POST',
             "vehicles/{$vehicleId}/sharing",
@@ -54,6 +58,8 @@ class Sharing extends Request
      */
     public function update(int $vehicleId, int $sharingId, ?string $description, ?string $duration): Response
     {
+        $this->requiresAccessToken();
+
         return $this->send(
             'PATCH',
             "vehicles/{$vehicleId}/sharing/{$sharingId}",
@@ -72,6 +78,8 @@ class Sharing extends Request
      */
     public function destroy(int $vehicleId, int $sharingId): Response
     {
+        $this->requiresAccessToken();
+
         return $this->send(
             'DELETE',
             "vehicles/{$vehicleId}/sharing/{$sharingId}",

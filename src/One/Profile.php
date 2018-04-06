@@ -19,6 +19,8 @@ class Profile extends Request
      */
     public function show(?Query $query = null): Response
     {
+        $this->requiresAccessToken();
+
         return $this->send('GET', 'profile', $this->getApiHeaders(), $this->buildHttpQuery($query));
     }
 
@@ -31,6 +33,8 @@ class Profile extends Request
      */
     public function verifyPassword(string $password): bool
     {
+        $this->requiresAccessToken();
+
         $response = $this->send(
             'POST',
             'auth/verify',
@@ -50,6 +54,8 @@ class Profile extends Request
      */
     public function uploadAvatar($file): Response
     {
+        $this->requiresAccessToken();
+
         return $this->stream(
             'POST', 'profile/avatar', $this->getApiHeaders(), $this->getApiBody(), compact('file')
         );

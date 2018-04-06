@@ -16,6 +16,8 @@ class Summary extends Request
      */
     public function today(int $vehicleId): Response
     {
+        $this->requiresAccessToken();
+
         return $this->send(
             'GET',
             "vehicles/{$vehicleId}/travels/summaries/today",
@@ -32,6 +34,8 @@ class Summary extends Request
      */
     public function yesterday(int $vehicleId): Response
     {
+        $this->requiresAccessToken();
+
         return $this->send(
             'GET',
             "vehicles/{$vehicleId}/travels/summaries/yesterday",
@@ -50,6 +54,8 @@ class Summary extends Request
      */
     public function month(int $vehicleId, int $year, int $month = 1): Response
     {
+        $this->requiresAccessToken();
+
         return $this->send(
             'GET',
             "vehicles/{$vehicleId}/travels/summaries/{$year}/{$month}",
@@ -69,6 +75,8 @@ class Summary extends Request
      */
     public function date(int $vehicleId, int $year, int $month = 1, int $day = 1): Response
     {
+        $this->requiresAccessToken();
+
         return $this->send(
             'GET',
             "vehicles/{$vehicleId}/travels/summaries/{$year}/{$month}/{$day}",
@@ -87,6 +95,8 @@ class Summary extends Request
      */
     public function duration(int $vehicleId, string $start, string $end): Response
     {
+        $this->requiresAccessToken();
+
         return $this->send(
             'GET',
             "vehicles/{$vehicleId}/travels/summaries/duration",
