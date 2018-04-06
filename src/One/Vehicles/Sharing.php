@@ -4,11 +4,11 @@ namespace One\Vehicles;
 
 use Katsana\Sdk\One\Request;
 use Laravie\Codex\Contracts\Response;
-use Laravie\Codex\Support\JsonRequest;
+use Laravie\Codex\Concerns\Request\Json;
 
 class Sharing extends Request
 {
-    use JsonRequest;
+    use Json;
 
     /**
      * List sharing vehicles.

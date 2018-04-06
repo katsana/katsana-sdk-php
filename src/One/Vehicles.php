@@ -3,13 +3,13 @@
 namespace Katsana\Sdk\One;
 
 use Katsana\Sdk\Query;
+use Laravie\Codex\Concerns\Request\Json;
+use Laravie\Codex\Concerns\Request\Multipart;
 use Laravie\Codex\Contracts\Response;
-use Laravie\Codex\Support\JsonRequest;
-use Laravie\Codex\Support\MultipartRequest;
 
 class Vehicles extends Request
 {
-    use JsonRequest, MultipartRequest;
+    use Json, Multipart;
 
     /**
      * List all vehicles available for the user.

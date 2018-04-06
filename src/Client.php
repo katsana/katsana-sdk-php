@@ -4,9 +4,9 @@ namespace Katsana\Sdk;
 
 use Http\Client\Common\HttpMethodsClient as HttpClient;
 use Laravie\Codex\Client as BaseClient;
+use Laravie\Codex\Concerns\Passport;
 use Laravie\Codex\Contracts\Response as ResponseContract;
 use Laravie\Codex\Discovery;
-use Laravie\Codex\Support\Passport;
 use Psr\Http\Message\ResponseInterface;
 
 class Client extends BaseClient
