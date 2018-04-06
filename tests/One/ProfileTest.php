@@ -42,6 +42,36 @@ class ProfileTest extends TestCase
         $this->assertSame('Hanna Syahira', $user['fullname']);
     }
 
+    /** @test */
+    public function it_can_update_user_profile()
+    {
+        $headers = [
+            'Accept' => 'application/vnd.KATSANA.v1+json',
+            'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Content-Type' => 'application/json',
+        ];
+
+        $payload = [
+            'fullname' => 'Hanna is a bot',
+        ];
+
+        $faker = Faker::create()
+                        ->call('PATCH', $headers, json_encode($payload))
+                        ->expectEndpointIs('https://api.katsana.com/profile')
+                        ->shouldResponseWith(200, '{"id":73,"email":"hanna@katsana.com","address":"Lot 2805, Jalan Damansara,\r\n60000 Kuala Lumpur.","phone_home":"60123456789","phone_mobile":"60123456789","fullname":"Hanna is a bot","meta":{"emergency":{"fullname":"","phone":{"home":"","mobile":""}}},"avatar":null,"timezone":"Asia/Kuala_Lumpur","created_at":"2016-09-06 21:23:53","updated_at":"2016-12-18 12:10:20"}');
+
+        $response = $this->makeClientWithAccessToken($faker)
+                        ->uses('Profile')
+                        ->update($payload);
+
+        $user = $response->toArray();
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertSame(73, $user['id']);
+        $this->assertSame('hanna@katsana.com', $user['email']);
+        $this->assertSame('Hanna is a bot', $user['fullname']);
+    }
+
     /**
      * @test
      * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken

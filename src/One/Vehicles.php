@@ -32,7 +32,7 @@ class Vehicles extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function show($vehicleId, ?Query $query = null): Response
+    public function show(int $vehicleId, ?Query $query = null): Response
     {
         $this->requiresAccessToken();
 
@@ -83,11 +83,12 @@ class Vehicles extends Request
     {
         $this->requiresAccessToken();
 
-        $body = [
-            'mode' => 'parked',
-        ];
+        $headers = ['Content-Type' => 'application/json'];
+        $payload = ['mode' => 'parked'];
 
-        return $this->send('PATCH', "vehicles/{$vehicleId}", $this->getApiHeaders(), $body);
+        return $this->send(
+            'PATCH', "vehicles/{$vehicleId}", $this->mergeApiHeaders($headers), $this->mergeApiBody($payload)
+        );
     }
 
     /**
@@ -101,11 +102,12 @@ class Vehicles extends Request
     {
         $this->requiresAccessToken();
 
-        $body = [
-            'mode' => 'working',
-        ];
+        $headers = ['Content-Type' => 'application/json'];
+        $payload = ['mode' => 'working'];
 
-        return $this->send('PATCH', "vehicles/{$vehicleId}", $this->getApiHeaders(), $body);
+        return $this->send(
+            'PATCH', "vehicles/{$vehicleId}", $this->mergeApiHeaders($headers), $this->mergeApiBody($payload)
+        );
     }
 
     /**
