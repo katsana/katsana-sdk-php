@@ -4,9 +4,12 @@ namespace Katsana\Sdk\One;
 
 use Katsana\Sdk\Query;
 use Laravie\Codex\Contracts\Response;
+use Laravie\Codex\Support\MultipartRequest;
 
 class Vehicles extends Request
 {
+    use MultipartRequest;
+
     /**
      * List all vehicles available for the user.
      *
