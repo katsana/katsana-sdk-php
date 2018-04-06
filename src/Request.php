@@ -2,8 +2,6 @@
 
 namespace Katsana\Sdk;
 
-use GuzzleHttp\Psr7\Uri;
-use Laravie\Codex\Endpoint;
 use Laravie\Codex\Request as BaseRequest;
 
 abstract class Request extends BaseRequest

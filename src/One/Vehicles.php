@@ -2,8 +2,12 @@
 
 namespace Katsana\Sdk\One;
 
+use Laravie\Codex\Support\MultipartRequest;
+
 class Vehicles extends Request
 {
+    use MultipartRequest;
+
     /**
      * List all vehicles available for the user.
      *
@@ -17,7 +21,7 @@ class Vehicles extends Request
     /**
      * Show single vehicle.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Katsana\Sdk\Response
      */
@@ -29,7 +33,7 @@ class Vehicles extends Request
     /**
      * Get vehicle current location.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Katsana\Sdk\Response
      */
@@ -41,7 +45,7 @@ class Vehicles extends Request
     /**
      * Update vehicle information.
      *
-     * @param  array  $data
+     * @param array $data
      *
      * @return \Katsana\Sdk\Response
      */
@@ -53,7 +57,7 @@ class Vehicles extends Request
     /**
      * Set the vehicle under lockdown mode.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Katsana\Sdk\Response
      */
@@ -69,7 +73,7 @@ class Vehicles extends Request
     /**
      * Set the vehicle under working mode.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Katsana\Sdk\Response
      */
@@ -85,8 +89,8 @@ class Vehicles extends Request
     /**
      * Upload profile avatar.
      *
-     * @param  int  $id
-     * @param  mixed  $file
+     * @param int   $id
+     * @param mixed $file
      *
      * @return \Katsana\Sdk\Response
      */

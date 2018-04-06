@@ -9,7 +9,7 @@ class Sharing extends Request
     /**
      * List sharing vehicles.
      *
-     * @param  int  $vehicleId
+     * @param int $vehicleId
      *
      * @return \Katsana\Sdk\Response
      */
@@ -25,9 +25,9 @@ class Sharing extends Request
     /**
      * Create a new share.
      *
-     * @param  int  $vehicleId
-     * @param  string|null  $description
-     * @param  string|null  $duration
+     * @param int         $vehicleId
+     * @param string|null $description
+     * @param string|null $duration
      *
      * @return \Katsana\Sdk\Response
      */
@@ -44,10 +44,10 @@ class Sharing extends Request
     /**
      * Update an existing share.
      *
-     * @param  int  $vehicleId
-     * @param  int  $sharingId
-     * @param  string|null  $description
-     * @param  string|null  $duration
+     * @param int         $vehicleId
+     * @param int         $sharingId
+     * @param string|null $description
+     * @param string|null $duration
      *
      * @return \Katsana\Sdk\Response
      */
@@ -64,8 +64,8 @@ class Sharing extends Request
     /**
      * Delete an existing share.
      *
-     * @param  int  $vehicleId
-     * @param  int  $sharingId
+     * @param int $vehicleId
+     * @param int $sharingId
      *
      * @return \Katsana\Sdk\Response
      */
