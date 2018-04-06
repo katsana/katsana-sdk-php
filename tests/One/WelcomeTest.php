@@ -25,7 +25,7 @@ class WelcomeTest extends TestCase
 
         $response = $this->makeClient($faker)
                         ->uses('Welcome')
-                        ->show();
+                        ->hello();
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertContains('v5.0.0', $response->toArray()['platform']);
@@ -47,7 +47,7 @@ class WelcomeTest extends TestCase
 
         $response = $this->makeClientWithAccessToken($faker)
                         ->uses('Welcome')
-                        ->show();
+                        ->hello();
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertContains('v5.0.0', $response->toArray()['platform']);

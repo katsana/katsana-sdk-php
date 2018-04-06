@@ -17,7 +17,7 @@ class Vehicles extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function index(?Query $query = null): Response
+    public function all(?Query $query = null): Response
     {
         $this->requiresAccessToken();
 
@@ -32,7 +32,7 @@ class Vehicles extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function show(int $vehicleId, ?Query $query = null): Response
+    public function get(int $vehicleId, ?Query $query = null): Response
     {
         $this->requiresAccessToken();
 

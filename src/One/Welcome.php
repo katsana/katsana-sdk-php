@@ -11,7 +11,7 @@ class Welcome extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function show(): Response
+    public function hello(): Response
     {
         return $this->send('GET', [], $this->getApiHeaders());
     }

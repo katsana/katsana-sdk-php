@@ -32,7 +32,7 @@ class ProfileTest extends TestCase
 
         $response = $this->makeClientWithAccessToken($faker)
                         ->uses('Profile')
-                        ->show();
+                        ->get();
 
         $user = $response->toArray();
 
@@ -40,6 +40,18 @@ class ProfileTest extends TestCase
         $this->assertSame(73, $user['id']);
         $this->assertSame('hanna@katsana.com', $user['email']);
         $this->assertSame('Hanna Syahira', $user['fullname']);
+    }
+
+    /**
+     * @test
+     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
+     * @expectedExceptionMessage Request requires valid access token to be available!
+     */
+    public function it_cant_show_user_profile_without_access_token()
+    {
+        $this->makeClient(Faker::create())
+                ->uses('Profile')
+                ->get();
     }
 
     /** @test */
@@ -77,11 +89,11 @@ class ProfileTest extends TestCase
      * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
      * @expectedExceptionMessage Request requires valid access token to be available!
      */
-    public function it_cant_show_user_profile_without_access_token()
+    public function it_cant_update_user_profile_without_access_token()
     {
         $this->makeClient(Faker::create())
                 ->uses('Profile')
-                ->show();
+                ->update(['fullname' => 'Hanna is a bot']);
     }
 
     /** @test */

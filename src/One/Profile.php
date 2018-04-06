@@ -18,7 +18,7 @@ class Profile extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function show(?Query $query = null): Response
+    public function get(?Query $query = null): Response
     {
         $this->requiresAccessToken();
 
