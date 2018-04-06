@@ -28,7 +28,7 @@ class ProfileTest extends TestCase
         $faker = Faker::create()
                         ->call('GET', $headers)
                         ->expectEndpointIs('https://api.katsana.com/profile')
-                        ->shouldResponseWith(200, '{"id":73,"email":"crynobone@gmail.com","address":"Lot 2805, Jalan Damansara,\r\n60000 Kuala Lumpur.","phone_home":"60123456789","phone_mobile":"60123456789","fullname":"Mior Muhammad Zaki","meta":{"emergency":{"fullname":"","phone":{"home":"","mobile":""}}},"avatar":null,"timezone":"Asia/Kuala_Lumpur","created_at":"2016-09-06 21:23:53","updated_at":"2016-12-18 12:10:20"}');
+                        ->shouldResponseWith(200, '{"id":73,"email":"hanna@katsana.com","address":"Lot 2805, Jalan Damansara,\r\n60000 Kuala Lumpur.","phone_home":"60123456789","phone_mobile":"60123456789","fullname":"Hanna Syahira","meta":{"emergency":{"fullname":"","phone":{"home":"","mobile":""}}},"avatar":null,"timezone":"Asia/Kuala_Lumpur","created_at":"2016-09-06 21:23:53","updated_at":"2016-12-18 12:10:20"}');
 
         $response = $this->makeClientWithAccessToken($faker)
                         ->uses('Profile')
@@ -38,7 +38,8 @@ class ProfileTest extends TestCase
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(73, $user['id']);
-        $this->assertSame('crynobone@gmail.com', $user['email']);
+        $this->assertSame('hanna@katsana.com', $user['email']);
+        $this->assertSame('Hanna Syahira', $user['fullname']);
     }
 
     /**
@@ -84,7 +85,8 @@ class ProfileTest extends TestCase
         $faker = Faker::create()
                         ->call('POST', $headers, 'password=secret%21%21')
                         ->expectEndpointIs('https://api.katsana.com/auth/verify')
-                        ->shouldResponseWith(200, '{"success":false}');
+                        ->shouldResponseWith(401, '{"success":false}')
+                        ->expectReasonPhraseIs('Unauthorized');
 
         $response = $this->makeClientWithAccessToken($faker)
                         ->uses('Profile')

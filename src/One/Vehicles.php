@@ -56,15 +56,20 @@ class Vehicles extends Request
     /**
      * Update vehicle information.
      *
-     * @param array $data
+     * @param int   $vehicleId
+     * @param array $payload
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function update($vehicleId, array $data): Response
+    public function update(int $vehicleId, array $payload): Response
     {
         $this->requiresAccessToken();
 
-        return $this->send('PATCH', "vehicles/{$vehicleId}", $this->getApiHeaders(), $data);
+        $headers = ['Content-Type' => 'application/json'];
+
+        return $this->send(
+            'PATCH', "vehicles/{$vehicleId}", $this->mergeApiHeaders($headers), $payload
+        );
     }
 
     /**

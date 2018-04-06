@@ -4,6 +4,7 @@ namespace Katsana\Sdk\One;
 
 use Katsana\Sdk\Query;
 use Laravie\Codex\Contracts\Response;
+use Laravie\Codex\Exceptions\UnauthorizedHttpException;
 use Laravie\Codex\Support\MultipartRequest;
 
 class Profile extends Request
@@ -25,6 +26,24 @@ class Profile extends Request
     }
 
     /**
+     * Update user profile.
+     *
+     * @param array $payload
+     *
+     * @return \Laravie\Codex\Contracts\Response
+     */
+    public function update(array $payload): Response
+    {
+        $this->requiresAccessToken();
+
+        $headers = ['Content-Type' => 'application/json'];
+
+        return $this->send(
+            'PATCH', 'profile', $this->mergeApiHeaders($headers), $this->mergeApiBody($payload)
+        );
+    }
+
+    /**
      * Verify user password.
      *
      * @param string $password
@@ -35,12 +54,16 @@ class Profile extends Request
     {
         $this->requiresAccessToken();
 
-        $response = $this->send(
-            'POST',
-            'auth/verify',
-            $this->getApiHeaders(),
-            $this->mergeApiBody(compact('password'))
-        );
+        try {
+            $response = $this->send(
+                'POST',
+                'auth/verify',
+                $this->getApiHeaders(),
+                $this->mergeApiBody(compact('password'))
+            );
+        } catch (UnauthorizedHttpException $e) {
+            return false;
+        }
 
         return $response->toArray()['success'] === true;
     }
