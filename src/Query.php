@@ -33,23 +33,13 @@ class Query
     protected $customs = [];
 
     /**
-     * Make Query builder.
-     *
-     * @return static
-     */
-    public static function make()
-    {
-        return new static();
-    }
-
-    /**
      * Set includes data.
      *
      * @param array $includes
      *
      * @return $this
      */
-    public function includes($includes)
+    protected function includes($includes)
     {
         $includes = is_array($includes) ? $includes : func_get_args();
 
@@ -65,7 +55,7 @@ class Query
      *
      * @return $this
      */
-    public function excludes($excludes)
+    protected function excludes($excludes)
     {
         $excludes = is_array($excludes) ? $excludes : func_get_args();
 
@@ -82,7 +72,7 @@ class Query
      *
      * @return $this
      */
-    public function with(string $name, $value)
+    protected function with(string $name, $value)
     {
         $this->customs[$name] = $value;
 
@@ -96,7 +86,7 @@ class Query
      *
      * @return $this
      */
-    public function forPage(?int $page = null)
+    protected function forPage(?int $page = null)
     {
         $this->page = $page;
 
@@ -124,15 +114,44 @@ class Query
      */
     public function build(callable $callback): array
     {
-        $data = [
-            'includes' => implode(',', $this->includes),
-            'excludes' => implode(',', $this->excludes),
-        ];
+        $data = [];
+
+        foreach (['includes', 'excludes'] as $key) {
+            if (! empty($this->{$key})) {
+                $data[$key] = implode(',', $this->{$key});
+            }
+        }
 
         if (is_int($this->page) && $this->page > 0) {
             $data['page'] = $this->page;
         }
 
         return call_user_func($callback, $data, $this->customs);
+    }
+
+    /**
+     * Handle dynamic method calls into the model.
+     *
+     * @param string $method
+     * @param array  $parameters
+     *
+     * @return mixed
+     */
+    public function __call(string $method, array $parameters)
+    {
+        return $this->$method(...$parameters);
+    }
+
+    /**
+     * Handle dynamic static method calls into the method.
+     *
+     * @param string $method
+     * @param array  $parameters
+     *
+     * @return mixed
+     */
+    public static function __callStatic(string $method, array $parameters)
+    {
+        return (new static())->$method(...$parameters);
     }
 }

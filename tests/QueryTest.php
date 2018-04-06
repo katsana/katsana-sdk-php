@@ -9,8 +9,7 @@ class QueryTest extends TestCase
     /** @test */
     public function it_can_be_initiated()
     {
-        $query = Query::make()
-                    ->includes('drivemark', 'speed')
+        $query = Query::includes('drivemark', 'speed')
                     ->excludes('driver')
                     ->forPage(5);
 
@@ -24,8 +23,7 @@ class QueryTest extends TestCase
     /** @test */
     public function it_can_be_initiated_with_customs()
     {
-        $query = Query::make()
-                    ->includes('drivemark', 'speed')
+        $query = Query::includes('drivemark', 'speed')
                     ->excludes('driver')
                     ->with('take', 1000)
                     ->forPage(5);
@@ -41,8 +39,7 @@ class QueryTest extends TestCase
     /** @test */
     public function it_can_be_build_with_custom_callback()
     {
-        $query = Query::make()
-                    ->includes('drivemark', 'speed')
+        $query = Query::includes('drivemark', 'speed')
                     ->excludes('driver')
                     ->with('take', 1000)
                     ->forPage(5);

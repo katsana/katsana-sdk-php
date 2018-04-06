@@ -27,7 +27,7 @@ abstract class Request extends BaseRequest
     /**
      * Build query string from Katsana\Sdk\Query.
      *
-     * @param  \Katsana\Sdk\Query  $query
+     * @param \Katsana\Sdk\Query $query
      *
      * @return array
      */

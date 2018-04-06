@@ -95,7 +95,6 @@ class ProfileTest extends TestCase
                         ->uses('Profile')
                         ->uploadAvatar(__DIR__.'/../stubs/katsana-logo.png');
 
-
         $avatar = $response->toArray();
 
         $this->assertInstanceOf(Response::class, $response);

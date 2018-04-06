@@ -2,6 +2,7 @@
 
 namespace Katsana\Sdk\One;
 
+use Katsana\Sdk\Query;
 use Laravie\Codex\Contracts\Response;
 use Laravie\Codex\Support\MultipartRequest;
 
@@ -12,11 +13,13 @@ class Profile extends Request
     /**
      * Show user profile.
      *
+     * @param \Katsana\Sdk\Query $query
+     *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function show(): Response
+    public function show(?Query $query = null): Response
     {
-        return $this->send('GET', 'profile', $this->getApiHeaders());
+        return $this->send('GET', 'profile', $this->getApiHeaders(), $this->buildQueryString($query));
     }
 
     /**
