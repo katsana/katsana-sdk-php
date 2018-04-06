@@ -11,12 +11,19 @@ use Mockery as m;
 
 class ProfileTest extends TestCase
 {
+    /**
+     * API Version.
+     *
+     * @var string
+     */
+    private $apiVersion = 'v1';
+
     /** @test */
     public function it_can_show_user_profile()
     {
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
-            'Authorization' => 'Bearer AckfSECXIvnK5r28GVIWUAxmbBSjTsmF',
+            'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
         ];
 
         $faker = Faker::create()
@@ -24,9 +31,7 @@ class ProfileTest extends TestCase
                         ->expectEndpointIs('https://api.katsana.com/profile')
                         ->shouldResponseWith(200, '{"id":73,"email":"crynobone@gmail.com","address":"Lot 2805, Jalan Damansara,\r\n60000 Kuala Lumpur.","phone_home":"60123456789","phone_mobile":"60123456789","fullname":"Mior Muhammad Zaki","meta":{"emergency":{"fullname":"","phone":{"home":"","mobile":""}}},"avatar":null,"timezone":"Asia/Kuala_Lumpur","created_at":"2016-09-06 21:23:53","updated_at":"2016-12-18 12:10:20"}');
 
-        $response = (new Client($faker->http(), 'homestead', 'secret'))
-                        ->useVersion('v1')
-                        ->setAccessToken('AckfSECXIvnK5r28GVIWUAxmbBSjTsmF')
+        $response = $this->makeClientWithAccessToken($faker)
                         ->uses('Profile')
                         ->show();
 
@@ -44,8 +49,7 @@ class ProfileTest extends TestCase
      */
     public function it_cant_show_user_profile_without_access_token()
     {
-        (new Client(Faker::create()->http(), 'homestead', 'secret'))
-                ->useVersion('v1')
+        $this->makeClient(Faker::create())
                 ->uses('Profile')
                 ->show();
     }
@@ -55,7 +59,7 @@ class ProfileTest extends TestCase
     {
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
-            'Authorization' => 'Bearer AckfSECXIvnK5r28GVIWUAxmbBSjTsmF',
+            'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
         ];
 
         $faker = Faker::create()
@@ -63,9 +67,7 @@ class ProfileTest extends TestCase
                         ->expectEndpointIs('https://api.katsana.com/auth/verify')
                         ->shouldResponseWith(200, '{"success":true}');
 
-        $response = (new Client($faker->http(), 'homestead', 'secret'))
-                        ->useVersion('v1')
-                        ->setAccessToken('AckfSECXIvnK5r28GVIWUAxmbBSjTsmF')
+        $response = $this->makeClientWithAccessToken($faker)
                         ->uses('Profile')
                         ->verifyPassword('secret!');
 
@@ -77,7 +79,7 @@ class ProfileTest extends TestCase
     {
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
-            'Authorization' => 'Bearer AckfSECXIvnK5r28GVIWUAxmbBSjTsmF',
+            'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
         ];
 
         $faker = Faker::create()
@@ -85,9 +87,7 @@ class ProfileTest extends TestCase
                         ->expectEndpointIs('https://api.katsana.com/auth/verify')
                         ->shouldResponseWith(200, '{"success":false}');
 
-        $response = (new Client($faker->http(), 'homestead', 'secret'))
-                        ->useVersion('v1')
-                        ->setAccessToken('AckfSECXIvnK5r28GVIWUAxmbBSjTsmF')
+        $response = $this->makeClientWithAccessToken($faker)
                         ->uses('Profile')
                         ->verifyPassword('secret!!');
 
@@ -101,8 +101,7 @@ class ProfileTest extends TestCase
      */
     public function it_cant_verify_valid_password_without_access_token()
     {
-        (new Client(Faker::create()->http(), 'homestead', 'secret'))
-                ->useVersion('v1')
+        $this->makeClient(Faker::create())
                 ->uses('Profile')
                 ->verifyPassword('secret!');
     }
@@ -115,9 +114,7 @@ class ProfileTest extends TestCase
                         ->expectEndpointIs('https://api.katsana.com/profile/avatar')
                         ->shouldResponseWith(200, '{"url":"https://my.katsana.com/pictures/user-73/0153cf08-31e2-11e6-99b7-08002777c33d.png","thumb":"https://my.katsana.com/pictures/user-73/0153cf08-31e2-11e6-99b7-08002777c33d.thumb.png","marker":"https://my.katsana.com/pictures/user-73/0153cf08-31e2-11e6-99b7-08002777c33d.marker.png"}');
 
-        $response = (new Client($faker->http(), 'homestead', 'secret'))
-                        ->useVersion('v1')
-                        ->setAccessToken('AckfSECXIvnK5r28GVIWUAxmbBSjTsmF')
+        $response = $this->makeClientWithAccessToken($faker)
                         ->uses('Profile')
                         ->uploadAvatar(__DIR__.'/../stubs/katsana-logo.png');
 
@@ -136,8 +133,7 @@ class ProfileTest extends TestCase
      */
     public function it_cant_upload_avatar_without_access_token()
     {
-        (new Client(Faker::create()->http(), 'homestead', 'secret'))
-                ->useVersion('v1')
+        $this->makeClient(Faker::create())
                 ->uses('Profile')
                 ->uploadAvatar(__DIR__.'/../stubs/katsana-logo.png');
     }

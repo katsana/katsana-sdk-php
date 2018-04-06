@@ -10,12 +10,16 @@ use PHPUnit\Framework\TestCase as PHPUnit;
 
 abstract class TestCase extends PHPUnit
 {
+    const CLIENT_ID = 'homestead';
+    const CLIENT_SECRET = 'secret';
+    const ACCESS_TOKEN = 'AckfSECXIvnK5r28GVIWUAxmbBSjTsmF';
+
     /**
      * API Version.
      *
      * @var string
      */
-    protected $apiVersion;
+    private $apiVersion;
 
     /**
      * Teardown the test environment.
@@ -37,13 +41,25 @@ abstract class TestCase extends PHPUnit
     protected function makeClient(Faker $faker): Client
     {
         $client = (new Client($faker->http()))
-                        ->setClientId('homestead')
-                        ->setClientSecret('secret');
+                        ->setClientId(static::CLIENT_ID)
+                        ->setClientSecret(static::CLIENT_SECRET);
 
         if (! is_null($this->apiVersion)) {
             $client->useVersion($this->apiVersion);
         }
 
         return $client;
+    }
+
+    /**
+     * Make KATSANA SDK Client.
+     *
+     * @param \Laravie\Codex\Testing\Faker $faker
+     *
+     * @return \Katsana\Sdk\Client
+     */
+    protected function makeClientWithAccessToken(Faker $faker): Client
+    {
+        return $this->makeClient($faker)->setAccessToken(static::ACCESS_TOKEN);
     }
 }

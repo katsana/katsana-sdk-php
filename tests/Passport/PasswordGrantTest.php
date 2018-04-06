@@ -14,7 +14,7 @@ class PasswordGrantTest extends TestCase
     public function it_can_get_access_token()
     {
         $headers = ['Accept' => 'application/json'];
-        $payloads = 'scope=%2A&grant_type=password&client_id=homestead&client_secret=secret&username=contact%40katsana.com&password=secret';
+        $payloads = 'scope=%2A&grant_type=password&client_id='.static::CLIENT_ID.'&client_secret='.static::CLIENT_SECRET.'&username=contact%40katsana.com&password=secret';
 
         $faker = Faker::create()
                     ->call('POST', $headers, $payloads)
@@ -41,7 +41,7 @@ class PasswordGrantTest extends TestCase
     public function it_cant_get_access_token_when_authentication_return_other_than_200_http_status()
     {
         $headers = ['Accept' => 'application/json'];
-        $payloads = 'scope=%2A&grant_type=password&client_id=homestead&client_secret=secret&username=dummy%40katsana.com&password=secret%21';
+        $payloads = 'scope=%2A&grant_type=password&client_id='.static::CLIENT_ID.'&client_secret='.static::CLIENT_SECRET.'&username=dummy%40katsana.com&password=secret%21';
 
         $faker = Faker::create()
                     ->call('POST', $headers, $payloads)

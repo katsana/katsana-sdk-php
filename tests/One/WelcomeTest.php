@@ -9,6 +9,13 @@ use Laravie\Codex\Testing\Faker;
 
 class WelcomeTest extends TestCase
 {
+    /**
+     * API Version.
+     *
+     * @var string
+     */
+    private $apiVersion = 'v1';
+
     /** @test */
     public function it_can_show_welcome_message()
     {
@@ -17,8 +24,7 @@ class WelcomeTest extends TestCase
                         ->expectEndpointIs('https://api.katsana.com')
                         ->shouldResponseWith(200, '{"platform":"v5.0.0","api":["v1"]}');
 
-        $response = (new Client($faker->http(), 'homestead', 'secret'))
-                        ->useVersion('v1')
+        $response = $this->makeClient($faker)
                         ->uses('Welcome')
                         ->show();
 
@@ -32,7 +38,7 @@ class WelcomeTest extends TestCase
     {
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
-            'Authorization' => 'Bearer AckfSECXIvnK5r28GVIWUAxmbBSjTsmF',
+            'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
         ];
 
         $faker = Faker::create()
@@ -40,9 +46,7 @@ class WelcomeTest extends TestCase
                         ->expectEndpointIs('https://api.katsana.com')
                         ->shouldResponseWith(200, '{"platform":"v5.0.0","api":["v1"]}');
 
-        $response = (new Client($faker->http(), 'homestead', 'secret'))
-                        ->useVersion('v1')
-                        ->setAccessToken('AckfSECXIvnK5r28GVIWUAxmbBSjTsmF')
+        $response = $this->makeClientWithAccessToken($faker)
                         ->uses('Welcome')
                         ->show();
 
