@@ -73,44 +73,6 @@ class Vehicles extends Request
     }
 
     /**
-     * Set the vehicle under lockdown mode.
-     *
-     * @param int $vehicleId
-     *
-     * @return \Laravie\Codex\Contracts\Response
-     */
-    public function locked(int $vehicleId): Response
-    {
-        $this->requiresAccessToken();
-
-        $headers = ['Content-Type' => 'application/json'];
-        $payload = ['mode' => 'parked'];
-
-        return $this->send(
-            'PATCH', "vehicles/{$vehicleId}", $this->mergeApiHeaders($headers), $this->mergeApiBody($payload)
-        );
-    }
-
-    /**
-     * Set the vehicle under working mode.
-     *
-     * @param int $vehicleId
-     *
-     * @return \Laravie\Codex\Contracts\Response
-     */
-    public function unlock(int $vehicleId): Response
-    {
-        $this->requiresAccessToken();
-
-        $headers = ['Content-Type' => 'application/json'];
-        $payload = ['mode' => 'working'];
-
-        return $this->send(
-            'PATCH', "vehicles/{$vehicleId}", $this->mergeApiHeaders($headers), $this->mergeApiBody($payload)
-        );
-    }
-
-    /**
      * Upload profile avatar.
      *
      * @param int   $vehicleId
