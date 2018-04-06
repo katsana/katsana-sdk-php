@@ -21,6 +21,42 @@ class QueryTest extends TestCase
     }
 
     /** @test */
+    public function it_can_be_initiated_when_includes_is_missing()
+    {
+        $query = Query::excludes('driver')
+                    ->forPage(5);
+
+        $this->assertSame([
+            'excludes' => 'driver',
+            'page' => 5,
+        ], $query->toArray());
+    }
+
+    /** @test */
+    public function it_can_be_initiated_when_excludes_is_missing()
+    {
+        $query = Query::includes('drivemark', 'speed')
+                    ->forPage(5);
+
+        $this->assertSame([
+            'includes' => 'drivemark,speed',
+            'page' => 5,
+        ], $query->toArray());
+    }
+
+    /** @test */
+    public function it_can_be_initiated_when_page_is_missing()
+    {
+        $query = Query::includes('drivemark', 'speed')
+                    ->excludes('driver');
+
+        $this->assertSame([
+            'includes' => 'drivemark,speed',
+            'excludes' => 'driver',
+        ], $query->toArray());
+    }
+
+    /** @test */
     public function it_can_be_initiated_with_customs()
     {
         $query = Query::includes('drivemark', 'speed')

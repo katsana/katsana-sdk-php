@@ -14,6 +14,9 @@ abstract class TestCase extends PHPUnit
     const CLIENT_SECRET = 'secret';
     const ACCESS_TOKEN = 'AckfSECXIvnK5r28GVIWUAxmbBSjTsmF';
 
+    const LATITUDE = 3.0093493;
+    const LONGITUDE = 101.5976447;
+
     /**
      * API Version.
      *

@@ -2,15 +2,14 @@
 
 namespace Katsana\Sdk\Tests\One;
 
-use Mockery as m;
 use GuzzleHttp\Psr7\Stream;
 use Katsana\Sdk\Tests\TestCase;
-use Laravie\Codex\Testing\Faker;
 use Laravie\Codex\Contracts\Response;
+use Laravie\Codex\Testing\Faker;
+use Mockery as m;
 
 class VehicleTest extends TestCase
 {
-
     /** @test */
     public function it_can_upload_avatar()
     {
