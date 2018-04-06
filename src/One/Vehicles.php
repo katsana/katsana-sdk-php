@@ -11,7 +11,7 @@ class Vehicles extends Request
     /**
      * List all vehicles available for the user.
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function index()
     {
@@ -21,25 +21,25 @@ class Vehicles extends Request
     /**
      * Show single vehicle.
      *
-     * @param int $id
+     * @param int $vehicleId
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function show($id)
+    public function show($vehicleId)
     {
-        return $this->send('GET', "vehicles/{$id}", $this->getApiHeaders());
+        return $this->send('GET', "vehicles/{$vehicleId}", $this->getApiHeaders());
     }
 
     /**
      * Get vehicle current location.
      *
-     * @param int $id
+     * @param int $vehicleId
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function location($id)
+    public function location($vehicleId)
     {
-        return $this->send('GET', "vehicles/{$id}/location", $this->getApiHeaders());
+        return $this->send('GET', "vehicles/{$vehicleId}/location", $this->getApiHeaders());
     }
 
     /**
@@ -47,54 +47,54 @@ class Vehicles extends Request
      *
      * @param array $data
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function update(array $data)
     {
-        return $this->send('PATCH', "vehicles/{$id}", $this->getApiHeaders(), $data);
+        return $this->send('PATCH', "vehicles/{$vehicleId}", $this->getApiHeaders(), $data);
     }
 
     /**
      * Set the vehicle under lockdown mode.
      *
-     * @param int $id
+     * @param int $vehicleId
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function locked($id)
+    public function locked($vehicleId)
     {
         $body = [
             'mode' => 'parked',
         ];
 
-        return $this->send('PATCH', "vehicles/{$id}", $this->getApiHeaders(), $body);
+        return $this->send('PATCH', "vehicles/{$vehicleId}", $this->getApiHeaders(), $body);
     }
 
     /**
      * Set the vehicle under working mode.
      *
-     * @param int $id
+     * @param int $vehicleId
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function unlock($id)
+    public function unlock($vehicleId)
     {
         $body = [
             'mode' => 'working',
         ];
 
-        return $this->send('PATCH', "vehicles/{$id}", $this->getApiHeaders(), $body);
+        return $this->send('PATCH', "vehicles/{$vehicleId}", $this->getApiHeaders(), $body);
     }
 
     /**
      * Upload profile avatar.
      *
-     * @param int   $id
+     * @param int   $vehicleId
      * @param mixed $file
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function uploadAvatar($id, $file)
+    public function uploadAvatar($vehicleId, $file)
     {
         list($headers, $stream) = $this->prepareMultipartRequestPayloads(
             $this->getApiHeaders(),
@@ -102,6 +102,6 @@ class Vehicles extends Request
             compact('file')
         );
 
-        return $this->send('POST', "vehicles/{$id}/avatar", $headers, $stream);
+        return $this->send('POST', "vehicles/{$vehicleId}/avatar", $headers, $stream);
     }
 }

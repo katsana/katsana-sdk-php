@@ -9,15 +9,15 @@ class Track extends Request
     /**
      * Get travel for today.
      *
-     * @param int $id
+     * @param int $vehicleId
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function today($id)
+    public function today($vehicleId)
     {
         return $this->send(
             'GET',
-            "vehicles/{$id}/tracks/today",
+            "vehicles/{$vehicleId}/tracks/today",
             $this->getApiHeaders()
         );
     }
@@ -25,15 +25,15 @@ class Track extends Request
     /**
      * Get travel for yesterday.
      *
-     * @param int $id
+     * @param int $vehicleId
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function yesterday($id)
+    public function yesterday($vehicleId)
     {
         return $this->send(
             'GET',
-            "vehicles/{$id}/tracks/yesterday",
+            "vehicles/{$vehicleId}/tracks/yesterday",
             $this->getApiHeaders()
         );
     }
@@ -41,18 +41,18 @@ class Track extends Request
     /**
      * Get travel for the date.
      *
-     * @param int $id
+     * @param int $vehicleId
      * @param int $year
      * @param int $month
      * @param int $day
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function date($id, $year, $month = 1, $day = 1)
+    public function date($vehicleId, $year, $month = 1, $day = 1)
     {
         return $this->send(
             'GET',
-            "vehicles/{$id}/tracks/{$year}/{$month}/{$day}",
+            "vehicles/{$vehicleId}/tracks/{$year}/{$month}/{$day}",
             $this->getApiHeaders()
         );
     }
@@ -60,17 +60,17 @@ class Track extends Request
     /**
      * Get travel for a duration.
      *
-     * @param int    $id
+     * @param int    $vehicleId
      * @param string $start
      * @param string $end
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function duration($id, $start, $end)
+    public function duration($vehicleId, $start, $end)
     {
         return $this->send(
             'GET',
-            "vehicles/{$id}/tracks/duration",
+            "vehicles/{$vehicleId}/tracks/duration",
             $this->getApiHeaders(),
             compact('start', 'end')
         );

@@ -7,7 +7,7 @@ class Welcome extends Request
     /**
      * Show API information.
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function show()
     {

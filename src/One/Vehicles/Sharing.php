@@ -11,7 +11,7 @@ class Sharing extends Request
      *
      * @param int $vehicleId
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function index($vehicleId)
     {
@@ -29,7 +29,7 @@ class Sharing extends Request
      * @param string|null $description
      * @param string|null $duration
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function store($vehicleId, $description, $duration)
     {
@@ -49,7 +49,7 @@ class Sharing extends Request
      * @param string|null $description
      * @param string|null $duration
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function update($vehicleId, $sharingId, $description, $duration)
     {
@@ -67,7 +67,7 @@ class Sharing extends Request
      * @param int $vehicleId
      * @param int $sharingId
      *
-     * @return \Katsana\Sdk\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function destroy($vehicleId, $sharingId)
     {
