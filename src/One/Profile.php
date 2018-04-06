@@ -13,7 +13,7 @@ class Profile extends Request
     /**
      * Show user profile.
      *
-     * @param \Katsana\Sdk\Query $query
+     * @param \Katsana\Sdk\Query|null $query
      *
      * @return \Laravie\Codex\Contracts\Response
      */
