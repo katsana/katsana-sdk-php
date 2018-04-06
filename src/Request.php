@@ -32,7 +32,7 @@ abstract class Request extends BaseRequest
     final protected function requiresAccessToken(): void
     {
         if (is_null($accessToken = $this->client->getAccessToken())) {
-            throw new Exceptions\MissingAccessToken('This request requires valid access token to be available!');
+            throw new Exceptions\MissingAccessToken('Request requires valid access token to be available!');
         }
     }
 

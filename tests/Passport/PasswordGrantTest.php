@@ -6,7 +6,6 @@ use Katsana\Sdk\Client;
 use Katsana\Sdk\Passport\PasswordGrant;
 use Katsana\Sdk\Tests\TestCase;
 use Laravie\Codex\Contracts\Response;
-use Laravie\Codex\Discovery;
 use Laravie\Codex\Testing\Faker;
 
 class PasswordGrantTest extends TestCase
@@ -22,13 +21,11 @@ class PasswordGrantTest extends TestCase
                     ->expectEndpointIs('https://api.katsana.com/oauth/token')
                     ->shouldResponseWith(200, '{"token_type":"Bearer","expires_in":31535999,"access_token":"AckfSECXIvnK5r28GVIWUAxmbBSjTsmF","refresh_token":"wCDLf7qqGhVri5p4K4qdfA5kzqFt56HafDeIWDI60U1V0modBGPNweX"}');
 
-        Discovery::override($faker->http());
-
-        $client = Client::make('homestead', 'secret');
+        $client = $this->makeClient($faker);
 
         $this->assertNull($client->getAccessToken());
 
-        $response = $client->via(new PasswordGrant($client))
+        $response = $client->via(new PasswordGrant())
                         ->authenticate('contact@katsana.com', 'secret');
 
         $this->assertInstanceOf(Response::class, $response);
@@ -52,14 +49,11 @@ class PasswordGrantTest extends TestCase
                     ->shouldResponseWith(500)
                     ->expectReasonPhraseIs('Server not found');
 
-        Discovery::override($faker->http());
-
-        $client = Client::make('homestead', 'secret');
+        $client = $this->makeClient($faker);
 
         $this->assertNull($client->getAccessToken());
 
-        $client->via(new PasswordGrant($client))
-                ->authenticate('dummy@katsana.com', 'secret!');
+        $client->via(new PasswordGrant())->authenticate('dummy@katsana.com', 'secret!');
     }
 
     /**
@@ -69,9 +63,8 @@ class PasswordGrantTest extends TestCase
      */
     public function it_throws_exception_when_client_id_or_secret_is_missing()
     {
-        $client = new Client(Faker::create()->http());
-
-        $client->via(new PasswordGrant($client))
+        (new Client(Faker::create()->http()))
+                ->via(new PasswordGrant())
                 ->authenticate('dummy@katsana.com', 'secret!');
     }
 }

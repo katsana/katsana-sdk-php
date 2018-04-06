@@ -37,6 +37,19 @@ class ProfileTest extends TestCase
         $this->assertSame('crynobone@gmail.com', $user['email']);
     }
 
+    /**
+     * @test
+     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
+     * @expectedExceptionMessage Request requires valid access token to be available!
+     */
+    public function it_cant_show_user_profile_without_access_token()
+    {
+        (new Client(Faker::create()->http(), 'homestead', 'secret'))
+                ->useVersion('v1')
+                ->uses('Profile')
+                ->show();
+    }
+
     /** @test */
     public function it_can_verify_valid_password()
     {
@@ -81,6 +94,19 @@ class ProfileTest extends TestCase
         $this->assertFalse($response);
     }
 
+    /**
+     * @test
+     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
+     * @expectedExceptionMessage Request requires valid access token to be available!
+     */
+    public function it_cant_verify_valid_password_without_access_token()
+    {
+        (new Client(Faker::create()->http(), 'homestead', 'secret'))
+                ->useVersion('v1')
+                ->uses('Profile')
+                ->verifyPassword('secret!');
+    }
+
     /** @test */
     public function it_can_upload_avatar()
     {
@@ -101,5 +127,18 @@ class ProfileTest extends TestCase
         $this->assertSame('https://my.katsana.com/pictures/user-73/0153cf08-31e2-11e6-99b7-08002777c33d.png', $avatar['url']);
         $this->assertSame('https://my.katsana.com/pictures/user-73/0153cf08-31e2-11e6-99b7-08002777c33d.thumb.png', $avatar['thumb']);
         $this->assertSame('https://my.katsana.com/pictures/user-73/0153cf08-31e2-11e6-99b7-08002777c33d.marker.png', $avatar['marker']);
+    }
+
+    /**
+     * @test
+     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
+     * @expectedExceptionMessage Request requires valid access token to be available!
+     */
+    public function it_cant_upload_avatar_without_access_token()
+    {
+        (new Client(Faker::create()->http(), 'homestead', 'secret'))
+                ->useVersion('v1')
+                ->uses('Profile')
+                ->uploadAvatar(__DIR__.'/../stubs/katsana-logo.png');
     }
 }
