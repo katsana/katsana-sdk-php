@@ -5,11 +5,12 @@ namespace Katsana\Sdk\One;
 use Katsana\Sdk\Query;
 use Laravie\Codex\Contracts\Response;
 use Laravie\Codex\Exceptions\UnauthorizedHttpException;
+use Laravie\Codex\Support\JsonRequest;
 use Laravie\Codex\Support\MultipartRequest;
 
 class Profile extends Request
 {
-    use MultipartRequest;
+    use JsonRequest, MultipartRequest;
 
     /**
      * Show user profile.
@@ -22,7 +23,9 @@ class Profile extends Request
     {
         $this->requiresAccessToken();
 
-        return $this->send('GET', 'profile', $this->getApiHeaders(), $this->buildHttpQuery($query));
+        return $this->send(
+            'GET', 'profile', $this->getApiHeaders(), $this->buildHttpQuery($query)
+        );
     }
 
     /**
@@ -36,10 +39,8 @@ class Profile extends Request
     {
         $this->requiresAccessToken();
 
-        $headers = ['Content-Type' => 'application/json'];
-
-        return $this->send(
-            'PATCH', 'profile', $this->mergeApiHeaders($headers), $this->mergeApiBody($payload)
+        return $this->sendJson(
+            'PATCH', 'profile', $this->getApiHeaders(), $this->mergeApiBody($payload)
         );
     }
 
@@ -71,11 +72,11 @@ class Profile extends Request
     /**
      * Upload profile avatar.
      *
-     * @param mixed $file
+     * @param string $file
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function uploadAvatar($file): Response
+    public function uploadAvatar(string $file): Response
     {
         $this->requiresAccessToken();
 

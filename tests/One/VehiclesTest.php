@@ -97,7 +97,6 @@ class VehicleTest extends TestCase
                         ->expectEndpointIs('https://api.katsana.com/vehicles/105/location')
                         ->shouldResponseWith(200, '{"id":105,"latitude":3.0093493,"longitude":101.5976447,"speed":0,"state":"idle","ignition":false,"voltage":12485,"gsm":3,"tracked_at":"2017-01-09 13:31:51"}');
 
-
         $response = $this->makeClientWithAccessToken($faker)
                         ->uses('Vehicles')
                         ->location(105);

@@ -13,6 +13,6 @@ class Welcome extends Request
      */
     public function hello(): Response
     {
-        return $this->send('GET', [], $this->getApiHeaders());
+        return $this->send('GET', '/', $this->getApiHeaders());
     }
 }

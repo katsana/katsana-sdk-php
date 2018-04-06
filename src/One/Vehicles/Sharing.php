@@ -4,9 +4,12 @@ namespace One\Vehicles;
 
 use Katsana\Sdk\One\Request;
 use Laravie\Codex\Contracts\Response;
+use Laravie\Codex\Support\JsonRequest;
 
 class Sharing extends Request
 {
+    use JsonRequest;
+
     /**
      * List sharing vehicles.
      *
@@ -14,7 +17,7 @@ class Sharing extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function index(int $vehicleId): Response
+    public function all(int $vehicleId): Response
     {
         $this->requiresAccessToken();
 
@@ -34,11 +37,11 @@ class Sharing extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function store(int $vehicleId, ?string $description, ?string $duration): Response
+    public function store(int $vehicleId, ?string $description, ?string $duration = '1D'): Response
     {
         $this->requiresAccessToken();
 
-        return $this->send(
+        return $this->sendJson(
             'POST',
             "vehicles/{$vehicleId}/sharing",
             $this->getApiHeaders(),
@@ -56,11 +59,11 @@ class Sharing extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function update(int $vehicleId, int $sharingId, ?string $description, ?string $duration): Response
+    public function update(int $vehicleId, int $sharingId, ?string $description, ?string $duration = '1D'): Response
     {
         $this->requiresAccessToken();
 
-        return $this->send(
+        return $this->sendJson(
             'PATCH',
             "vehicles/{$vehicleId}/sharing/{$sharingId}",
             $this->getApiHeaders(),

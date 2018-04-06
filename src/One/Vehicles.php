@@ -4,11 +4,12 @@ namespace Katsana\Sdk\One;
 
 use Katsana\Sdk\Query;
 use Laravie\Codex\Contracts\Response;
+use Laravie\Codex\Support\JsonRequest;
 use Laravie\Codex\Support\MultipartRequest;
 
 class Vehicles extends Request
 {
-    use MultipartRequest;
+    use JsonRequest, MultipartRequest;
 
     /**
      * List all vehicles available for the user.
@@ -21,7 +22,9 @@ class Vehicles extends Request
     {
         $this->requiresAccessToken();
 
-        return $this->send('GET', 'vehicles', $this->getApiHeaders(), $this->buildHttpQuery($query));
+        return $this->send(
+            'GET', 'vehicles', $this->getApiHeaders(), $this->buildHttpQuery($query)
+        );
     }
 
     /**
@@ -36,7 +39,9 @@ class Vehicles extends Request
     {
         $this->requiresAccessToken();
 
-        return $this->send('GET', "vehicles/{$vehicleId}", $this->getApiHeaders(), $this->buildHttpQuery($query));
+        return $this->send(
+            'GET', "vehicles/{$vehicleId}", $this->getApiHeaders(), $this->buildHttpQuery($query)
+        );
     }
 
     /**
@@ -65,27 +70,29 @@ class Vehicles extends Request
     {
         $this->requiresAccessToken();
 
-        $headers = ['Content-Type' => 'application/json'];
-
-        return $this->send(
-            'PATCH', "vehicles/{$vehicleId}", $this->mergeApiHeaders($headers), $payload
+        return $this->sendJson(
+            'PATCH', "vehicles/{$vehicleId}", $this->getApiHeaders(), $payload
         );
     }
 
     /**
      * Upload profile avatar.
      *
-     * @param int   $vehicleId
-     * @param mixed $file
+     * @param int    $vehicleId
+     * @param string $file
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function uploadAvatar(int $vehicleId, $file): Response
+    public function uploadAvatar(int $vehicleId, string $file): Response
     {
         $this->requiresAccessToken();
 
         return $this->stream(
-            'POST', "vehicles/{$vehicleId}/avatar", $this->getApiHeaders(), $this->getApiBody(), compact('file')
+            'POST',
+            "vehicles/{$vehicleId}/avatar",
+            $this->getApiHeaders(),
+            $this->getApiBody(),
+            compact('file')
         );
     }
 }
