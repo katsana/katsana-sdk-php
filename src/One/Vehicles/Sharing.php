@@ -3,8 +3,9 @@
 namespace One\Vehicles;
 
 use Katsana\Sdk\One\Request;
-use Laravie\Codex\Contracts\Response;
+use Katsana\Sdk\Query;
 use Laravie\Codex\Concerns\Request\Json;
+use Laravie\Codex\Contracts\Response;
 
 class Sharing extends Request
 {
@@ -13,18 +14,20 @@ class Sharing extends Request
     /**
      * List sharing vehicles.
      *
-     * @param int $vehicleId
+     * @param int                     $vehicleId
+     * @param \Katsana\Sdk\Query|null $query
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function all(int $vehicleId): Response
+    public function all(int $vehicleId, ?Query $query = null): Response
     {
         $this->requiresAccessToken();
 
         return $this->send(
             'GET',
             "vehicles/{$vehicleId}/sharing",
-            $this->getApiHeaders()
+            $this->getApiHeaders(),
+            $this->buildHttpQuery($query)
         );
     }
 

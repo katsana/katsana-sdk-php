@@ -47,15 +47,18 @@ class Vehicles extends Request
     /**
      * Get vehicle current location.
      *
-     * @param int $vehicleId
+     * @param int                     $vehicleId
+     * @param \Katsana\Sdk\Query|null $query
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function location(int $vehicleId): Response
+    public function location(int $vehicleId, ?Query $query = null): Response
     {
         $this->requiresAccessToken();
 
-        return $this->send('GET', "vehicles/{$vehicleId}/location", $this->getApiHeaders());
+        return $this->send(
+            'GET', "vehicles/{$vehicleId}/location", $this->getApiHeaders(), $this->buildHttpQuery($query)
+        );
     }
 
     /**

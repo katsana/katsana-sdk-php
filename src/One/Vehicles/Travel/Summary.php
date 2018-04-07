@@ -3,6 +3,7 @@
 namespace Katsana\Sdk\One\Vehicles\Travel;
 
 use Katsana\Sdk\One\Request;
+use Katsana\Sdk\Query;
 use Laravie\Codex\Contracts\Response;
 
 class Summary extends Request
@@ -10,25 +11,28 @@ class Summary extends Request
     /**
      * Get travel for today.
      *
-     * @param int $vehicleId
+     * @param int                $vehicleId
+     * @param \Katsana\Sdk\Query $query
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function today(int $vehicleId): Response
+    public function today(int $vehicleId, ?Query $query = null): Response
     {
         $this->requiresAccessToken();
 
         return $this->send(
             'GET',
             "vehicles/{$vehicleId}/travels/summaries/today",
-            $this->getApiHeaders()
+            $this->getApiHeaders(),
+            $this->buildHttpQuery($query)
         );
     }
 
     /**
      * Get travel for yesterday.
      *
-     * @param int $vehicleId
+     * @param int                $vehicleId
+     * @param \Katsana\Sdk\Query $query
      *
      * @return \Laravie\Codex\Contracts\Response
      */
@@ -46,9 +50,10 @@ class Summary extends Request
     /**
      * Get travel for the month.
      *
-     * @param int $vehicleId
-     * @param int $year
-     * @param int $month
+     * @param int                $vehicleId
+     * @param int                $year
+     * @param int                $month
+     * @param \Katsana\Sdk\Query $query
      *
      * @return \Laravie\Codex\Contracts\Response
      */
@@ -66,10 +71,11 @@ class Summary extends Request
     /**
      * Get travel for the date.
      *
-     * @param int $vehicleId
-     * @param int $year
-     * @param int $month
-     * @param int $day
+     * @param int                $vehicleId
+     * @param int                $year
+     * @param int                $month
+     * @param int                $day
+     * @param \Katsana\Sdk\Query $query
      *
      * @return \Laravie\Codex\Contracts\Response
      */
@@ -87,13 +93,14 @@ class Summary extends Request
     /**
      * Get travel for a duration.
      *
-     * @param int    $vehicleId
-     * @param string $start
-     * @param string $end
+     * @param int                $vehicleId
+     * @param string             $start
+     * @param string             $end
+     * @param \Katsana\Sdk\Query $query
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function duration(int $vehicleId, string $start, string $end): Response
+    public function duration(int $vehicleId, string $start, string $end, ?Query $query = null): Response
     {
         $this->requiresAccessToken();
 
