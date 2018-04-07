@@ -153,7 +153,7 @@ abstract class TestCase extends SdkTestCase
 
         $faker = Faker::create()
                         ->call('GET', $headers)
-                        ->expectEndpointIs("https://api.katsana.com/vehicles/{$vehicleId}/{$endpoint}?start=".urlencode($start)."&end=".urlencode($end))
+                        ->expectEndpointIs("https://api.katsana.com/vehicles/{$vehicleId}/{$endpoint}?start=".urlencode($start).'&end='.urlencode($end))
                         ->shouldResponseWith(200, '[]');
 
         $response = $this->makeClientWithAccessToken($faker)
@@ -169,7 +169,8 @@ abstract class TestCase extends SdkTestCase
     /**
      * Convert timestamp to UTC format.
      *
-     * @param  string $timestamp
+     * @param string $timestamp
+     *
      * @return string
      */
     private function convertToUtc(string $timestamp): string

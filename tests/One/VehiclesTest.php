@@ -2,11 +2,9 @@
 
 namespace Katsana\Sdk\Tests\One;
 
-use GuzzleHttp\Psr7\Stream;
 use Katsana\Sdk\Tests\TestCase;
 use Laravie\Codex\Contracts\Response;
 use Laravie\Codex\Testing\Faker;
-use Mockery as m;
 
 class VehicleTest extends TestCase
 {
@@ -161,8 +159,13 @@ class VehicleTest extends TestCase
     /** @test */
     public function it_can_upload_avatar()
     {
+        $headers = [
+            'Accept' => 'application/vnd.KATSANA.v1+json',
+            'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+        ];
+
         $faker = Faker::create()
-                        ->call('POST', m::type('Array'), m::type(Stream::class))
+                        ->stream('POST', $headers)
                         ->expectEndpointIs('https://api.katsana.com/vehicles/888/avatar')
                         ->shouldResponseWith(200, '{"url":"https://my.katsana.com/pictures/device-105/04375b22-d454-11e5-8724-f23c9126a0cc.png","thumb":"https://my.katsana.com/pictures/device-105/04375b22-d454-11e5-8724-f23c9126a0cc.thumb.png","marker":"https://my.katsana.com/pictures/device-105/04375b22-d454-11e5-8724-f23c9126a0cc.marker.png"}');
 

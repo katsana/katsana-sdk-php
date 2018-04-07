@@ -2,11 +2,9 @@
 
 namespace Katsana\Sdk\Tests\One;
 
-use GuzzleHttp\Psr7\Stream;
 use Katsana\Sdk\Response;
 use Katsana\Sdk\Tests\TestCase;
 use Laravie\Codex\Testing\Faker;
-use Mockery as m;
 
 class ProfileTest extends TestCase
 {
@@ -152,8 +150,13 @@ class ProfileTest extends TestCase
     /** @test */
     public function it_can_upload_avatar()
     {
+        $headers = [
+            'Accept' => 'application/vnd.KATSANA.v1+json',
+            'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+        ];
+
         $faker = Faker::create()
-                        ->call('POST', m::type('Array'), m::type(Stream::class))
+                        ->stream('POST', $headers)
                         ->expectEndpointIs('https://api.katsana.com/profile/avatar')
                         ->shouldResponseWith(200, '{"url":"https://my.katsana.com/pictures/user-73/0153cf08-31e2-11e6-99b7-08002777c33d.png","thumb":"https://my.katsana.com/pictures/user-73/0153cf08-31e2-11e6-99b7-08002777c33d.thumb.png","marker":"https://my.katsana.com/pictures/user-73/0153cf08-31e2-11e6-99b7-08002777c33d.marker.png"}');
 
