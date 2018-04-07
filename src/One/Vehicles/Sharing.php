@@ -1,6 +1,6 @@
 <?php
 
-namespace One\Vehicles;
+namespace Katsana\Sdk\One\Vehicles;
 
 use Katsana\Sdk\One\Request;
 use Katsana\Sdk\Query;
@@ -40,7 +40,7 @@ class Sharing extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function store(int $vehicleId, ?string $description, ?string $duration = '1D'): Response
+    public function create(int $vehicleId, ?string $description, ?string $duration = '1D'): Response
     {
         $this->requiresAccessToken();
 
