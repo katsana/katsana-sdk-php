@@ -85,7 +85,7 @@ class Travel extends Request
     {
         $this->requiresAccessToken();
 
-        $payload = $this->buildHttpQuery();
+        $payload = $this->buildHttpQuery($query);
         $payload['start'] = $start;
         $payload['end'] = $end;
 

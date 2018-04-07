@@ -2,11 +2,9 @@
 
 namespace Katsana\Sdk\Tests\One\Vehicles;
 
-use GuzzleHttp\Psr7\Stream;
 use Katsana\Sdk\Response;
 use Katsana\Sdk\Tests\TestCase;
 use Laravie\Codex\Testing\Faker;
-use Mockery as m;
 
 class SharingTest extends TestCase
 {
