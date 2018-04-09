@@ -18,7 +18,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require": {
-        "katsana/katsana-sdk-php": "~0.5",
+        "katsana/katsana-sdk-php": "^1.0",
         "php-http/guzzle6-adapter": "^1.1"
     }
 }
