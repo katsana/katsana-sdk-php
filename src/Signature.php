@@ -11,6 +11,11 @@ class Signature
      */
     protected $key;
 
+    /**
+     * Construct a new signature.
+     *
+     * @param string $key
+     */
     public function __construct(string $key)
     {
         $this->key = $key;
@@ -24,7 +29,7 @@ class Signature
      *
      * @return bool
      */
-    final public function verify(Response $response, $threshold = 3600): bool
+    final public function verify(Response $response, int $threshold = 3600): bool
     {
         $s = explode(',', $response->getHeader('HTTP_X_SIGNATURE')[0]);
         list(, $timestamp) = explode('=', $s[0]);
