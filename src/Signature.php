@@ -31,11 +31,29 @@ class Signature
      */
     final public function verify(Response $response, int $threshold = 3600): bool
     {
-        $s = explode(',', $response->getHeader('HTTP_X_SIGNATURE')[0]);
+        return $this->verifyFrom(
+            $response->getHeader('HTTP_X_SIGNATURE')[0],
+            $response->getBody(),
+            $threshold
+        );
+    }
+
+    /**
+     * Verify from header and body.
+     *
+     * @param string $header
+     * @param string $body
+     * @param int    $threshold
+     *
+     * @return bool
+     */
+    final public function verifyFrom(string $header, string $body, int $threshold = 3600): bool
+    {
+        $s = explode(',', $header);
         list(, $timestamp) = explode('=', $s[0]);
         list(, $signature) = explode('=', $s[1]);
 
-        $payload = $timestamp.'.'.$response->getBody();
+        $payload = $timestamp.'.'.$body;
 
         $compared = hash_hmac('sha256', $payload, $this->key);
 
