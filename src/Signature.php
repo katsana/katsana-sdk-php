@@ -2,6 +2,8 @@
 
 namespace Katsana\Sdk;
 
+use Psr\Http\Message\ResponseInterface;
+
 class Signature
 {
     /**
@@ -22,24 +24,7 @@ class Signature
     }
 
     /**
-     * Verify signature.
-     *
-     * @param \Katsana\Sdk\Response $response
-     * @param int                   $threshold
-     *
-     * @return bool
-     */
-    final public function verify(Response $response, int $threshold = 3600): bool
-    {
-        return $this->verifyFrom(
-            $response->getHeader('HTTP_X_SIGNATURE')[0],
-            $response->getBody(),
-            $threshold
-        );
-    }
-
-    /**
-     * Verify from header and body.
+     * Verify signature from header and body.
      *
      * @param string $header
      * @param string $body
@@ -47,7 +32,7 @@ class Signature
      *
      * @return bool
      */
-    final public function verifyFrom(string $header, string $body, int $threshold = 3600): bool
+    final public function verify(string $header, string $body, int $threshold = 3600): bool
     {
         $s = explode(',', $header);
         list(, $timestamp) = explode('=', $s[0]);
@@ -66,5 +51,24 @@ class Signature
         }
 
         return true;
+    }
+
+    /**
+     * Verify signature from PSR7 response object.
+     *
+     * @param \Psr\Http\Message\ResponseInterface $message
+     * @param int                                 $threshold
+     *
+     * @return bool
+     */
+    final public function verifyFrom(ResponseInterface $message, int $threshold = 3600): bool
+    {
+        $response = new Response($message);
+
+        return $this->verify(
+            $response->getHeader('HTTP_X_SIGNATURE')[0],
+            $response->getBody(),
+            $threshold
+        );
     }
 }

@@ -14,10 +14,10 @@ class SignatureTest extends TestCase
         $now = time();
         $payload = '{"device_id":123,"event":"Device+mobilized"}';
 
-        $response = new Response($this->getMessageWithPayload('secret', $payload, $now));
+        $response = $this->getMessageWithPayload('secret', $payload, $now);
 
         $signature = new Signature('secret');
-        $this->assertTrue($signature->verify($response));
+        $this->assertTrue($signature->verifyFrom($response));
     }
 
     /** @test */
@@ -26,10 +26,10 @@ class SignatureTest extends TestCase
         $now = time();
         $payload = '{"device_id":123,"event":"Device+mobilized"}';
 
-        $response = new Response($this->getMessageWithPayload('secret!', $payload, $now));
+        $response = $this->getMessageWithPayload('secret!', $payload, $now);
 
         $signature = new Signature('secret');
-        $this->assertFalse($signature->verify($response));
+        $this->assertFalse($signature->verifyFrom($response));
     }
 
     /** @test */
@@ -38,10 +38,10 @@ class SignatureTest extends TestCase
         $now = time() - 3600;
         $payload = '{"device_id":123,"event":"Device+mobilized"}';
 
-        $response = new Response($this->getMessageWithPayload('secret', $payload, $now));
+        $response = $this->getMessageWithPayload('secret', $payload, $now);
 
         $signature = new Signature('secret');
-        $this->assertFalse($signature->verify($response, 60));
+        $this->assertFalse($signature->verifyFrom($response, 60));
     }
 
     /**
