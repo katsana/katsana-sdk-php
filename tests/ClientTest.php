@@ -15,6 +15,7 @@ class ClientTest extends TestCase
 
         $client = new Client($faker->http());
 
+        $this->assertInstanceOf('Laravie\Codex\Contracts\Client', $client);
         $this->assertSame('https://api.katsana.com', $client->getApiEndpoint());
         $this->assertSame('v1', $client->getApiVersion());
     }
