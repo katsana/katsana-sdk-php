@@ -3,12 +3,11 @@
 namespace Katsana\Sdk\Tests;
 
 use Katsana\Sdk\Response;
-use Laravie\Codex\Discovery;
 use Laravie\Codex\Testing\Faker;
 
 class ResponseTest extends TestCase
 {
-     /** @test */
+    /** @test */
     public function it_has_proper_signature()
     {
         $faker = Faker::create()

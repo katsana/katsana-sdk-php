@@ -2,7 +2,6 @@
 
 namespace Katsana\Sdk\Tests;
 
-use Katsana\Sdk\Response;
 use Katsana\Sdk\Signature;
 use Laravie\Codex\Testing\Faker;
 
