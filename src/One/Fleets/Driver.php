@@ -3,10 +3,13 @@
 namespace Katsana\Sdk\One\Fleets;
 
 use Katsana\Sdk\One\Request;
+use Laravie\Codex\Concerns\Request\Json;
 use Laravie\Codex\Contracts\Response;
 
 class Driver extends Request
 {
+    use Json;
+
     /**
      * Create driver for a fleet.
      *
@@ -19,6 +22,8 @@ class Driver extends Request
      */
     public function create(int $fleetId, string $fullname, string $identification, array $optional = []): Response
     {
+        $this->requiresAccessToken();
+
         return $this->sendJson(
             'POST',
             "fleets/{$fleetId}/drivers",
@@ -40,6 +45,8 @@ class Driver extends Request
      */
     public function update(int $fleetId, int $driverId, string $fullname, string $identification, array $optional = []): Response
     {
+        $this->requiresAccessToken();
+
         return $this->sendJson(
             'POST',
             "fleets/{$fleetId}/drivers/{$driverId}",
