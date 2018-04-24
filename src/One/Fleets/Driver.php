@@ -3,12 +3,33 @@
 namespace Katsana\Sdk\One\Fleets;
 
 use Katsana\Sdk\One\Request;
+use Katsana\Sdk\Query;
 use Laravie\Codex\Concerns\Request\Json;
 use Laravie\Codex\Contracts\Response;
 
 class Driver extends Request
 {
     use Json;
+
+    /**
+     * Create driver for a fleet.
+     *
+     * @param int                     $fleetId
+     * @param \Katsana\Sdk\Query|null $query
+     *
+     * @return \Laravie\Codex\Contracts\Response
+     */
+    public function all(int $fleetId, ?Query $query = null): Response
+    {
+        $this->requiresAccessToken();
+
+        return $this->send(
+            'GET',
+            "fleets/{$fleetId}/drivers",
+            $this->getApiHeaders(),
+            $this->buildHttpQuery($query)
+        );
+    }
 
     /**
      * Create driver for a fleet.
