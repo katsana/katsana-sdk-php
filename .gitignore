@@ -3,5 +3,8 @@
 /composer.lock
 
 # PHPUnit
-phpunit.xml
 /coverage/
+/phpunit.xml
+
+# Example
+/*.php
