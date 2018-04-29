@@ -32,15 +32,15 @@ class DriversTest extends TestCase
                         ->uses('Fleets.Drivers')
                         ->all(1);
 
-        $driver = $response->toArray()['drivers'];
+        $data = $response->toArray()['drivers'];
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame(3, $driver[0]['id']);
-        $this->assertSame('Ahmad Justin Yeo', $driver[0]['fullname']);
-        $this->assertSame('830214015065', $driver[0]['identification']);
-        $this->assertSame('mykad', $driver[0]['identification_type']);
-        $this->assertSame('Asia/Kuala_Lumpur', $driver[0]['timezone']);
-        $this->assertNull($driver[0]['avatar']);
+        $this->assertSame(3, $data[0]['id']);
+        $this->assertSame('Ahmad Justin Yeo', $data[0]['fullname']);
+        $this->assertSame('830214015065', $data[0]['identification']);
+        $this->assertSame('mykad', $data[0]['identification_type']);
+        $this->assertSame('Asia/Kuala_Lumpur', $data[0]['timezone']);
+        $this->assertNull($data[0]['avatar']);
     }
 
     /**
