@@ -6,7 +6,7 @@ use Katsana\Sdk\Tests\TestCase;
 use Laravie\Codex\Contracts\Response;
 use Laravie\Codex\Testing\Faker;
 
-class DriverTest extends TestCase
+class DriversTest extends TestCase
 {
     /**
      * API Version.
@@ -29,7 +29,7 @@ class DriverTest extends TestCase
                         ->shouldResponseWith(200, '{"drivers":[{"id":3,"fullname":"Ahmad Justin Yeo","identification":"830214015065","identification_type":"mykad","avatar":null,"timezone":"Asia\/Kuala_Lumpur","created_at":"2018-04-24 08:58:14","updated_at":"2018-04-24 08:58:14"}]}');
 
         $response = $this->makeClientWithAccessToken($faker)
-                        ->uses('Fleets.Driver')
+                        ->uses('Fleets.Drivers')
                         ->all(1);
 
         $driver = $response->toArray()['drivers'];
@@ -51,7 +51,7 @@ class DriverTest extends TestCase
     public function it_cant_list_drivers_without_access_token()
     {
         $this->makeClient(Faker::create())
-                ->uses('Fleets.Driver')
+                ->uses('Fleets.Drivers')
                 ->all(1);
     }
 
@@ -74,7 +74,7 @@ class DriverTest extends TestCase
                         ->shouldResponseWith(200, '{"driver":{"id":3,"fullname":"Ahmad Justin Yeo","identification":"830214015065","identification_type":"mykad","avatar":null,"timezone":"Asia\/Kuala_Lumpur","created_at":"2018-04-24 08:58:14","updated_at":"2018-04-24 08:58:14"}}');
 
         $response = $this->makeClientWithAccessToken($faker)
-                        ->uses('Fleets.Driver')
+                        ->uses('Fleets.Drivers')
                         ->create(1, 'Ahmad Justin Yeo', '830214015065');
 
         $driver = $response->toArray()['driver'];
@@ -96,7 +96,7 @@ class DriverTest extends TestCase
     public function it_cant_create_driver_without_access_token()
     {
         $this->makeClient(Faker::create())
-                ->uses('Fleets.Driver')
+                ->uses('Fleets.Drivers')
                 ->create(1, 'Ahmad Justin Yeo', '830214015065');
     }
 
@@ -119,7 +119,7 @@ class DriverTest extends TestCase
                         ->shouldResponseWith(200, '{"driver":{"id":3,"fullname":"Ahmad Justin Yeo","identification":"830214015065","identification_type":"mykad","avatar":null,"timezone":"Asia\/Kuala_Lumpur","created_at":"2018-04-24 08:58:14","updated_at":"2018-04-24 08:58:14"}}');
 
         $response = $this->makeClientWithAccessToken($faker)
-                        ->uses('Fleets.Driver')
+                        ->uses('Fleets.Drivers')
                         ->update(1, 3, 'Ahmad Justin Yeo', '830214015065');
 
         $driver = $response->toArray()['driver'];

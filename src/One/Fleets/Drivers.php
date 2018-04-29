@@ -7,12 +7,12 @@ use Katsana\Sdk\Query;
 use Laravie\Codex\Concerns\Request\Json;
 use Laravie\Codex\Contracts\Response;
 
-class Driver extends Request
+class Drivers extends Request
 {
     use Json;
 
     /**
-     * Create driver for a fleet.
+     * List drivers for a fleet.
      *
      * @param int                     $fleetId
      * @param \Katsana\Sdk\Query|null $query
