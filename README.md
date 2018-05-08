@@ -10,6 +10,9 @@ KATSANA SDK for PHP
 
 * [Installation](#installation)
 * [Usages](#usages)
+    - [Creating Client](#creating-client)
+    - [Handling Response](#handling-response)
+    - [Using the API](#using-the-api)
 
 ## Installation
 
