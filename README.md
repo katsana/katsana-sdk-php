@@ -19,7 +19,7 @@ To install through composer, simply put the following in your `composer.json` fi
 {
     "require": {
         "katsana/katsana-sdk-php": "^1.0",
-        "php-http/guzzle6-adapter": "^1.1"
+        "php-http/guzzle6-adapter": "^1.1.1"
     }
 }
 ```
@@ -52,9 +52,11 @@ use Katsana\Sdk\Client;
 $katsana = Client::personal('personal-access-token');
 ```
 
-### Getting Response
+### Handling Response
 
-Every API request using the API would return an instance of `Katsana\Sdk\Response`. As an example:
+Every API request using the API would return an instance of `Katsana\Sdk\Response` which can fallback to `\Psr\Http\Message\ResponseInterface`, this allow developer to further inspect the response. 
+
+As an example:
 
 ```php
 $response = $katsana->uses('Welcome')->hello();
@@ -69,6 +71,41 @@ var_dump($response->toArray());
         "v1"
     ]
 }
+```
+#### Getting the Response
+
+You can get the raw response using the following:
+
+```php
+$response->getBody();
+```
+
+However we also create a method to parse the return JSON string to array.
+
+```php
+$response->toArray();
+```
+
+#### Checking the Response HTTP Status
+
+You can get the response status code via:
+
+```php
+$response->getStatusCode();
+
+$response->isSuccessful();
+
+$response->isUnauthorized();
+```
+
+#### Checking the Response Header
+
+You can also check the response header via the following code:
+
+```php
+$response->getHeaders(); // get all headers as array.
+$response->hasHeader('Content-Type'); // check if `Content-Type` header exist.
+$response->getHeader('Content-Type'); // get `Content-Type` header.
 ```
 
 ### Using the API
