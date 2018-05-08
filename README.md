@@ -115,7 +115,9 @@ $response->getHeader('Content-Type'); // get `Content-Type` header.
 
 There are two way to request an API:
 
-#### Using shortcut
+#### Using API Resolver
+
+This method allow you as the developer to automatically select the current selected API version without having to modify the code when KATSANA release new API version.
 
 ```php
 $vehicles = $katsana->uses('Vehicles'); 
@@ -123,9 +125,11 @@ $vehicles = $katsana->uses('Vehicles');
 $response = $vehicles->all(); 
 ```
 
-This would resolve an instance of `Katsana\One\Vehicles` class (as `v1` would resolve to `One` namespace).
+> This would resolve an instance of `Katsana\One\Vehicles` class (as `v1` would resolve to `One` namespace).
 
-#### Initiate the class
+#### Explicit API Resolver
+
+This method allow you to have more control on which version to be used.
 
 ```php
 $vehicles = $katsana->via(new Katsana\One\Vehicles());
