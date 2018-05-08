@@ -51,3 +51,45 @@ use Katsana\Sdk\Client;
 
 $katsana = Client::personal('personal-access-token');
 ```
+
+### Getting Response
+
+Every API request using the API would return an instance of `Katsana\Sdk\Response`. As an example:
+
+```php
+$response = $katsana->uses('Welcome')->hello();
+
+var_dump($response->toArray());
+```
+
+```json
+{
+    "platform": "v4.5.13",
+    "api": [
+        "v1"
+    ]
+}
+```
+
+### Using the API
+
+There are two way to request an API:
+
+#### Using shortcut
+
+```php
+$vehicles = $katsana->uses('Vehicles'); 
+
+$response = $vehicles->all(); 
+```
+
+This would resolve an instance of `Katsana\One\Vehicles` class (as `v1` would resolve to `One` namespace).
+
+#### Initiate the class
+
+```php
+$vehicles = new Katsana\One\Vehicles();
+$vehicles->setClient($katsana);
+
+$response = $vehicles->all();
+```
