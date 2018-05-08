@@ -128,8 +128,7 @@ This would resolve an instance of `Katsana\One\Vehicles` class (as `v1` would re
 #### Initiate the class
 
 ```php
-$vehicles = new Katsana\One\Vehicles();
-$vehicles->setClient($katsana);
+$vehicles = $katsana->via(new Katsana\One\Vehicles());
 
 $response = $vehicles->all();
 ```
