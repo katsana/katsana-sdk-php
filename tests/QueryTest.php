@@ -36,11 +36,13 @@ class QueryTest extends TestCase
     public function it_can_be_initiated_when_excludes_is_missing()
     {
         $query = Query::includes('drivemark', 'speed')
-                    ->forPage(5);
+                    ->forPage(5)
+                    ->take(20);
 
         $this->assertSame([
             'includes' => 'drivemark,speed',
             'page' => 5,
+            'per_page' => 20,
         ], $query->toArray());
     }
 
@@ -49,6 +51,19 @@ class QueryTest extends TestCase
     {
         $query = Query::includes('drivemark', 'speed')
                     ->excludes('driver');
+
+        $this->assertSame([
+            'includes' => 'drivemark,speed',
+            'excludes' => 'driver',
+        ], $query->toArray());
+    }
+
+    /** @test */
+    public function it_can_be_initiated_without_per_page_when_page_is_missing()
+    {
+        $query = Query::includes('drivemark', 'speed')
+                    ->excludes('driver')
+                    ->take(20);
 
         $this->assertSame([
             'includes' => 'drivemark,speed',

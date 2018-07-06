@@ -145,10 +145,10 @@ class Query
 
         if (is_int($this->page) && $this->page > 0) {
             $data['page'] = $this->page;
-        }
 
-        if (is_int($this->perPage) && $this->perPage > 5) {
-            $data['per_page'] = $this->perPage;
+            if (is_int($this->perPage) && $this->perPage > 5) {
+                $data['per_page'] = $this->perPage;
+            }
         }
 
         return call_user_func($callback, $data, $this->customs);
