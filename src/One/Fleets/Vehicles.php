@@ -2,8 +2,8 @@
 
 namespace Katsana\Sdk\One\Fleets;
 
-use Katsana\Sdk\Query;
 use Katsana\Sdk\One\Request;
+use Katsana\Sdk\Query;
 use Laravie\Codex\Contracts\Response;
 
 class Vehicles extends Request
