@@ -12,6 +12,13 @@ class Query
     protected $page;
 
     /**
+     * Per page limit.
+     *
+     * @var int|null
+     */
+    protected $perPage;
+
+    /**
      * Includes data.
      *
      * @var array
@@ -94,6 +101,20 @@ class Query
     }
 
     /**
+     * Set per page limit.
+     *
+     * @param int|null $perPage
+     *
+     * @return $this
+     */
+    protected function take(?int $perPage = null)
+    {
+        $this->perPage = $perPage;
+
+        return $this;
+    }
+
+    /**
      * Build query string.
      *
      * @return array
@@ -124,6 +145,10 @@ class Query
 
         if (is_int($this->page) && $this->page > 0) {
             $data['page'] = $this->page;
+        }
+
+        if (is_int($this->perPage) && $this->perPage > 5) {
+            $data['per_page'] = $this->perPage;
         }
 
         return call_user_func($callback, $data, $this->customs);
