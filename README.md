@@ -125,14 +125,14 @@ $vehicles = $katsana->uses('Vehicles');
 $response = $vehicles->all(); 
 ```
 
-> This would resolve an instance of `Katsana\One\Vehicles` class (as `v1` would resolve to `One` namespace).
+> This would resolve an instance of `Katsana\Sdk\One\Vehicles` class (as `v1` would resolve to `One` namespace).
 
 #### Explicit API Resolver
 
 This method allow you to have more control on which version to be used.
 
 ```php
-$vehicles = $katsana->via(new Katsana\One\Vehicles());
+$vehicles = $katsana->via(new Katsana\Sdk\One\Vehicles());
 
 $response = $vehicles->all();
 ```
