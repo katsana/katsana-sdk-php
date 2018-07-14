@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Katsana\Sdk\Tests\One;
 
 use Katsana\Sdk\Tests\TestCase;
