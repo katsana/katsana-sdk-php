@@ -22,4 +22,21 @@ class Fleets extends Request
             'GET', 'fleets', $this->getApiHeaders(), $this->buildHttpQuery($query)
         );
     }
+
+    /**
+     * Show single fleet.
+     *
+     * @param int                     $fleetId
+     * @param \Katsana\Sdk\Query|null $query
+     *
+     * @return \Laravie\Codex\Contracts\Response
+     */
+    public function get(int $fleetId, ?Query $query = null): Response
+    {
+        $this->requiresAccessToken();
+
+        return $this->send(
+            'GET', "fleets/{$fleetId}", $this->getApiHeaders(), $this->buildHttpQuery($query)
+        );
+    }
 }

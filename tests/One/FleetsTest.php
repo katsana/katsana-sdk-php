@@ -43,6 +43,7 @@ class FleetTest extends TestCase
                     ->all();
     }
 
+    /** @test */
     public function it_can_show_single_fleet()
     {
         $headers = [
@@ -65,6 +66,7 @@ class FleetTest extends TestCase
     }
 
     /**
+     * @test
      * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
      * @expectedExceptionMessage Request requires valid access token to be available!
      */
