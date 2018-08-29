@@ -5,6 +5,7 @@
 # PHPUnit
 /coverage/
 /phpunit.xml
+/.phpunit.result.cache
 
 # Example
 /*.php
