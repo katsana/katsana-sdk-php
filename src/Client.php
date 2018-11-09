@@ -5,6 +5,7 @@ namespace Katsana\Sdk;
 use Http\Client\Common\HttpMethodsClient as HttpClient;
 use Laravie\Codex\Client as BaseClient;
 use Laravie\Codex\Concerns\Passport;
+use Laravie\Codex\Contracts\Request as RequestContract;
 use Laravie\Codex\Contracts\Response as ResponseContract;
 use Laravie\Codex\Discovery;
 use Psr\Http\Message\ResponseInterface;
@@ -35,6 +36,13 @@ class Client extends BaseClient
     protected $supportedVersions = [
         'v1' => 'One',
     ];
+
+    /**
+     * Set request header timezone code.
+     *
+     * @var string
+     */
+    protected $requestHeaderTimezoneCode = 'UTC';
 
     /**
      * Construct a new Client.
@@ -71,6 +79,37 @@ class Client extends BaseClient
     public static function personal(string $accessToken)
     {
         return static::make(null, null)->setAccessToken($accessToken);
+    }
+
+     /**
+     * Handle uses using via.
+     *
+     * @param  \Laravie\Codex\Contracts\Request  $request
+     *
+     * @return \Laravie\Codex\Contracts\Request
+     */
+    public function via(RequestContract $request): RequestContract
+    {
+        $request->setClient($this);
+        $request->onTimeZone($this->requestHeaderTimezoneCode);
+
+        return $request;
+    }
+
+    /**
+     * Set timezone code.
+     *
+     * @param string $timeZoneCode
+     *
+     * @return $this
+     */
+    final public function onTimeZone(string $timeZoneCode): self
+    {
+        if (in_array($timeZoneCode, timezone_identifiers_list())) {
+            $this->requestHeaderTimezoneCode = $timeZoneCode;
+        }
+
+        return $this;
     }
 
     /**

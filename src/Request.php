@@ -11,7 +11,7 @@ abstract class Request extends BaseRequest
      *
      * @var string
      */
-    protected static $requestHeaderTimezoneCode = 'UTC';
+    protected $requestHeaderTimezoneCode = 'UTC';
 
     /**
      * Get API Header.
@@ -22,7 +22,7 @@ abstract class Request extends BaseRequest
     {
         $headers = [
             'Accept' => "application/vnd.KATSANA.{$this->getVersion()}+json",
-            'Time-Zone' => static::$requestHeaderTimezoneCode ?? 'UTC',
+            'Time-Zone' => $this->requestHeaderTimezoneCode ?? 'UTC',
         ];
 
         if (! is_null($accessToken = $this->client->getAccessToken())) {
@@ -42,7 +42,7 @@ abstract class Request extends BaseRequest
     final public function onTimeZone(string $timeZoneCode): self
     {
         if (in_array($timeZoneCode, timezone_identifiers_list())) {
-            static::$requestHeaderTimezoneCode = $timeZoneCode;
+            $this->requestHeaderTimezoneCode = $timeZoneCode;
         }
 
         return $this;
