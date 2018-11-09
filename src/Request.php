@@ -39,7 +39,7 @@ abstract class Request extends BaseRequest
      *
      * @return $this
      */
-    public function onTimeZone(string $timeZoneCode)
+    final public function onTimeZone(string $timeZoneCode): self
     {
         if (in_array($timeZoneCode, timezone_identifiers_list())) {
             static::$requestHeaderTimezoneCode = $timeZoneCode;
