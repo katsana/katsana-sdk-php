@@ -21,6 +21,16 @@ class QueryTest extends TestCase
     }
 
     /** @test */
+    public function it_can_be_initiated_with_timezone()
+    {
+        $query = Query::onTimeZone('Asia/Kuala_Lumpur');
+
+        $this->assertSame([
+            'timezone' => 'Asia/Kuala_Lumpur',
+        ], $query->toArray());
+    }
+
+    /** @test */
     public function it_can_be_initiated_when_includes_is_missing()
     {
         $query = Query::excludes('driver')

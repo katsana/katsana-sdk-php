@@ -19,6 +19,13 @@ class Query
     protected $perPage;
 
     /**
+     * Request data timezone.
+     *
+     * @var string|null
+     */
+    protected $timezone;
+
+    /**
      * Includes data.
      *
      * @var array
@@ -51,6 +58,23 @@ class Query
         $includes = is_array($includes) ? $includes : func_get_args();
 
         $this->includes = $includes;
+
+        return $this;
+    }
+
+    /**
+     * Set timezone for the request input.
+     *
+     * @param  string $timeZoneCode
+     * @return $this
+     */
+    protected function onTimeZone(?string $timeZoneCode)
+    {
+        if (is_null($timeZoneCode)) {
+            $this->timezone = null;
+        } elseif (in_array($timeZoneCode, timezone_identifiers_list())) {
+            $this->timezone = $timeZoneCode;
+        }
 
         return $this;
     }
@@ -141,6 +165,10 @@ class Query
             if (! empty($this->{$key})) {
                 $data[$key] = implode(',', $this->{$key});
             }
+        }
+
+        if (! is_null($this->timezone)) {
+            $data['timezone'] = $this->timezone;
         }
 
         if (is_int($this->page) && $this->page > 0) {
