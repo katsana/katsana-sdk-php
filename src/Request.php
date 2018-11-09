@@ -7,6 +7,13 @@ use Laravie\Codex\Request as BaseRequest;
 abstract class Request extends BaseRequest
 {
     /**
+     * Set request header timezone code.
+     *
+     * @var string
+     */
+    protected static $requestHeaderTimezoneCode = 'UTC';
+
+    /**
      * Get API Header.
      *
      * @return array
@@ -15,6 +22,7 @@ abstract class Request extends BaseRequest
     {
         $headers = [
             'Accept' => "application/vnd.KATSANA.{$this->getVersion()}+json",
+            'Time-Zone' => static::$requestHeaderTimezoneCode ?? 'UTC',
         ];
 
         if (! is_null($accessToken = $this->client->getAccessToken())) {
@@ -22,6 +30,22 @@ abstract class Request extends BaseRequest
         }
 
         return $headers;
+    }
+
+    /**
+     * Set timezone code.
+     *
+     * @param string $timeZoneCode
+     *
+     * @return $this
+     */
+    public function onTimeZone(string $timeZoneCode)
+    {
+        if (in_array($timeZoneCode, timezone_identifiers_list())) {
+            static::$requestHeaderTimezoneCode = $timeZoneCode;
+        }
+
+        return $this;
     }
 
     /**
