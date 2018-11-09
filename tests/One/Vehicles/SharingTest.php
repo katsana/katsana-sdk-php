@@ -14,6 +14,7 @@ class SharingTest extends TestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
         ];
 
         $faker = Faker::create()
@@ -52,6 +53,7 @@ class SharingTest extends TestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
             'Content-Type' => 'application/json',
         ];
 
@@ -91,6 +93,7 @@ class SharingTest extends TestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
             'Content-Type' => 'application/json',
         ];
 
@@ -130,6 +133,7 @@ class SharingTest extends TestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
         ];
 
         $faker = Faker::create()

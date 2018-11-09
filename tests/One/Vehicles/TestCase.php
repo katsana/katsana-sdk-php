@@ -22,6 +22,7 @@ abstract class TestCase extends SdkTestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
         ];
 
         $faker = Faker::create()
@@ -53,6 +54,7 @@ abstract class TestCase extends SdkTestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
         ];
 
         $faker = Faker::create()
@@ -84,6 +86,7 @@ abstract class TestCase extends SdkTestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
         ];
 
         $faker = Faker::create()
@@ -115,6 +118,7 @@ abstract class TestCase extends SdkTestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
         ];
 
         $faker = Faker::create()
@@ -146,6 +150,7 @@ abstract class TestCase extends SdkTestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
         ];
 
         $start = $this->convertToUtc('2014-04-01 04:00:00');

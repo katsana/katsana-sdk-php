@@ -21,6 +21,7 @@ class ProfileTest extends TestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
         ];
 
         $faker = Faker::create()
@@ -58,6 +59,7 @@ class ProfileTest extends TestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
             'Content-Type' => 'application/json',
         ];
 
@@ -100,6 +102,7 @@ class ProfileTest extends TestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
         ];
 
         $faker = Faker::create()
@@ -120,6 +123,7 @@ class ProfileTest extends TestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
         ];
 
         $faker = Faker::create()
@@ -153,6 +157,7 @@ class ProfileTest extends TestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
         ];
 
         $faker = Faker::create()

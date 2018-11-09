@@ -19,7 +19,7 @@ class WelcomeTest extends TestCase
     public function it_can_show_welcome_message()
     {
         $faker = Faker::create()
-                        ->call('GET', ['Accept' => 'application/vnd.KATSANA.v1+json'])
+                        ->call('GET', ['Accept' => 'application/vnd.KATSANA.v1+json', 'Time-Zone' => 'UTC'])
                         ->expectEndpointIs('https://api.katsana.com')
                         ->shouldResponseWith(200, '{"platform":"v5.0.0","api":["v1"]}');
 
@@ -38,6 +38,7 @@ class WelcomeTest extends TestCase
         $headers = [
             'Accept' => 'application/vnd.KATSANA.v1+json',
             'Authorization' => 'Bearer '.static::ACCESS_TOKEN,
+            'Time-Zone' => 'UTC',
         ];
 
         $faker = Faker::create()
