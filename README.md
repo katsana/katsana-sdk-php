@@ -11,6 +11,7 @@ KATSANA SDK for PHP
 * [Installation](#installation)
 * [Usages](#usages)
     - [Creating Client](#creating-client)
+    - [Change Timezone](#change-timezone)
     - [Handling Response](#handling-response)
     - [Using the API](#using-the-api)
 
@@ -53,6 +54,21 @@ In most cases, you will be using the client with Personal Access Token. You can 
 use Katsana\Sdk\Client;
 
 $katsana = Client::personal('personal-access-token');
+```
+
+### Change Timezone
+
+By default, all request will return date and time data in `UTC`, however you may set the request to response with a different timezone by setting the client (globally) such as:
+
+```php
+$katsana->onTimeZone('Asia/Kuala_Lumpur');
+```
+
+Or on each resource such as:
+
+```php
+$vehicles = $katsana->uses('Vehicles');
+$vehicles->onTimeZone('Asia/Kuala_Lumpur');
 ```
 
 ### Handling Response
