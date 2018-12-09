@@ -17,9 +17,11 @@ class PasswordGrant extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function authenticate(string $username, string $password): Response
+    public function authenticate(string $username, string $password, $scope = null): Response
     {
-        $body = $this->mergeApiBody(compact('username', 'password'));
+        $body = $this->mergeApiBody(
+            array_filter(compact('username', 'password', 'scope'))
+        );
 
         return $this->send('POST', 'oauth/token', $this->getApiHeaders(), $body)
                     ->validateWith(function ($statusCode, $response) {
