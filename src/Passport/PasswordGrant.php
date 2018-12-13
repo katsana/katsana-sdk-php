@@ -14,12 +14,15 @@ class PasswordGrant extends Request
      *
      * @param string $username
      * @param string $password
+     * @param string|null $scope
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function authenticate(string $username, string $password): Response
+    public function authenticate(string $username, string $password, ?string $scope = '*'): Response
     {
-        $body = $this->mergeApiBody(compact('username', 'password'));
+        $body = $this->mergeApiBody(
+            array_filter(compact('username', 'password', 'scope'))
+        );
 
         return $this->send('POST', 'oauth/token', $this->getApiHeaders(), $body)
                     ->validateWith(function ($statusCode, $response) {

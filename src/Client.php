@@ -6,9 +6,7 @@ use Http\Client\Common\HttpMethodsClient as HttpClient;
 use Laravie\Codex\Client as BaseClient;
 use Laravie\Codex\Concerns\Passport;
 use Laravie\Codex\Contracts\Request as RequestContract;
-use Laravie\Codex\Contracts\Response as ResponseContract;
 use Laravie\Codex\Discovery;
-use Psr\Http\Message\ResponseInterface;
 
 class Client extends BaseClient
 {
@@ -81,10 +79,10 @@ class Client extends BaseClient
         return static::make(null, null)->setAccessToken($accessToken);
     }
 
-     /**
+    /**
      * Handle uses using via.
      *
-     * @param  \Laravie\Codex\Contracts\Request  $request
+     * @param \Laravie\Codex\Contracts\Request $request
      *
      * @return \Laravie\Codex\Contracts\Request
      */
@@ -110,18 +108,6 @@ class Client extends BaseClient
         }
 
         return $this;
-    }
-
-    /**
-     * Resolve the responder class.
-     *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *
-     * @return \Laravie\Codex\Contracts\Response
-     */
-    protected function responseWith(ResponseInterface $response): ResponseContract
-    {
-        return new Response($response);
     }
 
     /**

@@ -65,7 +65,8 @@ class Query
     /**
      * Set timezone for the request input.
      *
-     * @param  string $timeZoneCode
+     * @param string $timeZoneCode
+     *
      * @return $this
      */
     protected function onTimeZone(?string $timeZoneCode)
