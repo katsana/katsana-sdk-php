@@ -44,13 +44,12 @@ class DriversTest extends TestCase
         $this->assertNull($data[0]['avatar']);
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_cant_list_drivers_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                 ->uses('Fleets.Drivers')
                 ->all(1);
@@ -90,13 +89,12 @@ class DriversTest extends TestCase
         $this->assertNull($driver['avatar']);
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_cant_create_driver_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                 ->uses('Fleets.Drivers')
                 ->create(1, 'Ahmad Justin Yeo', '830214015065');

@@ -28,8 +28,8 @@ class WelcomeTest extends TestCase
                         ->info();
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertContains('v5.0.0', $response->toArray()['platform']);
-        $this->assertContains('v1', $response->toArray()['api']);
+        $this->assertStringContainsString('v5.0.0', $response->toArray()['platform']);
+        $this->assertStringContainsString('v1', $response->toArray()['api'][0]);
     }
 
     /** @test */
@@ -51,7 +51,7 @@ class WelcomeTest extends TestCase
                         ->info();
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertContains('v5.0.0', $response->toArray()['platform']);
-        $this->assertContains('v1', $response->toArray()['api']);
+        $this->assertStringContainsString('v5.0.0', $response->toArray()['platform']);
+        $this->assertStringContainsString('v1', $response->toArray()['api'][0]);
     }
 }

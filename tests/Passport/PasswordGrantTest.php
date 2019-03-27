@@ -33,13 +33,13 @@ class PasswordGrantTest extends TestCase
         $this->assertSame('AckfSECXIvnK5r28GVIWUAxmbBSjTsmF', $response->toArray()['access_token']);
     }
 
-    /**
-     * @test
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Unable to generate access token!
-     */
+    /** @test */
     public function it_cant_get_access_token_when_authentication_return_other_than_200_http_status()
     {
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage('Unable to generate access token!');
+
+
         $headers = ['Accept' => 'application/json'];
         $payloads = 'scope=%2A&grant_type=password&client_id='.static::CLIENT_ID.'&client_secret='.static::CLIENT_SECRET.'&username=dummy%40katsana.com&password=secret%21';
 
@@ -56,13 +56,12 @@ class PasswordGrantTest extends TestCase
         $client->via(new PasswordGrant())->authenticate('dummy@katsana.com', 'secret!');
     }
 
-    /**
-     * @test
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Missing client_id and client_secret information!
-     */
+    /** @test */
     public function it_throws_exception_when_client_id_or_secret_is_missing()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Missing client_id and client_secret information!');
+
         (new Client(Faker::create()->http()))
                 ->via(new PasswordGrant())
                 ->authenticate('dummy@katsana.com', 'secret!');

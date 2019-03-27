@@ -35,13 +35,12 @@ class SharingTest extends TestCase
         $this->assertTrue($sharing[0]['active']);
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_can_list_sharing_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                     ->uses('Vehicles.Sharing')
                     ->all(105);
@@ -75,13 +74,12 @@ class SharingTest extends TestCase
         $this->assertTrue($sharing['active']);
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_can_create_sharing_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                     ->uses('Vehicles.Sharing')
                     ->create(105, 'Going on vacation!');
@@ -115,13 +113,12 @@ class SharingTest extends TestCase
         $this->assertTrue($sharing['active']);
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_can_update_sharing_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                     ->uses('Vehicles.Sharing')
                     ->update(105, 250, 'Going on vacation!');
@@ -149,13 +146,12 @@ class SharingTest extends TestCase
         $this->assertSame(204, $response->getStatusCode());
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_can_delete_sharing_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                     ->uses('Vehicles.Sharing')
                     ->destroy(105, 250);

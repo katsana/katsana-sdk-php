@@ -41,13 +41,12 @@ class ProfileTest extends TestCase
         $this->assertSame('Hanna Syahira', $user['fullname']);
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_cant_show_user_profile_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                 ->uses('Profile')
                 ->get();
@@ -84,13 +83,12 @@ class ProfileTest extends TestCase
         $this->assertSame('Hanna is a bot', $user['fullname']);
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_cant_update_user_profile_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                 ->uses('Profile')
                 ->update(['fullname' => 'Hanna is a bot']);
@@ -139,13 +137,12 @@ class ProfileTest extends TestCase
         $this->assertFalse($response);
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_cant_verify_valid_password_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                 ->uses('Profile')
                 ->verifyPassword('secret!');
@@ -177,13 +174,12 @@ class ProfileTest extends TestCase
         $this->assertSame('https://my.katsana.com/pictures/user-73/0153cf08-31e2-11e6-99b7-08002777c33d.marker.png', $avatar['marker']);
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_cant_upload_avatar_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                 ->uses('Profile')
                 ->uploadAvatar(__DIR__.'/../stubs/katsana-logo.png');

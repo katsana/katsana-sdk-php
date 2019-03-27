@@ -34,13 +34,12 @@ class VehicleTest extends TestCase
         $this->assertSame('WXG 3365', $data['devices'][0]['vehicle_number']);
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_cant_list_vehicles_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                     ->uses('Vehicles')
                     ->all();
@@ -72,13 +71,12 @@ class VehicleTest extends TestCase
         $this->assertSame('WXG 3365', $data['device']['vehicle_number']);
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_cant_show_single_vehicle_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                     ->uses('Vehicles')
                     ->get(105);
@@ -105,13 +103,12 @@ class VehicleTest extends TestCase
         $data = $response->toArray();
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_cant_show_vehicle_location_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                     ->uses('Vehicles')
                     ->location(105);
@@ -148,13 +145,12 @@ class VehicleTest extends TestCase
         $this->assertSame('WA 8055', $data['device']['vehicle_number']);
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_cant_update_vehicle_information_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                     ->uses('Vehicles')
                     ->update(105, ['license_plate' => 'WAB055']);
@@ -186,13 +182,12 @@ class VehicleTest extends TestCase
         $this->assertSame('https://my.katsana.com/pictures/device-105/04375b22-d454-11e5-8724-f23c9126a0cc.marker.png', $avatar['marker']);
     }
 
-    /**
-     * @test
-     * @expectedException \Katsana\Sdk\Exceptions\MissingAccessToken
-     * @expectedExceptionMessage Request requires valid access token to be available!
-     */
+    /** @test */
     public function it_cant_upload_avatar_without_access_token()
     {
+        $this->expectException('Katsana\Sdk\Exceptions\MissingAccessToken');
+        $this->expectExceptionMessage('Request requires valid access token to be available!');
+
         $this->makeClient(Faker::create())
                     ->uses('Vehicles')
                     ->uploadAvatar(888, __DIR__.'/../stubs/katsana-logo.png');
