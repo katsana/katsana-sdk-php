@@ -21,7 +21,7 @@ class PasswordGrant extends Request
     public function authenticate(string $username, string $password, ?string $scope = '*'): Response
     {
         $body = $this->mergeApiBody(
-            array_filter(compact('username', 'password', 'scope'))
+            \array_filter(\compact('username', 'password', 'scope'))
         );
 
         return $this->send('POST', 'oauth/token', $this->getApiHeaders(), $body)

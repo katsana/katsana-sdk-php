@@ -49,7 +49,7 @@ class Drivers extends Request
             'POST',
             "fleets/{$fleetId}/drivers",
             $this->getApiHeaders(),
-            array_merge($optional, compact('fullname', 'identification'))
+            \array_merge($optional, \compact('fullname', 'identification'))
         );
     }
 
@@ -72,7 +72,7 @@ class Drivers extends Request
             'POST',
             "fleets/{$fleetId}/drivers/{$driverId}",
             $this->getApiHeaders(),
-            array_merge($optional, compact('fullname', 'identification'))
+            \array_merge($optional, \compact('fullname', 'identification'))
         );
     }
 }

@@ -48,7 +48,7 @@ class Sharing extends Request
             'POST',
             "vehicles/{$vehicleId}/sharing",
             $this->getApiHeaders(),
-            $this->mergeApiBody(compact('description', 'duration'))
+            $this->mergeApiBody(\compact('description', 'duration'))
         );
     }
 
@@ -70,7 +70,7 @@ class Sharing extends Request
             'PATCH',
             "vehicles/{$vehicleId}/sharing/{$sharingId}",
             $this->getApiHeaders(),
-            $this->mergeApiBody(compact('description', 'duration'))
+            $this->mergeApiBody(\compact('description', 'duration'))
         );
     }
 

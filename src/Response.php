@@ -2,9 +2,7 @@
 
 namespace Katsana\Sdk;
 
-use Laravie\Codex\Response as BaseResponse;
-
-class Response extends BaseResponse
+class Response extends \Laravie\Codex\Response
 {
     /**
      * Validate the response object.

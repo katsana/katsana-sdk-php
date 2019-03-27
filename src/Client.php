@@ -3,12 +3,11 @@
 namespace Katsana\Sdk;
 
 use Http\Client\Common\HttpMethodsClient as HttpClient;
-use Laravie\Codex\Client as BaseClient;
 use Laravie\Codex\Concerns\Passport;
 use Laravie\Codex\Contracts\Request as RequestContract;
 use Laravie\Codex\Discovery;
 
-class Client extends BaseClient
+class Client extends \Laravie\Codex\Client
 {
     use Passport;
 
@@ -103,7 +102,7 @@ class Client extends BaseClient
      */
     final public function onTimeZone(string $timeZoneCode): self
     {
-        if (in_array($timeZoneCode, timezone_identifiers_list())) {
+        if (\in_array($timeZoneCode, \timezone_identifiers_list())) {
             $this->requestHeaderTimezoneCode = $timeZoneCode;
         }
 

@@ -55,7 +55,7 @@ class Query
      */
     protected function includes($includes)
     {
-        $includes = is_array($includes) ? $includes : func_get_args();
+        $includes = \is_array($includes) ? $includes : \func_get_args();
 
         $this->includes = $includes;
 
@@ -71,9 +71,9 @@ class Query
      */
     protected function onTimeZone(?string $timeZoneCode)
     {
-        if (is_null($timeZoneCode)) {
+        if (\is_null($timeZoneCode)) {
             $this->timezone = null;
-        } elseif (in_array($timeZoneCode, timezone_identifiers_list())) {
+        } elseif (\in_array($timeZoneCode, \timezone_identifiers_list())) {
             $this->timezone = $timeZoneCode;
         }
 
@@ -89,7 +89,7 @@ class Query
      */
     protected function excludes($excludes)
     {
-        $excludes = is_array($excludes) ? $excludes : func_get_args();
+        $excludes = \is_array($excludes) ? $excludes : \func_get_args();
 
         $this->excludes = $excludes;
 
@@ -147,7 +147,7 @@ class Query
     public function toArray(): array
     {
         return $this->build(function ($data, $customs) {
-            return array_merge($customs, $data);
+            return \array_merge($customs, $data);
         });
     }
 
@@ -164,23 +164,23 @@ class Query
 
         foreach (['includes', 'excludes'] as $key) {
             if (! empty($this->{$key})) {
-                $data[$key] = implode(',', $this->{$key});
+                $data[$key] = \implode(',', $this->{$key});
             }
         }
 
-        if (! is_null($this->timezone)) {
+        if (! \is_null($this->timezone)) {
             $data['timezone'] = $this->timezone;
         }
 
-        if (is_int($this->page) && $this->page > 0) {
+        if (\is_int($this->page) && $this->page > 0) {
             $data['page'] = $this->page;
 
-            if (is_int($this->perPage) && $this->perPage > 5) {
+            if (\is_int($this->perPage) && $this->perPage > 5) {
                 $data['per_page'] = $this->perPage;
             }
         }
 
-        return call_user_func($callback, $data, $this->customs);
+        return \call_user_func($callback, $data, $this->customs);
     }
 
     /**

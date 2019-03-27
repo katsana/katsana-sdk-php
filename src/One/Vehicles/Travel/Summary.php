@@ -108,7 +108,7 @@ class Summary extends Request
             'GET',
             "vehicles/{$vehicleId}/travels/summaries/duration",
             $this->getApiHeaders(),
-            compact('start', 'end')
+            \compact('start', 'end')
         );
     }
 }

@@ -3,10 +3,9 @@
 namespace Katsana\Sdk;
 
 use Laravie\Codex\Contracts\Response as ResponseContract;
-use Laravie\Codex\Request as BaseRequest;
 use Psr\Http\Message\ResponseInterface;
 
-abstract class Request extends BaseRequest
+abstract class Request extends \Laravie\Codex\Request
 {
     /**
      * Set request header timezone code.
@@ -39,7 +38,7 @@ abstract class Request extends BaseRequest
             'Time-Zone' => $this->requestHeaderTimezoneCode ?? 'UTC',
         ];
 
-        if (! is_null($accessToken = $this->client->getAccessToken())) {
+        if (! \is_null($accessToken = $this->client->getAccessToken())) {
             $headers['Authorization'] = "Bearer {$accessToken}";
         }
 
@@ -55,7 +54,7 @@ abstract class Request extends BaseRequest
      */
     final public function onTimeZone(string $timeZoneCode): self
     {
-        if (in_array($timeZoneCode, timezone_identifiers_list())) {
+        if (\in_array($timeZoneCode, \timezone_identifiers_list())) {
             $this->requestHeaderTimezoneCode = $timeZoneCode;
         }
 
@@ -69,7 +68,7 @@ abstract class Request extends BaseRequest
      */
     final protected function requiresAccessToken(): void
     {
-        if (is_null($accessToken = $this->client->getAccessToken())) {
+        if (\is_null($accessToken = $this->client->getAccessToken())) {
             throw new Exceptions\MissingAccessToken('Request requires valid access token to be available!');
         }
     }
