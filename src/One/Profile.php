@@ -6,7 +6,7 @@ use Katsana\Sdk\Query;
 use Laravie\Codex\Concerns\Request\Json;
 use Laravie\Codex\Concerns\Request\Multipart;
 use Laravie\Codex\Contracts\Response;
-use Laravie\Codex\Exceptions\UnauthorizedHttpException;
+use Laravie\Codex\Exceptions\UnauthorizedException;
 
 class Profile extends Request
 {
@@ -62,7 +62,7 @@ class Profile extends Request
                 $this->getApiHeaders(),
                 $this->mergeApiBody(compact('password'))
             );
-        } catch (UnauthorizedHttpException $e) {
+        } catch (UnauthorizedException $e) {
             return false;
         }
 
