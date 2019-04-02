@@ -3,6 +3,7 @@
 namespace Katsana\Sdk;
 
 use Psr\Http\Message\ResponseInterface;
+use Laravie\Codex\Security\TimeLimitSignature\Verify;
 
 class Signature
 {
@@ -34,23 +35,9 @@ class Signature
      */
     final public function verify(string $header, string $body, int $threshold = 3600): bool
     {
-        $s = explode(',', $header);
-        list(, $timestamp) = explode('=', $s[0]);
-        list(, $signature) = explode('=', $s[1]);
+        $signature = new Verify($this->key, 'sha256');
 
-        $payload = $timestamp.'.'.$body;
-
-        $compared = hash_hmac('sha256', $payload, $this->key);
-
-        if (! hash_equals($compared, $signature)) {
-            return false;
-        }
-
-        if ((time() - (int) $timestamp) > $threshold) {
-            return false;
-        }
-
-        return true;
+        return $signature($body, $header);
     }
 
     /**
