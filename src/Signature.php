@@ -35,7 +35,7 @@ class Signature
      */
     final public function verify(string $header, string $body, int $threshold = 3600): bool
     {
-        $signature = new Verify($this->key, 'sha256');
+        $signature = new Verify($this->key, 'sha256', $threshold);
 
         return $signature($body, $header);
     }
