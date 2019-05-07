@@ -53,7 +53,7 @@ class Signature
         $response = new Response($message);
 
         return $this->verify(
-            $response->getHeader('HTTP_X_SIGNATURE')[0],
+            $response->getHeader('X-Signature')[0] ?? $response->getHeader('HTTP_X_SIGNATURE')[0],
             $response->getBody(),
             $threshold
         );

@@ -57,7 +57,7 @@ class SignatureTest extends TestCase
         $message = Faker::create()->message();
         $signature = hash_hmac('sha256', "{$timestamp}.{$payload}", $key);
 
-        $message->shouldReceive('getHeader')->with('HTTP_X_SIGNATURE')->andReturn([
+        $message->shouldReceive('getHeader')->with('X-Signature')->andReturn([
             "t={$timestamp},v1={$signature}",
         ])->shouldReceive('getBody')->andReturn($payload);
 
