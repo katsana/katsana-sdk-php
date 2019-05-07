@@ -12,11 +12,11 @@ class PasswordGrant extends Request
     /**
      * Create access token.
      *
-     * @param string $username
-     * @param string $password
+     * @param string      $username
+     * @param string      $password
      * @param string|null $scope
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function authenticate(string $username, string $password, ?string $scope = '*'): Response
     {

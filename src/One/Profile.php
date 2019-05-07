@@ -17,7 +17,7 @@ class Profile extends Request
      *
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function get(?Query $query = null): Response
     {
@@ -33,7 +33,7 @@ class Profile extends Request
      *
      * @param array $payload
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function update(array $payload): Response
     {
@@ -74,7 +74,7 @@ class Profile extends Request
      *
      * @param string $file
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function uploadAvatar(string $file): Response
     {

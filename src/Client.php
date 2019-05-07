@@ -87,10 +87,9 @@ class Client extends \Laravie\Codex\Client
      */
     public function via(RequestContract $request): RequestContract
     {
-        $request->setClient($this);
         $request->onTimeZone($this->requestHeaderTimezoneCode);
 
-        return $request;
+        return parent::via($request);
     }
 
     /**

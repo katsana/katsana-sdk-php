@@ -17,7 +17,7 @@ class Sharing extends Request
      * @param int                     $vehicleId
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function all(int $vehicleId, ?Query $query = null): Response
     {
@@ -38,7 +38,7 @@ class Sharing extends Request
      * @param string|null $description
      * @param string|null $duration
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function create(int $vehicleId, ?string $description, ?string $duration = '1D'): Response
     {
@@ -60,7 +60,7 @@ class Sharing extends Request
      * @param string|null $description
      * @param string|null $duration
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function update(int $vehicleId, int $sharingId, ?string $description, ?string $duration = '1D'): Response
     {
@@ -80,7 +80,7 @@ class Sharing extends Request
      * @param int $vehicleId
      * @param int $sharingId
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function destroy(int $vehicleId, int $sharingId): Response
     {

@@ -39,7 +39,6 @@ class PasswordGrantTest extends TestCase
         $this->expectException('RuntimeException');
         $this->expectExceptionMessage('Unable to generate access token!');
 
-
         $headers = ['Accept' => 'application/json'];
         $payloads = 'scope=%2A&grant_type=password&client_id='.static::CLIENT_ID.'&client_secret='.static::CLIENT_SECRET.'&username=dummy%40katsana.com&password=secret%21';
 

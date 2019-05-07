@@ -16,7 +16,7 @@ class Vehicles extends Request
      *
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function all(?Query $query = null): Response
     {
@@ -33,7 +33,7 @@ class Vehicles extends Request
      * @param int                     $vehicleId
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function get(int $vehicleId, ?Query $query = null): Response
     {
@@ -50,7 +50,7 @@ class Vehicles extends Request
      * @param int                     $vehicleId
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function location(int $vehicleId, ?Query $query = null): Response
     {
@@ -67,7 +67,7 @@ class Vehicles extends Request
      * @param int   $vehicleId
      * @param array $payload
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function update(int $vehicleId, array $payload): Response
     {
@@ -84,7 +84,7 @@ class Vehicles extends Request
      * @param int    $vehicleId
      * @param string $file
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function uploadAvatar(int $vehicleId, string $file): Response
     {

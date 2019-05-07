@@ -13,7 +13,7 @@ class Insurer extends Request
      * @param string                  $country
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function all(string $country = 'MY', ?Query $query = null): Response
     {

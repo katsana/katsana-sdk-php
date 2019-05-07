@@ -14,7 +14,7 @@ class Summary extends Request
      * @param int                $vehicleId
      * @param \Katsana\Sdk\Query $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function today(int $vehicleId, ?Query $query = null): Response
     {
@@ -34,7 +34,7 @@ class Summary extends Request
      * @param int                $vehicleId
      * @param \Katsana\Sdk\Query $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function yesterday(int $vehicleId): Response
     {
@@ -55,7 +55,7 @@ class Summary extends Request
      * @param int                $month
      * @param \Katsana\Sdk\Query $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function month(int $vehicleId, int $year, int $month = 1): Response
     {
@@ -77,7 +77,7 @@ class Summary extends Request
      * @param int                $day
      * @param \Katsana\Sdk\Query $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function date(int $vehicleId, int $year, int $month = 1, int $day = 1): Response
     {
@@ -98,7 +98,7 @@ class Summary extends Request
      * @param string             $end
      * @param \Katsana\Sdk\Query $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function duration(int $vehicleId, string $start, string $end, ?Query $query = null): Response
     {

@@ -12,7 +12,7 @@ class Fleets extends Request
      *
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function all(?Query $query = null): Response
     {
@@ -29,7 +29,7 @@ class Fleets extends Request
      * @param int                     $fleetId
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function get(int $fleetId, ?Query $query = null): Response
     {

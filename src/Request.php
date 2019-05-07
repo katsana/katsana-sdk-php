@@ -19,7 +19,7 @@ abstract class Request extends \Laravie\Codex\Request
      *
      * @param \Psr\Http\Message\ResponseInterface $response
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     protected function responseWith(ResponseInterface $response): ResponseContract
     {

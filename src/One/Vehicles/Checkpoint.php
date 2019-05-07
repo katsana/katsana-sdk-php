@@ -14,7 +14,7 @@ class Checkpoint extends Request
      * @param int                     $vehicleId
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function today(int $vehicleId, ?Query $query = null): Response
     {
@@ -34,7 +34,7 @@ class Checkpoint extends Request
      * @param int                     $vehicleId
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function yesterday(int $vehicleId, ?Query $query = null): Response
     {
@@ -56,7 +56,7 @@ class Checkpoint extends Request
      * @param int                     $month
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function month(int $vehicleId, int $year, int $month = 1, ?Query $query = null): Response
     {
@@ -79,7 +79,7 @@ class Checkpoint extends Request
      * @param int                     $day
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function date(int $vehicleId, int $year, int $month = 1, int $day = 1, ?Query $query = null): Response
     {
@@ -101,7 +101,7 @@ class Checkpoint extends Request
      * @param string                  $end
      * @param \Katsana\Sdk\Query|null $query
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Katsana\Sdk\Response
      */
     public function duration(int $vehicleId, string $start, string $end, ?Query $query = null): Response
     {
