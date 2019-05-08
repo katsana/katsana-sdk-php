@@ -21,13 +21,21 @@ class QueryTest extends TestCase
     }
 
     /** @test */
-    public function it_can_be_initiated_with_timezone()
+    public function it_can_be_initiated_with_custom_timezone()
     {
         $query = Query::onTimeZone('Asia/Kuala_Lumpur');
 
         $this->assertSame([
             'timezone' => 'Asia/Kuala_Lumpur',
         ], $query->toArray());
+    }
+
+    /** @test */
+    public function it_can_be_initiated_with_resetting_timezone()
+    {
+        $query = Query::onTimeZone(null);
+
+        $this->assertSame([], $query->toArray());
     }
 
     /** @test */
@@ -115,5 +123,14 @@ class QueryTest extends TestCase
         ], $query->build(function ($data, $customs) {
             return ['content' => array_merge($customs, $data)];
         }));
+    }
+
+    /** @test */
+    public function it_cant_be_initiated_with_unsupported_method()
+    {
+        $this->expectException('BadMethodCallException');
+        $this->expectExceptionMessage("Katsana\Sdk\Query::foo() method doesn't exist!");
+
+        Query::foo(20);
     }
 }
