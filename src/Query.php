@@ -2,6 +2,16 @@
 
 namespace Katsana\Sdk;
 
+use BadMethodCallException;
+
+/**
+ * @method $this onTimeZone(string|null $timeZoneCode)
+ * @method $this includes(array|string $includes)
+ * @method $this excludes(array $excludes)
+ * @method $this with(string $name, mixed $value)
+ * @method $this forPage(int|null $page = null)
+ * @method $this take(int|null $perPage = null)
+ */
 class Query
 {
     /**
@@ -47,6 +57,33 @@ class Query
     protected $customs = [];
 
     /**
+     * The methods that should be accessed using magic method.
+     *
+     * @var array
+     */
+    protected $passthru = [
+        'includes', 'excludes', 'with', 'forPage', 'take',
+    ];
+
+    /**
+     * Set timezone for the request input.
+     *
+     * @param string|null $timeZoneCode
+     *
+     * @return $this
+     */
+    protected function onTimeZone(?string $timeZoneCode)
+    {
+        if (\is_null($timeZoneCode)) {
+            $this->timezone = null;
+        } elseif (\in_array($timeZoneCode, \timezone_identifiers_list())) {
+            $this->timezone = $timeZoneCode;
+        }
+
+        return $this;
+    }
+
+    /**
      * Set includes data.
      *
      * @param array $includes
@@ -58,24 +95,6 @@ class Query
         $includes = \is_array($includes) ? $includes : \func_get_args();
 
         $this->includes = $includes;
-
-        return $this;
-    }
-
-    /**
-     * Set timezone for the request input.
-     *
-     * @param string $timeZoneCode
-     *
-     * @return $this
-     */
-    protected function onTimeZone(?string $timeZoneCode)
-    {
-        if (\is_null($timeZoneCode)) {
-            $this->timezone = null;
-        } elseif (\in_array($timeZoneCode, \timezone_identifiers_list())) {
-            $this->timezone = $timeZoneCode;
-        }
 
         return $this;
     }
@@ -193,7 +212,11 @@ class Query
      */
     public function __call(string $method, array $parameters)
     {
-        return $this->$method(...$parameters);
+        if (\in_array($method, $this->passthru)) {
+            return $this->$method(...$parameters);
+        }
+
+        throw new BadMethodCallException(__CLASS__."::{$method}() method doesn't exist!");
     }
 
     /**
