@@ -72,8 +72,22 @@ class Client extends \Laravie\Codex\Client
      * @param string $accessToken
      *
      * @return static
+     *
+     * @see static::fromAccessToken()
      */
     public static function personal(string $accessToken)
+    {
+        return static::fromAccessToken($accessToken);
+    }
+
+    /**
+     * Make a client using personal access token.
+     *
+     * @param string $accessToken
+     *
+     * @return static
+     */
+    public static function fromAccessToken(string $accessToken)
     {
         return static::make(null, null)->setAccessToken($accessToken);
     }

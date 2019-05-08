@@ -2,10 +2,10 @@
 
 namespace Katsana\Sdk\Tests;
 
-use Mockery as m;
 use Katsana\Sdk\Client;
 use Laravie\Codex\Discovery;
 use Laravie\Codex\Testing\Faker;
+use Mockery as m;
 
 class ClientTest extends TestCase
 {
