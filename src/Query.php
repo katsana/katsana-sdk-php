@@ -62,7 +62,7 @@ class Query
      * @var array
      */
     protected $passthru = [
-        'includes', 'excludes', 'with', 'forPage', 'take',
+        'onTimeZone', 'includes', 'excludes', 'with', 'forPage', 'take',
     ];
 
     /**
