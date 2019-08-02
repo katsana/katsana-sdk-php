@@ -165,7 +165,7 @@ class Query
      */
     public function toArray(): array
     {
-        return $this->build(function ($data, $customs) {
+        return $this->build(static function ($data, $customs) {
             return \array_merge($customs, $data);
         });
     }
