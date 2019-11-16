@@ -104,11 +104,15 @@ class Summary extends Request
     {
         $this->requiresAccessToken();
 
+        $payload = $this->buildHttpQuery($query);
+        $payload['start'] = $start;
+        $payload['end'] = $end;
+        
         return $this->send(
             'GET',
             "vehicles/{$vehicleId}/travels/summaries/duration",
             $this->getApiHeaders(),
-            \compact('start', 'end')
+            $payload
         );
     }
 }
