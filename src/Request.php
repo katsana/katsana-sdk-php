@@ -76,7 +76,7 @@ abstract class Request extends \Laravie\Codex\Request
     /**
      * Build query string from Katsana\Sdk\Query.
      *
-     * @param \Katsana\Sdk\Query $query
+     * @param \Katsana\Sdk\Query|null $query
      *
      * @return array
      */

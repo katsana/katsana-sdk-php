@@ -62,8 +62,8 @@ class Client extends \Laravie\Codex\Client
     public static function make(?string $clientId, ?string $clientSecret)
     {
         return (new static(Discovery::client()))
-                        ->setClientId($clientId)
-                        ->setClientSecret($clientSecret);
+            ->setClientId($clientId)
+            ->setClientSecret($clientSecret);
     }
 
     /**
