@@ -2,9 +2,9 @@ dist: bionic
 language: php
 
 php:
-  - 7.1
-  - 7.2
   - 7.3
+  - 7.4
+  - 8.0
 
 env:
   global:
@@ -30,11 +30,15 @@ after_script:
 
 matrix:
   include:
+    - php: 8.0
+      env: setup=basic
+    - php: 8.0
+      env: setup=stable
     - php: 7.4
       env: setup=basic
     - php: 7.4
       env: setup=stable
-    - php: 7.1
+    - php: 7.3
       env: setup=coveralls coverage=yes
   allow_failures:
     - php: nightly
