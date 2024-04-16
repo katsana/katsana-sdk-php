@@ -19,13 +19,15 @@ class Drivers extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function all(int $fleetId, ?Query $query = null): Response
+    public function all(int $fleetId=null, ?Query $query = null): Response
     {
         $this->requiresAccessToken();
+        
+        $endpoint = is_null($fleetId) ? 'fleets/drivers' : "fleets/{$fleetId}/drivers";
 
         return $this->send(
             'GET',
-            "fleets/{$fleetId}/drivers",
+            $endpoint,
             $this->getApiHeaders(),
             $this->buildHttpQuery($query)
         );

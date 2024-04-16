@@ -27,25 +27,6 @@ class Fleets extends Request
     }
 
     /**
-     * List all drivers available for the fleets.
-     *
-     * @param \Katsana\Sdk\Query|null $query
-     *
-     * @return \Katsana\Sdk\Response
-     */
-    public function drivers(?Query $query = null): Response
-    {
-        $this->requiresAccessToken();
-
-        return $this->send(
-            'GET',
-            'fleets/drivers',
-            $this->getApiHeaders(),
-            $this->buildHttpQuery($query)
-        );
-    }
-
-    /**
      * Show single fleet.
      *
      * @param int                     $fleetId
