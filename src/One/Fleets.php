@@ -19,7 +19,10 @@ class Fleets extends Request
         $this->requiresAccessToken();
 
         return $this->send(
-            'GET', 'fleets', $this->getApiHeaders(), $this->buildHttpQuery($query)
+            'GET',
+            'fleets',
+            $this->getApiHeaders(),
+            $this->buildHttpQuery($query)
         );
     }
 
@@ -36,7 +39,10 @@ class Fleets extends Request
         $this->requiresAccessToken();
 
         return $this->send(
-            'GET', "fleets/{$fleetId}", $this->getApiHeaders(), $this->buildHttpQuery($query)
+            'GET',
+            "fleets/{$fleetId}",
+            $this->getApiHeaders(),
+            $this->buildHttpQuery($query)
         );
     }
 }
