@@ -19,7 +19,29 @@ class Fleets extends Request
         $this->requiresAccessToken();
 
         return $this->send(
-            'GET', 'fleets', $this->getApiHeaders(), $this->buildHttpQuery($query)
+            'GET',
+            'fleets',
+            $this->getApiHeaders(),
+            $this->buildHttpQuery($query)
+        );
+    }
+
+    /**
+     * List all drivers available for the fleets.
+     *
+     * @param \Katsana\Sdk\Query|null $query
+     *
+     * @return \Katsana\Sdk\Response
+     */
+    public function drivers(?Query $query = null): Response
+    {
+        $this->requiresAccessToken();
+
+        return $this->send(
+            'GET',
+            'fleets/drivers',
+            $this->getApiHeaders(),
+            $this->buildHttpQuery($query)
         );
     }
 
@@ -36,7 +58,10 @@ class Fleets extends Request
         $this->requiresAccessToken();
 
         return $this->send(
-            'GET', "fleets/{$fleetId}", $this->getApiHeaders(), $this->buildHttpQuery($query)
+            'GET',
+            "fleets/{$fleetId}",
+            $this->getApiHeaders(),
+            $this->buildHttpQuery($query)
         );
     }
 }
