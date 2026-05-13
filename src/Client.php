@@ -59,7 +59,7 @@ class Client extends \Laravie\Codex\Client
      *
      * @return static
      */
-    public static function make(?string $clientId, ?string $clientSecret)
+    public static function make(?string $clientId, ?string $clientSecret): static
     {
         return (new static(Discovery::client()))
             ->setClientId($clientId)
@@ -75,7 +75,7 @@ class Client extends \Laravie\Codex\Client
      *
      * @see static::fromAccessToken()
      */
-    public static function personal(string $accessToken)
+    public static function personal(string $accessToken): static
     {
         return static::fromAccessToken($accessToken);
     }
@@ -87,7 +87,7 @@ class Client extends \Laravie\Codex\Client
      *
      * @return static
      */
-    public static function fromAccessToken(string $accessToken)
+    public static function fromAccessToken(string $accessToken): static
     {
         return static::make(null, null)->setAccessToken($accessToken);
     }

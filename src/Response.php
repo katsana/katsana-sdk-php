@@ -9,7 +9,7 @@ class Response extends \Laravie\Codex\Response
      *
      * @return $this
      */
-    public function validate()
+    public function validate(): self
     {
         $this->abortIfRequestNotFound();
         $this->abortIfRequestUnauthorized();

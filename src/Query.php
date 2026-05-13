@@ -19,49 +19,37 @@ class Query
      *
      * @var int|null
      */
-    protected $page;
+    protected ?int $page = null;
 
     /**
      * Per page limit.
-     *
-     * @var int|null
      */
-    protected $perPage;
+    protected ?int $perPage = null;
 
     /**
      * Request data timezone.
-     *
-     * @var string|null
      */
-    protected $timezone;
+    protected ?string $timezone = null;
 
     /**
      * Includes data.
-     *
-     * @var array
      */
-    protected $includes = [];
+    protected array $includes = [];
 
     /**
      * Excludes data.
-     *
-     * @var array
      */
-    protected $excludes = [];
+    protected array $excludes = [];
 
     /**
      * Custom data.
-     *
-     * @var array
      */
-    protected $customs = [];
+    protected array $customs = [];
 
     /**
      * The methods that should be accessed using magic method.
-     *
-     * @var array
      */
-    protected $passthru = [
+    protected array $passthru = [
         'onTimeZone', 'includes', 'excludes', 'with', 'forPage', 'take',
     ];
 
@@ -72,7 +60,7 @@ class Query
      *
      * @return $this
      */
-    protected function onTimeZone(?string $timeZoneCode)
+    protected function onTimeZone(?string $timeZoneCode): self
     {
         if (\is_null($timeZoneCode)) {
             $this->timezone = null;
@@ -90,7 +78,7 @@ class Query
      *
      * @return $this
      */
-    protected function includes($includes)
+    protected function includes(array|string $includes): self
     {
         $includes = \is_array($includes) ? $includes : \func_get_args();
 
@@ -106,7 +94,7 @@ class Query
      *
      * @return $this
      */
-    protected function excludes($excludes)
+    protected function excludes(array $excludes): self
     {
         $excludes = \is_array($excludes) ? $excludes : \func_get_args();
 
@@ -123,7 +111,7 @@ class Query
      *
      * @return $this
      */
-    protected function with(string $name, $value)
+    protected function with(string $name, mixed $value): self
     {
         $this->customs[$name] = $value;
 
@@ -137,7 +125,7 @@ class Query
      *
      * @return $this
      */
-    protected function forPage(?int $page = null)
+    protected function forPage(?int $page = null): self
     {
         $this->page = $page;
 
@@ -151,7 +139,7 @@ class Query
      *
      * @return $this
      */
-    protected function take(?int $perPage = null)
+    protected function take(?int $perPage = null): self
     {
         $this->perPage = $perPage;
 

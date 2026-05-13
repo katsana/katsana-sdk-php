@@ -20,16 +20,16 @@
         }
     },
     "require": {
-        "php": "^7.3 || ^8.0",
+        "php": "^8.3",
         "laravie/codex": "^5.0",
         "laravie/codex-security": "^1.1.2",
         "php-http/multipart-stream-builder": "^1.2"
     },
     "require-dev": {
-        "mockery/mockery": "^1.5",
+        "mockery/mockery": "^1.6",
         "php-http/discovery": "^1.14.1",
-        "phpunit/phpunit": "^7.5 || ^8.4 || ^9.0",
-        "symfony/http-client": "^5.4"
+        "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0",
+        "symfony/http-client": "^6.0 || ^7.0"
     },
     "extra": {
         "branch-alias": {
